@@ -551,7 +551,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Skeleton/Skeleton Attack.png
+/build:Sprites/Skeleton/Skeleton Attack.png;Sprites/Skeleton/_Attack.png
 
 #begin Sprites/Skeleton/Skeleton Dead.png
 /importer:TextureImporter
@@ -563,7 +563,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Skeleton/Skeleton Dead.png
+/build:Sprites/Skeleton/Skeleton Dead.png;Sprites/Skeleton/_Attack.png
+
+#begin Sprites/Skeleton/Skeleton Dead.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Skeleton/Skeleton Dead.png;Sprites/Skeleton/_Death.png
 
 #begin Sprites/Skeleton/Skeleton Hit.png
 /importer:TextureImporter
@@ -575,7 +587,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Skeleton/Skeleton Hit.png
+/build:Sprites/Skeleton/Skeleton Hit.png;Sprites/Skeleton/_Hit.png
 
 #begin Sprites/Skeleton/Skeleton Idle.png
 /importer:TextureImporter
@@ -587,7 +599,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Skeleton/Skeleton Idle.png
+/build:Sprites/Skeleton/Skeleton Idle.png;Sprites/Skeleton/_Idle.png
 
 #begin Sprites/Skeleton/Skeleton Walk.png
 /importer:TextureImporter
@@ -599,5 +611,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Skeleton/Skeleton Walk.png
+/build:Sprites/Skeleton/Skeleton Walk.png;Sprites/Skeleton/_Run.png
 

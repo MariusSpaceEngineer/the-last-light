@@ -11,13 +11,20 @@ namespace Game_development_project
         private SpriteBatch _spriteBatch;
 
         private Hero hero;
-        private Texture2D attackSprite;
-        private Texture2D damageSprite;
-        private Texture2D deathSprite;
-        private Texture2D idleSprite;
-        private Texture2D jumpSprite;
-        private Texture2D jumpFallInBetween;
-        private Texture2D moveSprite;
+        private Texture2D heroAttackSprite;
+        private Texture2D heroDamageSprite;
+        private Texture2D heroDeathSprite;
+        private Texture2D heroIdleSprite;
+        private Texture2D heroJumpSprite;
+        private Texture2D heroJumpFallInBetween;
+        private Texture2D heroMoveSprite;
+
+        private Skeleton skeleton;
+        private Texture2D skeletonAttackSprite;
+        private Texture2D skeletonDamageSprite;
+        private Texture2D skeletonDeathSprite;
+        private Texture2D skeletonIdleSprite;
+        private Texture2D skeletonMoveSprite;
 
         public Game1()
         {
@@ -31,13 +38,15 @@ namespace Game_development_project
             // TODO: Add your initialization logic here
 
             base.Initialize();
-            hero = new Hero(attackSprite,damageSprite,deathSprite,idleSprite, jumpSprite, jumpFallInBetween,moveSprite);
+            hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite) ;
+            skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite);
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadHero();
+            LoadSkeleton();
 
             // TODO: use this.Content to load your game content here
         }
@@ -48,7 +57,8 @@ namespace Game_development_project
                 Exit();
 
             // TODO: Add your update logic here
-            hero.Update(gameTime);
+            //hero.Update(gameTime);
+            skeleton.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -59,7 +69,8 @@ namespace Game_development_project
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-            hero.Draw(_spriteBatch);
+            //hero.Draw(_spriteBatch);
+            skeleton.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -67,13 +78,22 @@ namespace Game_development_project
 
         private void LoadHero()
         {
-            attackSprite = Content.Load<Texture2D>("Sprites/Knight/_Attack");
-            damageSprite = Content.Load<Texture2D>("Sprites/Knight/_Hit");
-            deathSprite = Content.Load<Texture2D>("Sprites/Knight/_Death");
-            idleSprite = Content.Load<Texture2D>("Sprites/Knight/_Idle");
-            jumpSprite = Content.Load<Texture2D>("Sprites/Knight/_Jump");
-            jumpFallInBetween = Content.Load<Texture2D>("Sprites/Knight/_JumpFallInbetween");
-            moveSprite = Content.Load<Texture2D>("Sprites/Knight/_Run");
+            heroAttackSprite = Content.Load<Texture2D>("Sprites/Knight/_Attack");
+            heroDamageSprite = Content.Load<Texture2D>("Sprites/Knight/_Hit");
+            heroDeathSprite = Content.Load<Texture2D>("Sprites/Knight/_Death");
+            heroIdleSprite = Content.Load<Texture2D>("Sprites/Knight/_Idle");
+            heroJumpSprite = Content.Load<Texture2D>("Sprites/Knight/_Jump");
+            heroJumpFallInBetween = Content.Load<Texture2D>("Sprites/Knight/_JumpFallInbetween");
+            heroMoveSprite = Content.Load<Texture2D>("Sprites/Knight/_Run");
+        }
+
+        private void LoadSkeleton()
+        {
+            skeletonAttackSprite = Content.Load<Texture2D>("Sprites/Skeleton/_Attack");
+            skeletonDamageSprite = Content.Load<Texture2D>("Sprites/Skeleton/_Hit");
+            skeletonDeathSprite = Content.Load<Texture2D>("Sprites/Skeleton/_Death");
+            skeletonIdleSprite = Content.Load<Texture2D>("Sprites/Skeleton/_Idle");
+            skeletonMoveSprite = Content.Load<Texture2D>("Sprites/Skeleton/_Run");
         }
     }
-}
+    }
