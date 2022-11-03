@@ -43,7 +43,7 @@ namespace Game_development_project
                 Exit();
 
             // TODO: Add your update logic here
-            _hero.Update();
+            _hero.Update(gameTime);
 
             base.Update(gameTime);
         }

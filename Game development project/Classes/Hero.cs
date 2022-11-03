@@ -15,6 +15,7 @@ namespace Game_development_project.Classes
         private Rectangle deelRectangle;
         private Animation.Animation animation;
 
+
         private int schuifOp_X = 0;
 
         public Hero(Texture2D texture)
@@ -30,9 +31,9 @@ namespace Game_development_project.Classes
             spriteBatch.Draw(texture, new Vector2(0, 0), animation.CurrentFrame.SourceRectangle, Color.White);
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            animation.Update();
+            animation.Update(gameTime);
         }
     }
 }

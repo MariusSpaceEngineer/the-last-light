@@ -24,15 +24,28 @@ namespace Game_development_project.Classes.Animation
             CurrentFrame = frames[0];
         }
 
-        public void Update()
+        //Counter for fps
+        private double secondCounter = 0;
+
+        public void Update(GameTime gameTime)
         {
             CurrentFrame = frames[counter];
-            counter++;
+
+            secondCounter += gameTime.ElapsedGameTime.TotalSeconds;
+            int fps = 10;
+
+            if (secondCounter >= 1d / fps)
+            {
+                counter++;
+                secondCounter = 0;
+            }
+
             if (counter >= frames.Count)
             {
                 counter = 0;
             }
         }
+
 
         public void GetFramesFromTextureProperties(int width, int height, int numberOfWidthSprites, int numberOfHeightSprites)
         {
