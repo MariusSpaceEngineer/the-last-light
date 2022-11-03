@@ -38,15 +38,15 @@ namespace Game_development_project
             // TODO: Add your initialization logic here
 
             base.Initialize();
-            hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite) ;
-            skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite);
+            hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
+            //skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite);
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadHero();
-            LoadSkeleton();
+            //LoadSkeleton();
 
             // TODO: use this.Content to load your game content here
         }
@@ -57,8 +57,8 @@ namespace Game_development_project
                 Exit();
 
             // TODO: Add your update logic here
-            //hero.Update(gameTime);
-            skeleton.Update(gameTime);
+            hero.Update(gameTime);
+            //skeleton.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -69,8 +69,8 @@ namespace Game_development_project
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-            //hero.Draw(_spriteBatch);
-            skeleton.Draw(_spriteBatch);
+            hero.Draw(_spriteBatch);
+            //skeleton.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
