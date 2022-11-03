@@ -35,25 +35,26 @@ namespace Game_development_project.Classes
             this.moveSprite = moveSprite;
         
 
-            attackAnimation = new Animation();
+            attackAnimation = new Animation(4);
             attackAnimation.GetFramesFromTextureProperties(attackSprite.Width, attackSprite.Height, 4, 1);
+           
 
-            damageAnimation = new Animation();
+            damageAnimation = new Animation(1);
             damageAnimation.GetFramesFromTextureProperties(damageSprite.Width, damageSprite.Height, 1, 1);
 
-            deathAnimation = new Animation();
+            deathAnimation = new Animation(10);
             deathAnimation.GetFramesFromTextureProperties(deathSprite.Width, deathSprite.Height, 10, 1);
 
-            idleAnimation = new Animation();
+            idleAnimation = new Animation(10);
             idleAnimation.GetFramesFromTextureProperties(idleSprite.Width, idleSprite.Height, 10, 1);
 
-            jumpAnimation = new Animation();
+            jumpAnimation = new Animation(3);
             jumpAnimation.GetFramesFromTextureProperties(idleSprite.Width, idleSprite.Height, 3, 1);
 
-            jumpFallInBetweenAnimation = new Animation();
+            jumpFallInBetweenAnimation = new Animation(2);
             jumpFallInBetweenAnimation.GetFramesFromTextureProperties(idleSprite.Width, idleSprite.Height, 2, 1);
 
-            moveAnimation = new Animation();
+            moveAnimation = new Animation(10);
             moveAnimation.GetFramesFromTextureProperties(moveSprite.Width, moveSprite.Height, 10, 1);
 
             //animation = new Animation.Animation();
@@ -63,12 +64,12 @@ namespace Game_development_project.Classes
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(moveSprite, new Vector2(0, 0), moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+            spriteBatch.Draw(attackSprite, new Vector2(0, 0), attackAnimation.CurrentFrame.SourceRectangle, Color.White);
         }
 
         public void Update(GameTime gameTime)
         {
-            moveAnimation.Update(gameTime);
+            attackAnimation.Update(gameTime);
         }
 
 
