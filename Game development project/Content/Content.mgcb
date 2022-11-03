@@ -541,30 +541,6 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Knight/_Run.png
 
-#begin Sprites/Knight/_SlideAll.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Knight/_SlideAll.png
-
-#begin Sprites/Knight/_TurnAround.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Knight/_TurnAround.png
-
 #begin Sprites/Skeleton/Skeleton Attack.png
 /importer:TextureImporter
 /processor:TextureProcessor
