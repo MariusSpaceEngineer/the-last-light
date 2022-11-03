@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game_development_project.Classes;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -8,6 +9,10 @@ namespace Game_development_project
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private Texture2D _heroTexture;
+
+        private Hero _hero;
 
         public Game1()
         {
@@ -21,11 +26,13 @@ namespace Game_development_project
             // TODO: Add your initialization logic here
 
             base.Initialize();
+            _hero = new Hero(_heroTexture);
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _heroTexture = Content.Load<Texture2D>("Sprites/Knight/_Run");
 
             // TODO: use this.Content to load your game content here
         }
@@ -36,6 +43,7 @@ namespace Game_development_project
                 Exit();
 
             // TODO: Add your update logic here
+            _hero.Update();
 
             base.Update(gameTime);
         }
@@ -45,6 +53,9 @@ namespace Game_development_project
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+            _hero.Draw(_spriteBatch);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
