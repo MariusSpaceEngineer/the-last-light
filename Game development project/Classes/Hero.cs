@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Game_development_project.Classes
 {
+    
     internal class Hero : IGameObject
     {
         //All the sprites that hero has
@@ -26,6 +27,8 @@ namespace Game_development_project.Classes
         private Vector2 position;
         private Vector2 speed;
         private IInputReader inputReader;
+
+        SpriteStates spriteState = KeyboardReader.SpriteState;
 
         public Hero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader)
         {
@@ -52,10 +55,10 @@ namespace Game_development_project.Classes
             idleAnimation.GetFramesFromTextureProperties(idleSprite.Width, idleSprite.Height, 10, 1);
 
             jumpAnimation = new Animation(3);
-            jumpAnimation.GetFramesFromTextureProperties(idleSprite.Width, idleSprite.Height, 3, 1);
+            jumpAnimation.GetFramesFromTextureProperties(jumpSprite.Width, jumpSprite.Height, 3, 1);
 
             jumpFallInBetweenAnimation = new Animation(2);
-            jumpFallInBetweenAnimation.GetFramesFromTextureProperties(idleSprite.Width, idleSprite.Height, 2, 1);
+            jumpFallInBetweenAnimation.GetFramesFromTextureProperties(jumpFallInBetween.Width, jumpFallInBetween.Height, 2, 1);
 
             moveAnimation = new Animation(10);
             moveAnimation.GetFramesFromTextureProperties(moveSprite.Width, moveSprite.Height, 10, 1);
@@ -73,15 +76,76 @@ namespace Game_development_project.Classes
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+            //spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+
+            switch (KeyboardReader.SpriteState)
+            {
+                case SpriteStates.Idle:
+                    spriteBatch.Draw(idleSprite, position, idleAnimation.CurrentFrame.SourceRectangle, Color.White);
+
+                    break;
+
+                case SpriteStates.Left:
+                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+
+                    break;
+
+                case SpriteStates.Right:
+                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    break;
+
+                case SpriteStates.Up:
+                    spriteBatch.Draw(jumpSprite, position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White);
+
+                    break;
+                case SpriteStates.Down:
+                    spriteBatch.Draw(jumpFallInBetween, position, jumpFallInBetweenAnimation.CurrentFrame.SourceRectangle, Color.White);
+
+                    break;
+
+                case SpriteStates.Attack:
+                    spriteBatch.Draw(attackSprite, position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
+
+                    break;
+            }
         }
 
         public void Update(GameTime gameTime)
         {
 
             Move();
-            moveAnimation.Update(gameTime);
-            
+
+            switch (KeyboardReader.SpriteState)
+            {
+                case SpriteStates.Idle:
+                    idleAnimation.Update(gameTime);
+                    break;
+
+                case SpriteStates.Left:
+                    moveAnimation.Update(gameTime);
+
+                    break;
+
+                case SpriteStates.Right:
+                    moveAnimation.Update(gameTime);
+
+                    break;
+
+                case SpriteStates.Up:
+                    jumpAnimation.Update(gameTime);
+                    break;
+
+                case SpriteStates.Down:
+                    jumpFallInBetweenAnimation.Update(gameTime);
+                    break;
+
+                case SpriteStates.Attack:
+                    attackAnimation.Update(gameTime);
+                    break;
+
+
+            }
+
         }
 
         private void Move()
@@ -89,6 +153,30 @@ namespace Game_development_project.Classes
             var direction = inputReader.ReadInput();
             direction *= speed;
             position += direction;
+
+            //if (direction.X < 0)
+            //{
+            //    spriteState = SpriteStates.Left;
+            //}
+            //if (direction.X > 0)
+            //{
+            //    spriteState = SpriteStates.Right;
+            //}
+            //if (direction.Y < 0)
+            //{
+            //    spriteState = SpriteStates.Up;
+            //}
+            //if (direction.Y > 0)
+            //{
+            //    spriteState = SpriteStates.Down;
+            //}
+            //if (direction.X == 0 && direction.Y == 0)
+            //{
+            //    spriteState = SpriteStates.Idle;
+
+            //}
+           
+          
 
         }
 
@@ -102,6 +190,8 @@ namespace Game_development_project.Classes
             }
             return velocityVector;
         }
+
+       
 
 
 

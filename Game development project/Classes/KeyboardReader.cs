@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes
 {
+    
     internal class KeyboardReader : IInputReader
     {
+        public static SpriteStates SpriteState { get; set; } = SpriteStates.Idle;
+
         public Vector2 ReadInput()
         {
             KeyboardState state = Keyboard.GetState();
@@ -17,19 +20,35 @@ namespace Game_development_project.Classes
             if (state.IsKeyDown(Keys.Left))
             {
                 direction.X -= 1;
+                SpriteState = SpriteStates.Left;
+                
             }
             if (state.IsKeyDown(Keys.Right))
             {
                 direction.X += 1;
+                SpriteState = SpriteStates.Right;
+
             }
             if (state.IsKeyDown(Keys.Up))
             {
                 direction.Y -= 1;
+                SpriteState = SpriteStates.Up;
+
+
             }
             if (state.IsKeyDown(Keys.Down))
             {
                 direction.Y += 1;
+                SpriteState = SpriteStates.Down;
+
+
+
             }
+            if (state.IsKeyDown(Keys.F))
+            {
+                SpriteState = SpriteStates.Attack;
+            }
+            
             return direction;
         }
 
