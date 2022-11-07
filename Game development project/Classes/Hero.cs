@@ -26,6 +26,7 @@ namespace Game_development_project.Classes
         private Vector2 position;
         private Vector2 speed;
         private IInputReader inputReader;
+        private Vector2 vector2;
 
 
 
