@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Game_development_project.Classes
 {
-    internal class Hero : IGameObject, IMovable
+    internal class Hero : IGameObject
     {
         //All the sprites that hero has
         private Texture2D attackSprite;
@@ -23,9 +23,11 @@ namespace Game_development_project.Classes
         private Animation jumpFallInBetweenAnimation;
         private Animation moveAnimation;
 
-        public Vector2 Position { get => throw new System.NotImplementedException(); set => new Vector2(0,0); }
-        public Vector2 Speed { get => throw new System.NotImplementedException(); set => new Vector2(0,0); }
-        public IInputReader InputReader { get => throw new System.NotImplementedException(); set => new KeyboardReader(); }
+        private Vector2 position;
+        private Vector2 speed;
+        private IInputReader inputReader;
+
+
 
         public Hero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader)
         {
@@ -60,9 +62,9 @@ namespace Game_development_project.Classes
             moveAnimation = new Animation(10);
             moveAnimation.GetFramesFromTextureProperties(moveSprite.Width, moveSprite.Height, 10, 1);
 
-            InputReader = inputReader;
-            Position = new Vector2(1, 1);
-            Speed = new Vector2(2, 2);
+            this.inputReader = inputReader;
+            this.position = new Vector2(1, 1);
+            this.speed = new Vector2(2, 2);
             
 
 
@@ -73,7 +75,7 @@ namespace Game_development_project.Classes
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+            spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
         }
 
         public void Update(GameTime gameTime)
@@ -86,9 +88,9 @@ namespace Game_development_project.Classes
 
         private void Move()
         {
-            var direction = InputReader.ReadInput();
-            direction *= Speed;
-            Position += direction;
+            var direction = inputReader.ReadInput();
+            direction *= speed;
+            position += direction;
 
         }
 
