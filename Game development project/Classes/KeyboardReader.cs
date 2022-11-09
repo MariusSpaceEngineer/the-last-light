@@ -11,7 +11,7 @@ namespace Game_development_project.Classes
     
     internal class KeyboardReader : IInputReader
     {
-        public static SpriteStates SpriteState { get; set; } = SpriteStates.Idle;
+        public static SpriteStates SpriteState { get; set; }
 
         public Vector2 ReadInput()
         {
@@ -23,31 +23,34 @@ namespace Game_development_project.Classes
                 SpriteState = SpriteStates.Left;
                 
             }
-            if (state.IsKeyDown(Keys.Right))
+            else if (state.IsKeyDown(Keys.Right))
             {
                 direction.X += 1;
                 SpriteState = SpriteStates.Right;
 
             }
-            if (state.IsKeyDown(Keys.Up))
+            else if (state.IsKeyDown(Keys.Up))
             {
                 direction.Y -= 1;
                 SpriteState = SpriteStates.Up;
 
 
             }
-            if (state.IsKeyDown(Keys.Down))
+            else if (state.IsKeyDown(Keys.Down))
             {
                 direction.Y += 1;
                 SpriteState = SpriteStates.Down;
 
-
-
             }
-            if (state.IsKeyDown(Keys.F))
+            else if (state.IsKeyDown(Keys.F))
             {
                 SpriteState = SpriteStates.Attack;
             }
+            else
+            {
+                SpriteState = SpriteStates.Idle;
+            }
+
             
             return direction;
         }
