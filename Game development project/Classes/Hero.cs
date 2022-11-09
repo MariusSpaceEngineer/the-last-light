@@ -106,11 +106,27 @@ namespace Game_development_project.Classes
                     break;
 
                 case SpriteStates.Up:
-                    spriteBatch.Draw(jumpSprite, position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    if (spriteDirection == Direction.Left)
+                    {
+                        spriteBatch.Draw(jumpSprite, position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0,0), 1, flipEffect,0);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(jumpSprite, position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    }
 
                     break;
                 case SpriteStates.Down:
-                    spriteBatch.Draw(jumpFallInBetween, position, jumpFallInBetweenAnimation.CurrentFrame.SourceRectangle, Color.White);
+
+                    if (spriteDirection == Direction.Left)
+                    {
+                        spriteBatch.Draw(jumpFallInBetween, position, jumpFallInBetweenAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0,0), 1, flipEffect,0);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(jumpFallInBetween, position, jumpFallInBetweenAnimation.CurrentFrame.SourceRectangle, Color.White);
+
+                    }
 
                     break;
 
