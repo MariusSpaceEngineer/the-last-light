@@ -17,6 +17,11 @@ namespace Game_development_project.Classes
         Damaged,
         Dead
     }
+    enum Direction
+    {
+       Left,
+       Right
+    }
     internal class SpriteState
     {
     }

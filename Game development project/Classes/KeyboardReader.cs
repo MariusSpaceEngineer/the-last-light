@@ -12,6 +12,7 @@ namespace Game_development_project.Classes
     internal class KeyboardReader : IInputReader
     {
         public static SpriteStates SpriteState { get; set; }
+        public static Direction SpriteDirection { get; set; }
 
         public Vector2 ReadInput()
         {
@@ -21,12 +22,15 @@ namespace Game_development_project.Classes
             {
                 direction.X -= 1;
                 SpriteState = SpriteStates.Left;
+                SpriteDirection = Direction.Left; 
+                
                 
             }
             else if (state.IsKeyDown(Keys.Right))
             {
                 direction.X += 1;
                 SpriteState = SpriteStates.Right;
+                SpriteDirection = Direction.Right;
 
             }
             else if (state.IsKeyDown(Keys.Up))

@@ -77,21 +77,32 @@ namespace Game_development_project.Classes
         public void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+            SpriteStates spriteState = KeyboardReader.SpriteState;
+            Direction spriteDirection = KeyboardReader.SpriteDirection;
+            SpriteEffects flipEffect = SpriteEffects.FlipHorizontally;
 
-            switch (KeyboardReader.SpriteState)
+            switch (spriteState)
             {
                 case SpriteStates.Idle:
-                    spriteBatch.Draw(idleSprite, position, idleAnimation.CurrentFrame.SourceRectangle, Color.White);
+
+                    if (spriteDirection == Direction.Left)
+                    {
+                        spriteBatch.Draw(idleSprite, position, idleAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0,0), 1, flipEffect, 0);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(idleSprite, position, idleAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    }
 
                     break;
 
                 case SpriteStates.Left:
-                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0,0), 1, flipEffect, 0);
 
                     break;
 
                 case SpriteStates.Right:
-                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White) ;
                     break;
 
                 case SpriteStates.Up:
@@ -104,8 +115,16 @@ namespace Game_development_project.Classes
                     break;
 
                 case SpriteStates.Attack:
-                    spriteBatch.Draw(attackSprite, position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
 
+                    if (spriteDirection == Direction.Left)
+                    {
+                        spriteBatch.Draw(attackSprite, position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0) ;
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(attackSprite, position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
+
+                    }
                     break;
             }
         }
