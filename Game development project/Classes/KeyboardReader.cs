@@ -41,7 +41,7 @@ namespace Game_development_project.Classes
                 }
                 else if (state.IsKeyDown(Keys.Up))
                 {
-                    direction.Y -= 1;
+                    //direction.Y -= 1;
                     SpriteState = SpriteStates.Up;
                    
 

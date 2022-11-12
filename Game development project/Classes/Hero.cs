@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Game_development_project.Classes
 {
@@ -27,6 +28,8 @@ namespace Game_development_project.Classes
         private Vector2 position;
         private Vector2 speed;
         private IInputReader inputReader;
+
+        private bool hasJumped = true;
 
         SpriteStates spriteState = KeyboardReader.SpriteState;
 
@@ -64,8 +67,8 @@ namespace Game_development_project.Classes
             moveAnimation.GetFramesFromTextureProperties(moveSprite.Width, moveSprite.Height, 10, 1);
 
             this.inputReader = inputReader;
-            this.position = new Vector2(1, 1);
-            this.speed = new Vector2(2, 2);
+            this.position = new Vector2(0, 0);
+            this.speed = new Vector2(2, 0);
             
 
 
@@ -149,6 +152,7 @@ namespace Game_development_project.Classes
         {
 
             Move();
+            Jump();
 
             switch (KeyboardReader.SpriteState)
             {
@@ -186,8 +190,12 @@ namespace Game_development_project.Classes
         private void Move()
         {
             var direction = inputReader.ReadInput();
-            direction *= speed;
-            position += direction;
+ 
+                direction.X *= speed.X;
+                position += direction;
+            
+
+           
 
             //if (direction.X < 0)
             //{
@@ -224,6 +232,36 @@ namespace Game_development_project.Classes
                 velocityVector.Y *= ratio;
             }
             return velocityVector;
+        }
+
+        public void Jump()
+        {
+
+            position.Y += speed.Y;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Up) && hasJumped == false)
+            {
+                position.Y -= 10f;
+                speed.Y = -5f;
+                hasJumped = true;
+            }
+
+            if (hasJumped)
+            {
+                float i = 1;
+                speed.Y += 0.15f * i;
+                spriteState = SpriteStates.Down;
+            }
+
+            if (position.Y + jumpSprite.Height >= 450)
+            {
+                hasJumped = false;
+            }
+
+            if (hasJumped == false)
+            {
+                speed.Y = 0f;
+            }
         }
 
        
