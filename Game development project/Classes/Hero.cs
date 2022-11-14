@@ -25,7 +25,16 @@ namespace Game_development_project.Classes
         private Animation jumpFallInBetweenAnimation;
         private Animation moveAnimation;
 
-        private Vector2 position;
+
+        private static Vector2 position;
+
+        public static Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
+            
+        }
+
         private Vector2 speed;
         private IInputReader inputReader;
 
@@ -67,7 +76,7 @@ namespace Game_development_project.Classes
             moveAnimation.GetFramesFromTextureProperties(moveSprite.Width, moveSprite.Height, 10, 1);
 
             this.inputReader = inputReader;
-            this.position = new Vector2(0, 0);
+            Position = new Vector2(0, 0);
             this.speed = new Vector2(2, 0);
             
 
