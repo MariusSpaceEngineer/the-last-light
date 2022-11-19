@@ -7,6 +7,17 @@ namespace Game_development_project.Classes
     
     internal class Hero : IGameObject
     {
+        //There can only be one hero: singelton applied
+        private static Hero uniqueHero;
+
+        public static Hero GetHero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader) {
+            if (uniqueHero == null)
+            {
+                uniqueHero = new Hero(attackSprite, damageSprite, deathSprite, idleSprite, jumpSprite, jumpFallInBetween, moveSprite, new KeyboardReader());
+            }
+            return uniqueHero; 
+        }
+        //Same like the Skeleton class, maybe set this in an interface
         //All the sprites that hero has
         private Texture2D attackSprite;
         private Texture2D damageSprite;
@@ -38,11 +49,13 @@ namespace Game_development_project.Classes
         private Vector2 speed;
         private IInputReader inputReader;
 
+        //In ICanJump interface?
         private bool hasJumped = true;
 
+        //It's not used
         SpriteStates spriteState = KeyboardReader.SpriteState;
 
-        public Hero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader)
+        private Hero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader)
         {
             this.attackSprite = attackSprite;
             this.damageSprite = damageSprite;
@@ -51,8 +64,9 @@ namespace Game_development_project.Classes
             this.jumpSprite = jumpSprite;
             this.jumpFallInBetween = jumpFallInBetween;
             this.moveSprite = moveSprite;
-        
 
+
+            //In a method maybe
             attackAnimation = new Animation(4);
             attackAnimation.GetFramesFromTextureProperties(attackSprite.Width, attackSprite.Height, 4, 1);
            
@@ -92,6 +106,8 @@ namespace Game_development_project.Classes
             SpriteStates spriteState = KeyboardReader.SpriteState;
             Direction spriteDirection = KeyboardReader.SpriteDirection;
             SpriteEffects flipEffect = SpriteEffects.FlipHorizontally;
+
+            //To many cases, not open for changes
 
             switch (spriteState)
             {
@@ -163,6 +179,8 @@ namespace Game_development_project.Classes
             Move();
             Jump();
 
+            //Not open for changes
+
             switch (KeyboardReader.SpriteState)
             {
                 case SpriteStates.Idle:
@@ -232,6 +250,7 @@ namespace Game_development_project.Classes
 
         }
 
+        //Not used right now, can be removed
         private Vector2 Limit(Vector2 velocityVector, float maxSpeed)
         {
             if (velocityVector.Length() > maxSpeed)
