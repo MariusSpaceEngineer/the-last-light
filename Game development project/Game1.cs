@@ -1,4 +1,5 @@
 ﻿using Game_development_project.Classes;
+using Game_development_project.Classes.Map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -26,6 +27,8 @@ namespace Game_development_project
         private Texture2D skeletonIdleSprite;
         private Texture2D skeletonMoveSprite;
 
+        Map map;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -36,9 +39,11 @@ namespace Game_development_project
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            map = new Map();
 
             base.Initialize();
             hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
+
             //skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite);
         }
 
@@ -49,6 +54,14 @@ namespace Game_development_project
             //LoadSkeleton();
 
             // TODO: use this.Content to load your game content here
+            Tiles.Content = Content;
+
+            map.Generate(new int[,] {  
+                { 0,0,0,1},
+                { 0,0,0,1},
+                { 0,0,1,1},
+                { 0,1,1,1}
+            }, 64);
         }
 
         protected override void Update(GameTime gameTime)
@@ -70,6 +83,7 @@ namespace Game_development_project
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
             hero.Draw(_spriteBatch);
+            map.Draw(_spriteBatch);
             //skeleton.Draw(_spriteBatch);
             _spriteBatch.End();
 
