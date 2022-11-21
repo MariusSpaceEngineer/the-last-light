@@ -6,13 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Default_Block;
+using Game_development_project.Classes.Level_Design.Level;
 
-namespace Game_development_project.Classes.Level_Design
+namespace Default_Level
 {
     abstract internal class Level
     {
         private List<Block> tileList = new List<Block>();
-        public List<Block> CollisionTiles
+        public List<Block> TileList
         {
             get { return tileList; }
         }
@@ -21,7 +23,10 @@ namespace Game_development_project.Classes.Level_Design
         public int Width { get { return width; } }
         public int Height { get { return height; } }
 
-        public Level() { }
+        BlockFactory blockFactory;
+        public Level(BlockFactory blockFactory) {
+            this.blockFactory = blockFactory;
+        }
 
         public void Generate(int[,] map, int size)
         {
@@ -35,7 +40,7 @@ namespace Game_development_project.Classes.Level_Design
                     //Maybe use a blockFactory
                     if (number > 0)
                     {
-                        tileList.Add(new GrassBlock(number, new Rectangle(x * size, y * size, size, size)));
+                        tileList.Add(blockFactory.CreateBlock(number, new Rectangle(x * size, y*size, size, size)));
                     }
 
                     width = (x + 1) * size;

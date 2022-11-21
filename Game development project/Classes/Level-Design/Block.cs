@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game_development_project.Classes.Level_Design
+namespace Default_Block
 {
    abstract internal class Block
     {
@@ -26,6 +26,11 @@ namespace Game_development_project.Classes.Level_Design
         {
             protected get { return content; }
             set { content = value; }
+        }
+
+        public Block(Rectangle newrectangle)
+        {
+            this.Rectangle = newrectangle;
         }
 
         public void Draw(SpriteBatch spriteBatch)

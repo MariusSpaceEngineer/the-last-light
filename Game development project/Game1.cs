@@ -1,5 +1,7 @@
-﻿using Game_development_project.Classes;
+﻿using Default_Block;
+using Game_development_project.Classes;
 using Game_development_project.Classes.Level_Design;
+using Game_development_project.Classes.Level_Design.Level;
 using Game_development_project.Classes.Level_Design.Level1;
 using Game_development_project.Classes.Map;
 using Microsoft.Xna.Framework;
@@ -33,6 +35,7 @@ namespace Game_development_project
 
         //Map map;
         Level1 level1;
+        BlockFactory blockFactory;
 
         int[,] gameboard = new int[,] {
             { 1,1,1,1,1,1,1,1 },
@@ -69,7 +72,7 @@ namespace Game_development_project
         {
             // TODO: Add your initialization logic here
             //map = new Map();
-            level1 = new Level1();
+            level1 = new Level1(new Level1_BlockFactory());
             //level1 = new Level(new Level_1_BlockFactory(), _graphics.GraphicsDevice);
 
             base.Initialize();
