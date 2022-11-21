@@ -76,9 +76,9 @@ namespace Game_development_project
             //level1 = new Level(new Level_1_BlockFactory(), _graphics.GraphicsDevice);
 
             base.Initialize();
-            hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
-
-            //skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite);
+            //hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
+            hero = Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
+            skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 120f);
         }
 
         protected override void LoadContent()
@@ -134,7 +134,7 @@ namespace Game_development_project
             hero.Draw(_spriteBatch);
             //map.Draw(_spriteBatch);
             level1.Draw(_spriteBatch);
-            //skeleton.Draw(_spriteBatch);
+            skeleton.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
