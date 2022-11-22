@@ -23,6 +23,7 @@ namespace Game_development_project
         private Texture2D heroJumpSprite;
         private Texture2D heroJumpFallInBetween;
         private Texture2D heroMoveSprite;
+        private Texture2D heroBlokTexture;
 
         private Skeleton skeleton;
         private Texture2D skeletonAttackSprite;
@@ -77,13 +78,15 @@ namespace Game_development_project
 
             base.Initialize();
             //hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
-            hero = Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
+            hero = Hero.GetHero(heroBlokTexture,heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
             skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 120f);
         }
 
         protected override void LoadContent()
         {
+            
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            heroBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
             LoadHero();
             LoadSkeleton();
 
@@ -106,11 +109,22 @@ namespace Game_development_project
             //}, 12);
 
             level1.Generate(new int[,] {
-                { 0,0,0,1},
+                { 0,0,0,0},
+                { 0,0,0,0},
+                { 0,0,0,0},
+                { 0,0,0,0},
+                { 0,0,0,0},
+                { 0,0,0,0},
+                { 0,0,0,0},
+                { 0,0,0,0},
+                { 0,0,0,0},
+                { 0,0,0,0},
+                { 0,0,0,0},
                 { 0,0,0,1},
                 { 0,0,1,1},
                 { 0,1,1,1}
-            }, 12);
+              
+            }, 32);
         }
 
         protected override void Update(GameTime gameTime)
@@ -119,6 +133,7 @@ namespace Game_development_project
                 Exit();
 
             // TODO: Add your update logic here
+         
             hero.Update(gameTime);
             skeleton.Update(gameTime);
 
@@ -142,6 +157,7 @@ namespace Game_development_project
 
         private void LoadHero()
         {
+
             heroAttackSprite = Content.Load<Texture2D>("Sprites/Knight/_Attack");
             heroDamageSprite = Content.Load<Texture2D>("Sprites/Knight/_Hit");
             heroDeathSprite = Content.Load<Texture2D>("Sprites/Knight/_Death");
@@ -149,6 +165,7 @@ namespace Game_development_project
             heroJumpSprite = Content.Load<Texture2D>("Sprites/Knight/_Jump");
             heroJumpFallInBetween = Content.Load<Texture2D>("Sprites/Knight/_JumpFallInbetween");
             heroMoveSprite = Content.Load<Texture2D>("Sprites/Knight/_Run");
+           
         }
 
         private void LoadSkeleton()

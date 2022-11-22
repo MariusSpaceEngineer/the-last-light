@@ -10,10 +10,10 @@ namespace Game_development_project.Classes
         //There can only be one hero: singelton applied
         private static Hero uniqueHero;
 
-        public static Hero GetHero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader) {
+        public static Hero GetHero(Texture2D blokTexture, Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader) {
             if (uniqueHero == null)
             {
-                uniqueHero = new Hero(attackSprite, damageSprite, deathSprite, idleSprite, jumpSprite, jumpFallInBetween, moveSprite, new KeyboardReader());
+                uniqueHero = new Hero(blokTexture,attackSprite, damageSprite, deathSprite, idleSprite, jumpSprite, jumpFallInBetween, moveSprite, new KeyboardReader());
             }
             return uniqueHero; 
         }
@@ -55,7 +55,18 @@ namespace Game_development_project.Classes
         //It's not used
         SpriteStates spriteState = KeyboardReader.SpriteState;
 
-        private Hero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader)
+        private Rectangle boundingBox;
+
+        public Rectangle BoundingBox
+        {
+            get { return boundingBox; }
+            set { boundingBox = value; }
+        }
+
+        private Texture2D blokTexture;
+
+
+        private Hero(Texture2D blokTexture,Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader)
         {
             this.attackSprite = attackSprite;
             this.damageSprite = damageSprite;
@@ -90,9 +101,13 @@ namespace Game_development_project.Classes
             moveAnimation.GetFramesFromTextureProperties(moveSprite.Width, moveSprite.Height, 10, 1);
 
             this.inputReader = inputReader;
-            Position = new Vector2(0, 0);
+            Position = new Vector2(80, 0);
             this.speed = new Vector2(2, 0);
-            
+
+            this.blokTexture = blokTexture;
+            this.blokTexture.SetData(new[] { Color.White });
+            this.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 28, 40);
+
 
 
             //animation = new Animation.Animation();
@@ -116,31 +131,42 @@ namespace Game_development_project.Classes
                     if (spriteDirection == Direction.Left)
                     {
                         spriteBatch.Draw(idleSprite, position, idleAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0,0), 1, flipEffect, 0);
+                        spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                     }
                     else
                     {
                         spriteBatch.Draw(idleSprite, position, idleAnimation.CurrentFrame.SourceRectangle, Color.White);
+                        spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+
                     }
 
                     break;
 
                 case SpriteStates.Left:
                     spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0,0), 1, flipEffect, 0);
+                    spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
 
                     break;
 
                 case SpriteStates.Right:
                     spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White) ;
+                    spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+
                     break;
 
                 case SpriteStates.Up:
                     if (spriteDirection == Direction.Left)
                     {
                         spriteBatch.Draw(jumpSprite, position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0,0), 1, flipEffect,0);
+                        spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+
                     }
+
                     else
                     {
                         spriteBatch.Draw(jumpSprite, position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White);
+                        spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+
                     }
 
                     break;
@@ -185,6 +211,7 @@ namespace Game_development_project.Classes
             {
                 case SpriteStates.Idle:
                     idleAnimation.Update(gameTime);
+                
                     break;
 
                 case SpriteStates.Left:
@@ -220,9 +247,12 @@ namespace Game_development_project.Classes
  
                 direction.X *= speed.X;
                 position += direction;
-            
 
-           
+            boundingBox.X = (int)position.X + 52;
+            boundingBox.Y = (int)position.Y + 40;
+
+
+
 
             //if (direction.X < 0)
             //{
@@ -245,8 +275,8 @@ namespace Game_development_project.Classes
             //    spriteState = SpriteStates.Idle;
 
             //}
-           
-          
+
+
 
         }
 
