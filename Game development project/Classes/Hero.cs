@@ -1,6 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Default_Block;
+using Default_Level;
+using Game_development_project.Classes.Level_Design.Level1;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Reflection.PortableExecutable;
 
 namespace Game_development_project.Classes
 {
@@ -46,7 +50,7 @@ namespace Game_development_project.Classes
             
         }
 
-        private Vector2 speed;
+        public Vector2 speed;
         private IInputReader inputReader;
 
         //In ICanJump interface?
@@ -64,6 +68,8 @@ namespace Game_development_project.Classes
         }
 
         private Texture2D blokTexture;
+
+        private Level1 level1;
 
 
         private Hero(Texture2D blokTexture,Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader)
@@ -101,7 +107,7 @@ namespace Game_development_project.Classes
             moveAnimation.GetFramesFromTextureProperties(moveSprite.Width, moveSprite.Height, 10, 1);
 
             this.inputReader = inputReader;
-            Position = new Vector2(80, 0);
+            Position = new Vector2(-1, 0);
             this.speed = new Vector2(2, 0);
 
             this.blokTexture = blokTexture;
@@ -199,10 +205,10 @@ namespace Game_development_project.Classes
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Level level)
         {
 
-            Move();
+            Move(level);
             Jump();
 
             //Not open for changes
@@ -241,7 +247,7 @@ namespace Game_development_project.Classes
 
         }
 
-        private void Move()
+        private void Move(Level level)
         {
             var direction = inputReader.ReadInput();
  
@@ -250,6 +256,23 @@ namespace Game_development_project.Classes
 
             boundingBox.X = (int)position.X + 52;
             boundingBox.Y = (int)position.Y + 40;
+
+            foreach (Block block in level.TileList)
+            {
+                if (BoundingBox.Intersects(block.Rectangle))
+                {
+                    if (direction.X < 0)
+                    {
+                        position.X = block.Rectangle.Right;
+                        break;
+                    }
+                    else if (direction.X > 0)
+                    {
+                        position.X = block.Rectangle.Left - BoundingBox.Width;
+                        break;
+                    }
+                }
+            }
 
 
 
@@ -322,10 +345,14 @@ namespace Game_development_project.Classes
             }
         }
 
-       
+        public void CheckCollsion()
+        {
 
+        }
 
-
-
+        public void Update(GameTime gameTime)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
