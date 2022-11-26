@@ -8,19 +8,21 @@ using System.Reflection.PortableExecutable;
 
 namespace Game_development_project.Classes
 {
-    
+
     internal class Hero : IGameObject
     {
         //There can only be one hero: singelton applied
         private static Hero uniqueHero;
 
-        public static Hero GetHero(Texture2D blokTexture, Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader) {
+        public static Hero GetHero(Texture2D blokTexture, Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader)
+        {
             if (uniqueHero == null)
             {
-                uniqueHero = new Hero(blokTexture,attackSprite, damageSprite, deathSprite, idleSprite, jumpSprite, jumpFallInBetween, moveSprite, new KeyboardReader());
+                uniqueHero = new Hero(blokTexture, attackSprite, damageSprite, deathSprite, idleSprite, jumpSprite, jumpFallInBetween, moveSprite, new KeyboardReader());
             }
-            return uniqueHero; 
+            return uniqueHero;
         }
+
         //Same like the Skeleton class, maybe set this in an interface
         //All the sprites that hero has
         private Texture2D attackSprite;
@@ -30,7 +32,7 @@ namespace Game_development_project.Classes
         private Texture2D jumpSprite;
         private Texture2D jumpFallInBetween;
         private Texture2D moveSprite;
-      
+
 
         private Animation attackAnimation;
         private Animation damageAnimation;
@@ -47,7 +49,7 @@ namespace Game_development_project.Classes
         {
             get { return position; }
             set { position = value; }
-            
+
         }
 
         public Vector2 speed;
@@ -72,7 +74,7 @@ namespace Game_development_project.Classes
         private Level1 level1;
 
 
-        private Hero(Texture2D blokTexture,Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader)
+        private Hero(Texture2D blokTexture, Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D moveSprite, IInputReader inputReader)
         {
             this.attackSprite = attackSprite;
             this.damageSprite = damageSprite;
@@ -86,7 +88,7 @@ namespace Game_development_project.Classes
             //In a method maybe
             attackAnimation = new Animation(4);
             attackAnimation.GetFramesFromTextureProperties(attackSprite.Width, attackSprite.Height, 4, 1);
-           
+
 
             damageAnimation = new Animation(1);
             damageAnimation.GetFramesFromTextureProperties(damageSprite.Width, damageSprite.Height, 1, 1);
@@ -136,7 +138,7 @@ namespace Game_development_project.Classes
 
                     if (spriteDirection == Direction.Left)
                     {
-                        spriteBatch.Draw(idleSprite, position, idleAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0,0), 1, flipEffect, 0);
+                        spriteBatch.Draw(idleSprite, position, idleAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                         spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                     }
                     else
@@ -149,13 +151,13 @@ namespace Game_development_project.Classes
                     break;
 
                 case SpriteStates.Left:
-                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0,0), 1, flipEffect, 0);
+                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
 
                     break;
 
                 case SpriteStates.Right:
-                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White) ;
+                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
 
                     break;
@@ -163,7 +165,7 @@ namespace Game_development_project.Classes
                 case SpriteStates.Up:
                     if (spriteDirection == Direction.Left)
                     {
-                        spriteBatch.Draw(jumpSprite, position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0,0), 1, flipEffect,0);
+                        spriteBatch.Draw(jumpSprite, position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                         spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
 
                     }
@@ -180,7 +182,7 @@ namespace Game_development_project.Classes
 
                     if (spriteDirection == Direction.Left)
                     {
-                        spriteBatch.Draw(jumpFallInBetween, position, jumpFallInBetweenAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0,0), 1, flipEffect,0);
+                        spriteBatch.Draw(jumpFallInBetween, position, jumpFallInBetweenAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     }
                     else
                     {
@@ -194,7 +196,7 @@ namespace Game_development_project.Classes
 
                     if (spriteDirection == Direction.Left)
                     {
-                        spriteBatch.Draw(attackSprite, position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0) ;
+                        spriteBatch.Draw(attackSprite, position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     }
                     else
                     {
@@ -205,11 +207,11 @@ namespace Game_development_project.Classes
             }
         }
 
-        public void Update(GameTime gameTime, Rectangle rectangle)
+        public void Update(GameTime gameTime, Level level)
         {
 
-            Move(rectangle);
-            Jump(rectangle);
+            Move(level);
+            Jump(level);
 
             //Not open for changes
 
@@ -217,7 +219,7 @@ namespace Game_development_project.Classes
             {
                 case SpriteStates.Idle:
                     idleAnimation.Update(gameTime);
-                
+
                     break;
 
                 case SpriteStates.Left:
@@ -247,83 +249,92 @@ namespace Game_development_project.Classes
 
         }
 
-        private void Move(Rectangle rectangle)
+        private void Move(Level level)
         {
             var direction = inputReader.ReadInput();
- 
-                direction.X *= speed.X;
-                position += direction;
+
+            direction.X *= speed.X;
+            position += direction;
 
             boundingBox.X = (int)position.X + 52;
             boundingBox.Y = (int)position.Y + 40;
 
-            if (BoundingBox.Intersects(rectangle))
-            {
-                if (direction.X < 0)
-                {
-                    position.X =rectangle.Right - BoundingBox.Width - 22;
-                    
-                }
-                else if (direction.X > 0)
-                {
-                    position.X = rectangle.Left - BoundingBox.Width - 55;
-                    
-                }
-                else if (direction.Y < boundingBox.Y )
-                {
-                  
-                    position.Y = rectangle.Top - boundingBox.Height - 42 ;
-                    //hasJumped = true;
-                }
-          
-            }
-
-
-            //foreach (Block block in level.TileList)
+            //if (BoundingBox.Intersects(rectangle))
             //{
-            //    if (BoundingBox.Intersects(block.Rectangle))
+            //    if (direction.X < 0)
             //    {
-            //        if (direction.X < 0)
-            //        {
-            //            position.X = block.Rectangle.Right;
-            //            break;
-            //        }
-            //        else if (direction.X > 0)
-            //        {
-            //            position.X = block.Rectangle.Left - BoundingBox.Width;
-            //            break;
-            //        }
+            //        position.X =rectangle.Right - BoundingBox.Width - 22;
+
             //    }
-            //}
+            //    else if (direction.X > 0)
+            //    {
+            //        position.X = rectangle.Left - BoundingBox.Width - 55;
 
+            //    }
+            //    else if (direction.Y < boundingBox.Y )
+            //    {
 
-
-
-            //if (direction.X < 0)
-            //{
-            //    spriteState = SpriteStates.Left;
-            //}
-            //if (direction.X > 0)
-            //{
-            //    spriteState = SpriteStates.Right;
-            //}
-            //if (direction.Y < 0)
-            //{
-            //    spriteState = SpriteStates.Up;
-            //}
-            //if (direction.Y > 0)
-            //{
-            //    spriteState = SpriteStates.Down;
-            //}
-            //if (direction.X == 0 && direction.Y == 0)
-            //{
-            //    spriteState = SpriteStates.Idle;
+            //        position.Y = rectangle.Top - boundingBox.Height - 42 ;
+            //        //hasJumped = true;
+            //    }
 
             //}
 
 
+            foreach (Block block in level.TileList)
+            {
+                if (BoundingBox.Intersects(block.Rectangle))
+                {
+                    if (direction.X < 0)
+                    {
+                        position.X = block.Rectangle.Right - BoundingBox.Width - 22;
 
-        }
+                    }
+                    else if (direction.X > 0)
+                    {
+                        position.X = block.Rectangle.Left - BoundingBox.Width - 55;
+
+                    }
+                    else if (direction.Y < boundingBox.Y)
+                    {
+
+                        position.Y = block.Rectangle.Top - boundingBox.Height - 42;
+                        hasJumped = false;
+                    }
+
+                }
+            }
+        
+    
+
+
+
+
+        //if (direction.X < 0)
+        //{
+        //    spriteState = SpriteStates.Left;
+        //}
+        //if (direction.X > 0)
+        //{
+        //    spriteState = SpriteStates.Right;
+        //}
+        //if (direction.Y < 0)
+        //{
+        //    spriteState = SpriteStates.Up;
+        //}
+        //if (direction.Y > 0)
+        //{
+        //    spriteState = SpriteStates.Down;
+        //}
+        //if (direction.X == 0 && direction.Y == 0)
+        //{
+        //    spriteState = SpriteStates.Idle;
+
+        //}
+
+
+
+    }
 
         //Not used right now, can be removed
         private Vector2 Limit(Vector2 velocityVector, float maxSpeed)
@@ -337,7 +348,7 @@ namespace Game_development_project.Classes
             return velocityVector;
         }
 
-        public void Jump(Rectangle rectangle)
+        public void Jump(Level level)
         {
 
             position.Y += speed.Y;
@@ -359,7 +370,7 @@ namespace Game_development_project.Classes
             }
 
 
-            if (position.Y + jumpSprite.Height >= 450 || CheckCollsion(rectangle))
+            if (position.Y + jumpSprite.Height >= 450)
             {
                 hasJumped = false;
             }

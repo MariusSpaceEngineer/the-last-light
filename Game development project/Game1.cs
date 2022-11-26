@@ -151,7 +151,7 @@ namespace Game_development_project
 
             // TODO: Add your update logic here
          
-            hero.Update(gameTime, block);
+            hero.Update(gameTime, level1);
             skeleton.Update(gameTime);
 
             base.Update(gameTime);
