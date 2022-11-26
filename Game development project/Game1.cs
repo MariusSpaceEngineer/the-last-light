@@ -7,6 +7,7 @@ using Game_development_project.Classes.Map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Game_development_project
 {
@@ -49,6 +50,15 @@ namespace Game_development_project
             { 1,1,1,1,1,1,1,1 }
         };
 
+        Texture2D blokTexture;
+        Rectangle block;
+
+
+
+
+
+
+
         //private void CreateBlocks()
         //{
         //    for (int l = 0; l < gameboard.GetLength(0); l++)
@@ -80,6 +90,7 @@ namespace Game_development_project
             //hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
             hero = Hero.GetHero(heroBlokTexture,heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
             skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 120f);
+            block = new Rectangle(250, 400,32 , 32);
         }
 
         protected override void LoadContent()
@@ -125,6 +136,12 @@ namespace Game_development_project
                 { 0,1,1,1}
               
             }, 32);
+
+            blokTexture = new Texture2D(GraphicsDevice, 1, 1);
+            blokTexture.SetData(new[] { Color.White });
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -134,7 +151,7 @@ namespace Game_development_project
 
             // TODO: Add your update logic here
          
-            hero.Update(gameTime, level1);
+            hero.Update(gameTime, block);
             skeleton.Update(gameTime);
 
             base.Update(gameTime);
@@ -149,6 +166,7 @@ namespace Game_development_project
             hero.Draw(_spriteBatch);
             //map.Draw(_spriteBatch);
             level1.Draw(_spriteBatch);
+            _spriteBatch.Draw(blokTexture, block, Color.Red);
             skeleton.Draw(_spriteBatch);
             _spriteBatch.End();
 

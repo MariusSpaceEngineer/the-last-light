@@ -205,11 +205,11 @@ namespace Game_development_project.Classes
             }
         }
 
-        public void Update(GameTime gameTime, Level level)
+        public void Update(GameTime gameTime, Rectangle rectangle)
         {
 
-            Move(level);
-            Jump();
+            Move(rectangle);
+            Jump(rectangle);
 
             //Not open for changes
 
@@ -247,7 +247,7 @@ namespace Game_development_project.Classes
 
         }
 
-        private void Move(Level level)
+        private void Move(Rectangle rectangle)
         {
             var direction = inputReader.ReadInput();
  
@@ -257,22 +257,44 @@ namespace Game_development_project.Classes
             boundingBox.X = (int)position.X + 52;
             boundingBox.Y = (int)position.Y + 40;
 
-            foreach (Block block in level.TileList)
+            if (BoundingBox.Intersects(rectangle))
             {
-                if (BoundingBox.Intersects(block.Rectangle))
+                if (direction.X < 0)
                 {
-                    if (direction.X < 0)
-                    {
-                        position.X = block.Rectangle.Right;
-                        break;
-                    }
-                    else if (direction.X > 0)
-                    {
-                        position.X = block.Rectangle.Left - BoundingBox.Width;
-                        break;
-                    }
+                    position.X =rectangle.Right - BoundingBox.Width - 22;
+                    
                 }
+                else if (direction.X > 0)
+                {
+                    position.X = rectangle.Left - BoundingBox.Width - 55;
+                    
+                }
+                else if (direction.Y < boundingBox.Y )
+                {
+                  
+                    position.Y = rectangle.Top - boundingBox.Height - 42 ;
+                    //hasJumped = true;
+                }
+          
             }
+
+
+            //foreach (Block block in level.TileList)
+            //{
+            //    if (BoundingBox.Intersects(block.Rectangle))
+            //    {
+            //        if (direction.X < 0)
+            //        {
+            //            position.X = block.Rectangle.Right;
+            //            break;
+            //        }
+            //        else if (direction.X > 0)
+            //        {
+            //            position.X = block.Rectangle.Left - BoundingBox.Width;
+            //            break;
+            //        }
+            //    }
+            //}
 
 
 
@@ -315,10 +337,12 @@ namespace Game_development_project.Classes
             return velocityVector;
         }
 
-        public void Jump()
+        public void Jump(Rectangle rectangle)
         {
 
             position.Y += speed.Y;
+
+        
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up) && hasJumped == false)
             {
@@ -334,20 +358,29 @@ namespace Game_development_project.Classes
                 spriteState = SpriteStates.Down;
             }
 
-            if (position.Y + jumpSprite.Height >= 450)
+
+            if (position.Y + jumpSprite.Height >= 450 || CheckCollsion(rectangle))
             {
                 hasJumped = false;
             }
+
+            //else if (!CheckCollsion(rectangle))
+            //{
+            //    hasJumped = true;
+            //}
+
 
             if (hasJumped == false)
             {
                 speed.Y = 0f;
             }
+
+         
         }
 
-        public void CheckCollsion()
+        public bool CheckCollsion(Rectangle collisionBox)
         {
-
+            return BoundingBox.Intersects(collisionBox);
         }
 
         public void Update(GameTime gameTime)
