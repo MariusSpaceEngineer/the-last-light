@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game_development_project.Classes.Characters.Character_States;
+using Game_development_project.Classes.Characters.CharacterDirections;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -11,9 +13,12 @@ namespace Game_development_project.Classes
     
     internal class KeyboardReader : IInputReader
     {
-        public static SpriteStates SpriteState { get; set; }
-        public static Direction SpriteDirection { get; set; }
-        
+        //public static SpriteStates SpriteState { get; set; }
+        //public static Direction SpriteDirection { get; set; }
+
+        public static Direction herodirection;
+
+        public static State characterState;
 
         public Vector2 ReadInput()
         {
@@ -25,40 +30,55 @@ namespace Game_development_project.Classes
             {
                 if (state.IsKeyDown(Keys.Left))
                 {
+                    
                     direction.X -= 1;
 
-                    SpriteState = SpriteStates.Left;
-                    SpriteDirection = Direction.Left;
+                   
+                    characterState = new MoveState();
+                    herodirection = new LeftDirection();
+
+                    //SpriteState = SpriteStates.Left;
+                    //SpriteDirection = Direction.Left;
 
 
                 }
                 else if (state.IsKeyDown(Keys.Right))
                 {
                     direction.X += 1;
-                    SpriteState = SpriteStates.Right;
-                    SpriteDirection = Direction.Right;
+
+                    characterState = new MoveState();
+                    herodirection = new RightDirection();
+
+                    //SpriteState = SpriteStates.Right;
+                    //SpriteDirection = Direction.Right;
 
                 }
                 else if (state.IsKeyDown(Keys.Up))
                 {
-                    SpriteState = SpriteStates.Up;
+                    characterState = new JumpState();
+                    
+
+                    //SpriteState = SpriteStates.Up;
                 }
                 else if (state.IsKeyDown(Keys.Down))
                 {
                     
-                    SpriteState = SpriteStates.Down;
+                    //SpriteState = SpriteStates.Down;
 
                 }
 
                else if (state.IsKeyDown(Keys.F))
                 {
-                    SpriteState = SpriteStates.Attack;
+                    characterState = new AttackState();
+                   
+                    //SpriteState = SpriteStates.Attack;
                     attacking = true;
                 }
 
                 else
                 {
-                    SpriteState = SpriteStates.Idle;
+                    characterState = new IdleState();
+                   // SpriteState = SpriteStates.Idle;
                 }
             }
             

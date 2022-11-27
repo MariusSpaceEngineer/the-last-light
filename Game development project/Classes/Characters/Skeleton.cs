@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game_development_project.Classes.Characters.CharacterDirections;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game_development_project.Classes
+namespace Game_development_project.Classes.Characters
 {
     internal class Skeleton : IGameObject
     {
@@ -61,9 +62,9 @@ namespace Game_development_project.Classes
             //animation = new Animation.Animation();
             //animation.GetFramesFromTextureProperties(texture.Width, texture.Height, 10, 1);
 
-            this.oldDistance = newDistance;
-        
-        
+            oldDistance = newDistance;
+
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -90,15 +91,15 @@ namespace Game_development_project.Classes
 
             if (distance <= 0)
             {
-                direction = Direction.Right;
+                direction = new RightDirection();
                 speed.X = 1f;
             }
             else if (distance >= oldDistance)
             {
-                direction = Direction.Left;
+                direction = new LeftDirection();
                 speed.X = -1f;
             }
-            if (direction == Direction.Right)
+            if (direction is RightDirection)
             {
                 distance += 1;
             }
@@ -107,7 +108,7 @@ namespace Game_development_project.Classes
                 distance -= 1;
             }
 
-           float heroPosition = Hero.Position.X;
+            float heroPosition = Hero.Position.X;
 
             heroPosition = heroPosition - position.X;
 

@@ -1,5 +1,6 @@
 ﻿using Default_Block;
 using Game_development_project.Classes;
+using Game_development_project.Classes.Characters;
 using Game_development_project.Classes.Level_Design;
 using Game_development_project.Classes.Level_Design.Level;
 using Game_development_project.Classes.Level_Design.Level1;
@@ -88,7 +89,8 @@ namespace Game_development_project
 
             base.Initialize();
             //hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
-            hero = Hero.GetHero(heroBlokTexture,heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
+            //hero = Hero.GetHero(heroBlokTexture,heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
+            hero = Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, heroJumpFallInBetween, heroBlokTexture);
             skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 120f);
             block = new Rectangle(250, 400,32 , 32);
         }
