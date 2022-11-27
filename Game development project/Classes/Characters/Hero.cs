@@ -7,6 +7,8 @@ using Game_development_project.Classes.Level_Design.Level1;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
+
 using System.Reflection.PortableExecutable;
 
 namespace Game_development_project.Classes.Characters
@@ -43,7 +45,7 @@ namespace Game_development_project.Classes.Characters
 
         //In ICanJump interface?
         //Used to determine if the hero is in the air, needs some work though
-        private bool hasJumped = true;
+        private bool hasJumped = false;
 
         private Rectangle boundingBox;
 
@@ -94,7 +96,7 @@ namespace Game_development_project.Classes.Characters
             this.moveAnimation = CreateAnimation(this.moveSprite, 10, 10, 1);
 
             this.inputReader = new KeyboardReader();
-            
+
             //Start position of the hero
             Position = new Vector2(-1, 0);
             //The default moving speed of the hero
@@ -184,7 +186,7 @@ namespace Game_development_project.Classes.Characters
         public void Update(GameTime gameTime, Level level)
         {
             Move(level);
-            Jump(10f,-5f,0.15f);
+            Jump(10f, -5f, 0.15f);
 
             //Needs to use the reader else the animation will give an error when drawing on screen
             if (KeyboardReader.characterState is IdleState)
@@ -219,8 +221,8 @@ namespace Game_development_project.Classes.Characters
             position += direction;
 
             MoveBoundingBox(position);
-            CheckCollisionWithLevel(level, direction);
-           
+            CheckCollisionWithLevel(level);
+
         }
 
         private void MoveBoundingBox(Vector2 position)
@@ -228,33 +230,85 @@ namespace Game_development_project.Classes.Characters
             boundingBox.X = (int)position.X + 52;
             boundingBox.Y = (int)position.Y + 40;
         }
-        private void CheckCollisionWithLevel(Level level, Vector2 direction)
+        bool isOnObject = false;
+        private void CheckCollisionWithLevel(Level level)
         {
             //Checks if the bounding box intersects with ther other rectangles from the tileset
-
             foreach (Block block in level.TileList)
             {
-                if (IsColliding(block.Rectangle))
-                {
-                    if (direction.X < 0)
-                    {
-                        position.X = block.Rectangle.Right - BoundingBox.Width - 22;
-
-                    }
-                    else if (direction.X > 0)
-                    {
-                        position.X = block.Rectangle.Left - BoundingBox.Width - 55;
-
-                    }
-                    else if (direction.Y < boundingBox.Y)
-                    {
-
-                        position.Y = block.Rectangle.Top - boundingBox.Height - 42;
-                        hasJumped = false;
-                    }
-
-                }
+                Collision(block.Rectangle, level.Width, level.Height);
             }
+
+            //foreach (Block block in level.TileList)
+            //{
+
+            //    //if (IsColliding(block.Rectangle))
+            //    //{
+            //    //    if (direction.X < 0)
+            //    //    {
+            //    //        position.X = block.Rectangle.Right - BoundingBox.Width - 22;
+
+            //    //    }
+            //    //    else if (direction.X > 0)
+            //    //    {
+            //    //        position.X = block.Rectangle.Left - BoundingBox.Width - 55;
+
+            //    //    }
+            //    //    else if (direction.Y < boundingBox.Y)
+            //    //    {
+
+            //    //        position.Y = block.Rectangle.Top - boundingBox.Height - 42;
+            //    //        hasJumped = false;
+
+            //    //    }
+            //    //    //else
+            //    //    //{
+            //    //    //    isOnObject = true;
+            //    //    //}
+
+            //    //}
+
+            //    if (IsColliding(block.Rectangle))
+            //    {
+
+            //        //Right side
+            //        //position of the hero is on the left side of the sprite
+            //        //if (position.X < block.Rectangle.Location.X + block.Rectangle.Width)
+            //        //{
+            //        //    position.X = block.Rectangle.Right;
+
+            //        //}
+            //        //else if (position.X > block.Rectangle.Left)
+            //        //{
+            //        //    position.X = block.Rectangle.Left - BoundingBox.Width - 55;
+
+            //        //}
+            //        //Right side
+            //        //postion of the hero < position of the rectangle right side
+            //        //position of hero = position of rectangle right side
+
+            //        if (position.X < block.Rectangle.Right)
+            //        {
+            //            Debug.WriteLine("it touches");
+
+            //        }
+            //        if (position.Y < boundingBox.Y)
+            //        {
+
+            //            position.Y = block.Rectangle.Top - boundingBox.Height - 42;
+            //            hasJumped = false;
+
+            //        }
+            //        else
+            //        {
+            //            isOnObject = true;
+            //        }
+
+            //    }
+
+
+
+
 
             //Checks if the hero bounding box intersects with a rectangle
 
@@ -278,6 +332,8 @@ namespace Game_development_project.Classes.Characters
             //    }
 
             //}
+
+
         }
 
         public void Jump(float jumpHeight, float jumpHeightSpeed, float fallSpeed)
@@ -295,13 +351,16 @@ namespace Game_development_project.Classes.Characters
             {
                 float i = 1;
                 speed.Y += fallSpeed * i;
-                //spriteState = SpriteStates.Down;
+                
             }
-
 
             if (position.Y + jumpSprite.Height >= 450)
             {
                 hasJumped = false;
+            }
+            else if (isOnObject == false)
+            {
+                hasJumped = true;
             }
 
             //else if (!CheckCollsion(rectangle))
@@ -316,10 +375,37 @@ namespace Game_development_project.Classes.Characters
             }
         }
 
-
-        private bool IsColliding(Rectangle rectangle)
+        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
-            return BoundingBox.Intersects(rectangle);
+            if (boundingBox.TouchTopOf(newRectangle))
+            {
+                //position.Y = newRectangle.Y - boundingBox.Height;
+                //Last int value depends on the size of the tilemap and sprite
+                position.Y = newRectangle.Top - boundingBox.Height - 50;
+                Debug.WriteLine("Touching top");
+                hasJumped = false;
+                isOnObject = true;
+
+            }
+            else
+            {
+                isOnObject = false;
+            }
+            if (boundingBox.TouchLeftOf(newRectangle))
+            {
+                //Last int value depends on the size of the tilemap and sprite
+                position.X = newRectangle.X - boundingBox.Width - 60;
+                Debug.WriteLine("Touching left");
+
+            }
+            if (boundingBox.TouchRightOf(newRectangle))
+            {
+                position.X = newRectangle.Right - boundingBox.Width - 20;
+                Debug.WriteLine("Touching right");
+
+            }
+
+
         }
 
         public void Update(GameTime gameTime)
