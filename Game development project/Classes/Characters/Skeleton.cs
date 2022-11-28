@@ -9,13 +9,9 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Characters
 {
-    internal class Skeleton : IGameObject
+    internal class Skeleton : Enemy, IGameObject
     {
-        private Texture2D attackSprite;
-        private Texture2D damageSprite;
-        private Texture2D deathSprite;
-        private Texture2D idleSprite;
-        private Texture2D moveSprite;
+      //The sprites and variables needed for the patrol are assigned in the enemy class
 
 
         private Animation attackAnimation;
@@ -24,52 +20,22 @@ namespace Game_development_project.Classes.Characters
         private Animation idleAnimation;
         private Animation moveAnimation;
 
-        private Direction direction;
-        private float distance;
-        private float oldDistance;
-
-        private Vector2 position;
-        private Vector2 origin;
-        private Vector2 speed;
-
-        private float rotation = 0f;
-
-
-        public Skeleton(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, float newDistance)
+        //Depending on the distance and speed, the skeleton will patrol in a different way
+        public Skeleton(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, float distance, Vector2 position, Vector2 speed): base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance)
         {
-            this.attackSprite = attackSprite;
-            this.damageSprite = damageSprite;
-            this.deathSprite = deathSprite;
-            this.idleSprite = idleSprite;
-            this.moveSprite = moveSprite;
+           
 
-
-            attackAnimation = new Animation(18);
-            attackAnimation.GetFramesFromTextureProperties(attackSprite.Width, attackSprite.Height, 18, 1);
-
-            damageAnimation = new Animation(8);
-            damageAnimation.GetFramesFromTextureProperties(damageSprite.Width, damageSprite.Height, 8, 1);
-
-            deathAnimation = new Animation(15);
-            deathAnimation.GetFramesFromTextureProperties(deathSprite.Width, deathSprite.Height, 15, 1);
-
-            idleAnimation = new Animation(11);
-            idleAnimation.GetFramesFromTextureProperties(idleSprite.Width, idleSprite.Height, 11, 1);
-
-            moveAnimation = new Animation(13);
-            moveAnimation.GetFramesFromTextureProperties(moveSprite.Width, moveSprite.Height, 13, 1);
-
-            //animation = new Animation.Animation();
-            //animation.GetFramesFromTextureProperties(texture.Width, texture.Height, 10, 1);
-
-            oldDistance = newDistance;
-
-
+            this.attackAnimation = CreateAnimation(attackSprite, 18, 18, 1);
+            this.damageAnimation = CreateAnimation(damageSprite, 8, 8,1);
+            this.deathAnimation = CreateAnimation(deathSprite, 15, 15 ,1);
+            this.idleAnimation = CreateAnimation(idleSprite, 11, 11 ,1);
+            this.moveAnimation = CreateAnimation(moveSprite, 13, 13, 1);
+            
+            oldDistance = distance;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(moveSprite, new Vector2(0, 0), moveAnimation.CurrentFrame.SourceRectangle, Color.White);
             if (speed.X > 0)
             {
                 spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
@@ -77,7 +43,7 @@ namespace Game_development_project.Classes.Characters
             }
             else
             {
-                //spriteBatch.Draw(moveSprite, new Vector2(0, 0), moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+                
                 spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
 
 
@@ -86,49 +52,7 @@ namespace Game_development_project.Classes.Characters
 
         public void Update(GameTime gameTime)
         {
-            position += speed;
-            origin = new Vector2(attackSprite.Width / 2, attackSprite.Height / 2);
-
-            if (distance <= 0)
-            {
-                direction = new RightDirection();
-                speed.X = 1f;
-            }
-            else if (distance >= oldDistance)
-            {
-                direction = new LeftDirection();
-                speed.X = -1f;
-            }
-            if (direction is RightDirection)
-            {
-                distance += 1;
-            }
-            else
-            {
-                distance -= 1;
-            }
-
-            float heroPosition = Hero.Position.X;
-
-            heroPosition = heroPosition - position.X;
-
-            if (heroPosition >= -10 && heroPosition <= 10)
-            {
-                if (heroPosition < -1)
-                {
-                    speed.X = -1f;
-                }
-                else if (heroPosition > 1)
-                {
-                    speed.X = 1f;
-                }
-                else if (heroPosition == 0)
-                {
-                    speed.X = 0f;
-                }
-            }
-
-
+            Patrol();
             moveAnimation.Update(gameTime);
         }
     }
