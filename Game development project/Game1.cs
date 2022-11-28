@@ -4,7 +4,6 @@ using Game_development_project.Classes.Characters;
 using Game_development_project.Classes.Level_Design;
 using Game_development_project.Classes.Level_Design.Level;
 using Game_development_project.Classes.Level_Design.Level1;
-using Game_development_project.Classes.Map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

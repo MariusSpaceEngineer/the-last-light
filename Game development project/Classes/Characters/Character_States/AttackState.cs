@@ -1,4 +1,5 @@
 ﻿using Game_development_project.Classes.Characters.CharacterDirections;
+using Game_development_project.Classes.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

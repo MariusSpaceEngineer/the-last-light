@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game_development_project.Classes
+namespace Game_development_project.Classes.Animations
 {
     internal class Animation
     {
@@ -26,7 +26,7 @@ namespace Game_development_project.Classes
             CurrentFrame = frames[0];
         }
 
-       
+
         private double secondCounter = 0;
 
         public void Update(GameTime gameTime)
@@ -34,7 +34,7 @@ namespace Game_development_project.Classes
             CurrentFrame = frames[counter];
 
             secondCounter += gameTime.ElapsedGameTime.TotalSeconds;
-            
+
 
             if (secondCounter >= 1d / FPS)
             {

@@ -8,8 +8,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
-
+using Game_development_project.Classes.Animations;
 using System.Reflection.PortableExecutable;
+using Game_development_project.Classes.Input;
 
 namespace Game_development_project.Classes.Characters
 {

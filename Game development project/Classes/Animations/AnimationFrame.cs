@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game_development_project.Classes
+namespace Game_development_project.Classes.Animations
 {
     internal class AnimationFrame
     {

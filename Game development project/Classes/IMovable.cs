@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game_development_project.Classes.Input;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;

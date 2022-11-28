@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game_development_project.Classes
+namespace Game_development_project.Classes.Input
 {
-    
+
     internal class KeyboardReader : IInputReader
     {
         //public static SpriteStates SpriteState { get; set; }
@@ -30,10 +30,10 @@ namespace Game_development_project.Classes
             {
                 if (state.IsKeyDown(Keys.Left))
                 {
-                    
+
                     direction.X -= 1;
 
-                   
+
                     characterState = new MoveState();
                     herodirection = new LeftDirection();
 
@@ -56,21 +56,21 @@ namespace Game_development_project.Classes
                 else if (state.IsKeyDown(Keys.Up))
                 {
                     characterState = new JumpState();
-                    
+
 
                     //SpriteState = SpriteStates.Up;
                 }
                 else if (state.IsKeyDown(Keys.Down))
                 {
-                    
+
                     //SpriteState = SpriteStates.Down;
 
                 }
 
-               else if (state.IsKeyDown(Keys.F))
+                else if (state.IsKeyDown(Keys.F))
                 {
                     characterState = new AttackState();
-                   
+
                     //SpriteState = SpriteStates.Attack;
                     attacking = true;
                 }
@@ -78,10 +78,10 @@ namespace Game_development_project.Classes
                 else
                 {
                     characterState = new IdleState();
-                   // SpriteState = SpriteStates.Idle;
+                    // SpriteState = SpriteStates.Idle;
                 }
             }
-            
+
             return direction;
         }
 
