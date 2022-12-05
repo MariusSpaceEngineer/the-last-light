@@ -187,7 +187,7 @@ namespace Game_development_project.Classes.Characters
         public void Update(GameTime gameTime, Level level)
         {
             Move(level);
-            Jump(10f, -5f, 0.15f);
+            Jump(-6f, 0.15f);
 
             //Needs to use the reader else the animation will give an error when drawing on screen
             if (KeyboardReader.characterState is IdleState)
@@ -337,14 +337,14 @@ namespace Game_development_project.Classes.Characters
 
         }
 
-        public void Jump(float jumpHeight, float jumpHeightSpeed, float fallSpeed)
+        public void Jump(float jumpHeight,float fallSpeed)
         {
             position.Y += speed.Y;
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up) && hasJumped == false)
             {
-                position.Y -= jumpHeight;
-                speed.Y = jumpHeightSpeed;
+                //position.Y -= jumpHeight;
+                speed.Y = jumpHeight;
                 hasJumped = true;
             }
 
@@ -355,7 +355,7 @@ namespace Game_development_project.Classes.Characters
                 
             }
 
-            if (position.Y + jumpSprite.Height >= 450)
+            if (position.Y + jumpSprite.Height > 600)
             {
                 hasJumped = false;
             }
@@ -392,6 +392,10 @@ namespace Game_development_project.Classes.Characters
             {
                 isOnObject = false;
             }
+            if (boundingBox.TouchBottomOf(newRectangle))
+            {
+                position.Y = newRectangle.Bottom;
+            }
             if (boundingBox.TouchLeftOf(newRectangle))
             {
                 //Last int value depends on the size of the tilemap and sprite
@@ -405,6 +409,27 @@ namespace Game_development_project.Classes.Characters
                 Debug.WriteLine("Touching right");
 
             }
+            if (position.X < 0)
+            {
+                position.X = 0;
+                Debug.WriteLine("Touching left border");
+
+            }
+            //Should later be assigned to a variable because now it's hardcoded
+            if (position.X > 1200 - boundingBox.Width -50 )
+            {
+                position.X= 1200 - boundingBox.Width - 50;
+                Debug.WriteLine("Touching right border");
+
+            }
+            //Should later be assigned to a variable because now it's hardcoded
+            //doesn't work
+            //if (position.Y < -600)
+            //{
+            //    position.Y = -600 + boundingBox.Width + 50;
+            //    Debug.WriteLine("Touching top border");
+
+            //}
 
 
         }
