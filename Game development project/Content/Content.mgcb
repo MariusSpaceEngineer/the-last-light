@@ -25,7 +25,7 @@
 /processorParam:TextureFormat=Color
 /build:Castle_Ground.png
 
-#begin Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_0.png
+#begin Sprites/Heavy Bandit/HeavyBandit_Attack.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -35,9 +35,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_0.png
+/build:Sprites/Heavy Bandit/HeavyBandit_Attack.png;Sprites/Heavy Bandit/_Attack.png
 
-#begin Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_1.png
+#begin Sprites/Heavy Bandit/HeavyBandit_Death.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -47,9 +47,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_1.png
+/build:Sprites/Heavy Bandit/HeavyBandit_Death.png;Sprites/Heavy Bandit/_Death.png
 
-#begin Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_2.png
+#begin Sprites/Heavy Bandit/HeavyBandit_Idle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,9 +59,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_2.png
+/build:Sprites/Heavy Bandit/HeavyBandit_Idle.png;Sprites/Heavy Bandit/_Idle.png
 
-#begin Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_3.png
+#begin Sprites/Heavy Bandit/HeavyBandit_Run.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -71,391 +71,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_3.png
-
-#begin Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_4.png
-
-#begin Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_5.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_5.png
-
-#begin Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_6.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_6.png
-
-#begin Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_7.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Attack/HeavyBandit_Attack_7.png
-
-#begin Sprites/Heavy Bandit/Combat Idle/HeavyBandit_CombatIdle_0.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Combat Idle/HeavyBandit_CombatIdle_0.png
-
-#begin Sprites/Heavy Bandit/Combat Idle/HeavyBandit_CombatIdle_1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Combat Idle/HeavyBandit_CombatIdle_1.png
-
-#begin Sprites/Heavy Bandit/Combat Idle/HeavyBandit_CombatIdle_2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Combat Idle/HeavyBandit_CombatIdle_2.png
-
-#begin Sprites/Heavy Bandit/Combat Idle/HeavyBandit_CombatIdle_3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Combat Idle/HeavyBandit_CombatIdle_3.png
-
-#begin Sprites/Heavy Bandit/Death/HeavyBandit_Death_0.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Death/HeavyBandit_Death_0.png
-
-#begin Sprites/Heavy Bandit/Hurt/HeavyBandit_Hurt_0.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Hurt/HeavyBandit_Hurt_0.png
-
-#begin Sprites/Heavy Bandit/Hurt/HeavyBandit_Hurt_1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Hurt/HeavyBandit_Hurt_1.png
-
-#begin Sprites/Heavy Bandit/Idle/HeavyBandit_Idle_0.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Idle/HeavyBandit_Idle_0.png
-
-#begin Sprites/Heavy Bandit/Idle/HeavyBandit_Idle_1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Idle/HeavyBandit_Idle_1.png
-
-#begin Sprites/Heavy Bandit/Idle/HeavyBandit_Idle_2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Idle/HeavyBandit_Idle_2.png
-
-#begin Sprites/Heavy Bandit/Idle/HeavyBandit_Idle_3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Idle/HeavyBandit_Idle_3.png
-
-#begin Sprites/Heavy Bandit/Jump/HeavyBandit_Jump_0.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Jump/HeavyBandit_Jump_0.png
-
-#begin Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_0.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_0.png
-
-#begin Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_1.png
-
-#begin Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_2.png
-
-#begin Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_3.png
-
-#begin Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_4.png
-
-#begin Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_5.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_5.png
-
-#begin Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_6.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_6.png
-
-#begin Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_7.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Recover/HeavyBandit_Recover_7.png
-
-#begin Sprites/Heavy Bandit/Run/HeavyBandit_Run_0.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Run/HeavyBandit_Run_0.png
-
-#begin Sprites/Heavy Bandit/Run/HeavyBandit_Run_1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Run/HeavyBandit_Run_1.png
-
-#begin Sprites/Heavy Bandit/Run/HeavyBandit_Run_2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Run/HeavyBandit_Run_2.png
-
-#begin Sprites/Heavy Bandit/Run/HeavyBandit_Run_3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Run/HeavyBandit_Run_3.png
-
-#begin Sprites/Heavy Bandit/Run/HeavyBandit_Run_4.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Run/HeavyBandit_Run_4.png
-
-#begin Sprites/Heavy Bandit/Run/HeavyBandit_Run_5.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Run/HeavyBandit_Run_5.png
-
-#begin Sprites/Heavy Bandit/Run/HeavyBandit_Run_6.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Run/HeavyBandit_Run_6.png
-
-#begin Sprites/Heavy Bandit/Run/HeavyBandit_Run_7.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/Run/HeavyBandit_Run_7.png
+/build:Sprites/Heavy Bandit/HeavyBandit_Run.png;Sprites/Heavy Bandit/_Run.png
 
 #begin Sprites/Knight/_Attack.png
 /importer:TextureImporter
