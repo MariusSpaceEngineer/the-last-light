@@ -36,7 +36,7 @@ namespace Game_development_project.Classes.Characters
         private Animation moveAnimation;
 
         //Used by enemies to determine hero location
-        private static Vector2 position;
+       
 
         //It is assigned in the constructor and it's used in the Move() method
         private Vector2 speed;
@@ -48,10 +48,10 @@ namespace Game_development_project.Classes.Characters
         //Used to determine if the hero is in the air, needs some work though
         private bool hasJumped = false;
 
-        private Rectangle boundingBox;
+       
 
         //Texture for the bounding box
-        private Texture2D blokTexture;
+        
 
         //The levels
         private Level1 level1;
@@ -64,25 +64,16 @@ namespace Game_development_project.Classes.Characters
 
         #region Get/setters
 
-        public static Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-
-        }
+        
 
         //Later needed for checking the collision between enemies and hero
-        public Rectangle BoundingBox
-        {
-            get { return boundingBox; }
-            set { boundingBox = value; }
-        }
+      
         #endregion
 
         #region Initialize
 
         //Some sprites are assigned in the base constructor
-        private Hero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D boundingBox) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
+        private Hero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D boundingBox) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite,boundingBox)
         {
             //Maybe find a way to remove this also
             this.jumpSprite = jumpSprite;
@@ -104,9 +95,10 @@ namespace Game_development_project.Classes.Characters
             speed = new Vector2(4, 0);
 
             //Used for the bouding box, will later be removed or set to color white
-            this.blokTexture = boundingBox;
+            //this.blokTexture = boundingBox;
+            //this.blokTexture.SetData(new[] { Color.White });
+            //BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 28, 40);
             this.blokTexture.SetData(new[] { Color.White });
-            BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 28, 40);
         }
 
         public static Hero GetHero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D jumpSprite, Texture2D fallSprite, Texture2D boundingBox)

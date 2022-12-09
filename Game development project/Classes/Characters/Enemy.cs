@@ -19,11 +19,13 @@ namespace Game_development_project.Classes.Characters
         protected float oldDistance;
         private Vector2 origin;
 
-        public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, Vector2 speed, float distance) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
+        public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D boundingBoxTexture, Vector2 position, Vector2 speed, float distance) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, boundingBoxTexture)
         {
             this.position = position;
             this.speed = speed;
             this.oldDistance = distance;
+
+        
         }
 
         public void Patrol()

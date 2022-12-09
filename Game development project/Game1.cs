@@ -34,6 +34,7 @@ namespace Game_development_project
         private Texture2D skeletonDeathSprite;
         private Texture2D skeletonIdleSprite;
         private Texture2D skeletonMoveSprite;
+        private Texture2D skeletonBlokTexture;
 
         private Bandit bandit;
         private Texture2D banditAttackSprite;
@@ -41,6 +42,7 @@ namespace Game_development_project
         private Texture2D banditDeathSprite;
         private Texture2D banditIdleSprite;
         private Texture2D banditMoveSprite;
+        private Texture2D banditBlokTexture;
 
         private Huntress huntress;
         private Texture2D huntressAttackSprite;
@@ -48,6 +50,7 @@ namespace Game_development_project
         private Texture2D huntressDeathSprite;
         private Texture2D huntressIdleSprite;
         private Texture2D huntressMoveSprite;
+        private Texture2D huntressBlokTexture;
 
         //Level1 level1;
         Level2 level2;
@@ -97,9 +100,9 @@ namespace Game_development_project
             //hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
             //hero = Hero.GetHero(heroBlokTexture,heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
             hero = Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, heroJumpFallInBetween, heroBlokTexture);
-            skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(250,475), new Vector2 (2,0));
-            bandit = new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(250, 350), new Vector2(2, 0), 50);
-            huntress = new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), new Vector2(2, 0), 50);
+            skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, skeletonBlokTexture, 50, new Vector2(250,475), new Vector2 (2,0));
+            bandit = new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, banditBlokTexture, new Vector2(250, 350), new Vector2(2, 0), 50);
+            huntress = new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, huntressBlokTexture, 50, new Vector2(212, 475), new Vector2(2, 0));
             block = new Rectangle(250, 400,32 , 32);
             _graphics.PreferredBackBufferWidth = 1200;
             _graphics.PreferredBackBufferHeight = 600;
@@ -110,7 +113,7 @@ namespace Game_development_project
         {
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            heroBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
+            
             LoadHero();
             LoadSkeleton();
             LoadBandit();
@@ -212,7 +215,8 @@ namespace Game_development_project
             heroJumpSprite = Content.Load<Texture2D>("Sprites/Knight/_Jump");
             heroJumpFallInBetween = Content.Load<Texture2D>("Sprites/Knight/_JumpFallInbetween");
             heroMoveSprite = Content.Load<Texture2D>("Sprites/Knight/_Run");
-           
+            heroBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
+
         }
 
         private void LoadSkeleton()
@@ -222,6 +226,7 @@ namespace Game_development_project
             skeletonDeathSprite = Content.Load<Texture2D>("Sprites/Skeleton/_Death");
             skeletonIdleSprite = Content.Load<Texture2D>("Sprites/Skeleton/_Idle");
             skeletonMoveSprite = Content.Load<Texture2D>("Sprites/Skeleton/_Run");
+            skeletonBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
         }
 
         private void LoadBandit()
@@ -231,6 +236,7 @@ namespace Game_development_project
             banditDeathSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Death");
             banditIdleSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Idle");
             banditMoveSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Run");
+            banditBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
         }
 
         private void LoadHuntress() 
@@ -240,6 +246,7 @@ namespace Game_development_project
             huntressDeathSprite = Content.Load<Texture2D>("Sprites/Huntress/_Death");
             huntressIdleSprite = Content.Load<Texture2D>("Sprites/Huntress/_Idle");
             huntressMoveSprite = Content.Load<Texture2D>("Sprites/Huntress/_Run");
+            huntressBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
 
         }
     }

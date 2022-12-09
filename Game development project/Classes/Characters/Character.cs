@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Game_development_project.Classes.Animations;
+using Microsoft.Xna.Framework;
 
 namespace Game_development_project.Classes.Characters
 {
@@ -15,14 +16,37 @@ namespace Game_development_project.Classes.Characters
         protected Texture2D deathSprite;
         protected Texture2D idleSprite;
         protected Texture2D moveSprite;
+        protected Texture2D boundingBoxTexture;
 
-        public Character(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite)
+        protected Rectangle boundingBox;
+        public Rectangle BoundingBox
+        {
+            get { return boundingBox; }
+            set { boundingBox = value; }
+        }
+
+        protected static Vector2 position;
+        public static Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
+
+        }
+
+        protected Texture2D blokTexture;
+
+        public Character(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D boundingBoxTexture)
         {
             this.attackSprite = attackSprite;
             this.damageSprite = damageSprite;
             this.deathSprite = deathSprite;
             this.idleSprite = idleSprite;
             this.moveSprite = moveSprite;
+            this.boundingBoxTexture = boundingBoxTexture;
+
+            this.blokTexture = boundingBoxTexture;
+           
+            BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 28, 40);
         }
 
         public Animation CreateAnimation(Texture2D sprite, int fps, int numberOfWidthSprites, int numberOfHeightSprites)
