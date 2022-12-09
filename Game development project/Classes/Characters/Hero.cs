@@ -101,7 +101,7 @@ namespace Game_development_project.Classes.Characters
             //Start position of the hero
             Position = new Vector2(-1, 0);
             //The default moving speed of the hero
-            speed = new Vector2(2, 0);
+            speed = new Vector2(4, 0);
 
             //Used for the bouding box, will later be removed or set to color white
             this.blokTexture = boundingBox;
@@ -416,12 +416,12 @@ namespace Game_development_project.Classes.Characters
 
             }
             //Should later be assigned to a variable because now it's hardcoded
-            if (position.X > 1200 - boundingBox.Width -50 )
-            {
-                position.X= 1200 - boundingBox.Width - 50;
-                Debug.WriteLine("Touching right border");
+            //if (position.X > 1200 - boundingBox.Width -50 )
+            //{
+            //    position.X= 1200 - boundingBox.Width - 50;
+            //    Debug.WriteLine("Touching right border");
 
-            }
+            //}
             //Should later be assigned to a variable because now it's hardcoded
             //doesn't work
             //if (position.Y < -600)
