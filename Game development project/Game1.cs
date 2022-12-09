@@ -35,6 +35,13 @@ namespace Game_development_project
         private Texture2D skeletonIdleSprite;
         private Texture2D skeletonMoveSprite;
 
+        private Bandit bandit;
+        private Texture2D banditAttackSprite;
+        private Texture2D banditDamageSprite;
+        private Texture2D banditDeathSprite;
+        private Texture2D banditIdleSprite;
+        private Texture2D banditMoveSprite;
+
         //Level1 level1;
         Level2 level2;
 
@@ -83,7 +90,8 @@ namespace Game_development_project
             //hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
             //hero = Hero.GetHero(heroBlokTexture,heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
             hero = Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, heroJumpFallInBetween, heroBlokTexture);
-            skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(0,1), new Vector2 (2,0));
+            skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(250,475), new Vector2 (2,0));
+            bandit = new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(250, 350), new Vector2(2, 0), 50);
             block = new Rectangle(250, 400,32 , 32);
             _graphics.PreferredBackBufferWidth = 1200;
             _graphics.PreferredBackBufferHeight = 600;
@@ -97,6 +105,7 @@ namespace Game_development_project
             heroBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
             LoadHero();
             LoadSkeleton();
+            LoadBandit();
             camera = new Camera(GraphicsDevice.Viewport);
 
             // TODO: use this.Content to load your game content here
@@ -157,6 +166,7 @@ namespace Game_development_project
             //    hero.Collision(block.Rectangle, level1.Width, level1.Height);
             //}
             skeleton.Update(gameTime);
+            bandit.Update(gameTime);
             //camera.Update(Hero.Position, level1.Width, level1.Height);
             camera.Update(Hero.Position, level2.Width, level2.Height);
 
@@ -175,6 +185,7 @@ namespace Game_development_project
             level2.Draw(_spriteBatch);
             _spriteBatch.Draw(blokTexture, block, Color.Red);
             skeleton.Draw(_spriteBatch);
+            bandit.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -200,6 +211,15 @@ namespace Game_development_project
             skeletonDeathSprite = Content.Load<Texture2D>("Sprites/Skeleton/_Death");
             skeletonIdleSprite = Content.Load<Texture2D>("Sprites/Skeleton/_Idle");
             skeletonMoveSprite = Content.Load<Texture2D>("Sprites/Skeleton/_Run");
+        }
+
+        private void LoadBandit()
+        {
+            banditAttackSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Attack");
+            //banditDamageSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Hit");
+            banditDeathSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Death");
+            banditIdleSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Idle");
+            banditMoveSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Run");
         }
     }
     }
