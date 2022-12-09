@@ -2,6 +2,7 @@
 using Default_Level;
 using Game_development_project.Classes;
 using Game_development_project.Classes.Characters;
+using Game_development_project.Classes.GameStates;
 using Game_development_project.Classes.Level_Design;
 using Game_development_project.Classes.Level_Design.Level;
 using Game_development_project.Classes.Level_Design.Level1;
@@ -62,6 +63,15 @@ namespace Game_development_project
 
         Camera camera;
 
+        private State _currentState;
+
+        private State _nextState;
+
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }
+
 
 
 
@@ -119,6 +129,7 @@ namespace Game_development_project
             LoadBandit();
             LoadHuntress();
             camera = new Camera(GraphicsDevice.Viewport);
+            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
 
             // TODO: use this.Content to load your game content here
             Block.Content = Content;
@@ -184,22 +195,37 @@ namespace Game_development_project
             camera.Update(Hero.Position, level2.Width, level2.Height);
 
             base.Update(gameTime);
+
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+
+                _nextState = null;
+            }
+
+            _currentState.Update(gameTime);
+
+            _currentState.PostUpdate(gameTime);
+
+            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            _currentState.Draw(gameTime, _spriteBatch);
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin(SpriteSortMode.Deferred,null,null,null,null,null,camera.Transform);
-            hero.Draw(_spriteBatch);
+            //hero.Draw(_spriteBatch);
             //map.Draw(_spriteBatch);
             //level1.Draw(_spriteBatch);
-            level2.Draw(_spriteBatch);
-            _spriteBatch.Draw(blokTexture, block, Color.Red);
-            skeleton.Draw(_spriteBatch);
-            bandit.Draw(_spriteBatch);
-            huntress.Draw(_spriteBatch);
+            //level2.Draw(_spriteBatch);
+            //_spriteBatch.Draw(blokTexture, block, Color.Red);
+            //skeleton.Draw(_spriteBatch);
+            //bandit.Draw(_spriteBatch);
+            //huntress.Draw(_spriteBatch);
+           
             _spriteBatch.End();
 
             base.Draw(gameTime);
