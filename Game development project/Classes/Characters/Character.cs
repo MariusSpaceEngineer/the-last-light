@@ -8,7 +8,7 @@ using Game_development_project.Classes.Animations;
 
 namespace Game_development_project.Classes.Characters
 {
-    internal abstract class Character
+    internal abstract class Character : Sprite
     {
         protected Texture2D attackSprite;
         protected Texture2D damageSprite;
@@ -31,5 +31,7 @@ namespace Game_development_project.Classes.Characters
             animation.GetFramesFromTextureProperties(sprite.Width, sprite.Height, numberOfWidthSprites, numberOfHeightSprites);
             return animation;
         }
+
+
     }
 }

@@ -17,7 +17,7 @@ namespace Game_development_project.Classes.Characters
         private Animation idleAnimation;
         private Animation moveAnimation;
 
-        public Huntress(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, Vector2 speed, float distance) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance)
+        public Huntress(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance)
         {
 
             this.attackAnimation = CreateAnimation(attackSprite, 6, 6, 1);
@@ -30,15 +30,15 @@ namespace Game_development_project.Classes.Characters
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (speed.X > 0)
+            if (LinearVelocity > 0)
             {
-                spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+                spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
 
             }
             else
             {
 
-                spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
+                spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
 
 
             }

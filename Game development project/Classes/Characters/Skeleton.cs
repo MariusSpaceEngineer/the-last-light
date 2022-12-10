@@ -22,7 +22,7 @@ namespace Game_development_project.Classes.Characters
         private Animation moveAnimation;
 
         //Depending on the distance and speed, the skeleton will patrol in a different way
-        public Skeleton(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, float distance, Vector2 position, Vector2 speed): base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance)
+        public Skeleton(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, float distance, Vector2 position, float speed): base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance)
         {
            
 
@@ -37,15 +37,15 @@ namespace Game_development_project.Classes.Characters
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (speed.X > 0)
+            if (LinearVelocity > 0)
             {
-                spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+                spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
 
             }
             else
             {
                 
-                spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
+                spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
 
 
             }

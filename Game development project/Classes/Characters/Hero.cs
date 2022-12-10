@@ -11,6 +11,7 @@ using System.Diagnostics;
 using Game_development_project.Classes.Animations;
 using System.Reflection.PortableExecutable;
 using Game_development_project.Classes.Input;
+using System.Runtime.CompilerServices;
 
 namespace Game_development_project.Classes.Characters
 {
@@ -36,10 +37,12 @@ namespace Game_development_project.Classes.Characters
         private Animation moveAnimation;
 
         //Used by enemies to determine hero location
-        private static Vector2 position;
+        //The sprite class has a Position variabel
+        //private static Vector2 position;
 
         //It is assigned in the constructor and it's used in the Move() method
-        private Vector2 speed;
+        //The sprite class has a LinearVelocity variabel
+        //private Vector2 speed;
 
         //Assigned in the constructor, not really needed but in case new input is added later
         private IInputReader inputReader;
@@ -48,15 +51,17 @@ namespace Game_development_project.Classes.Characters
         //Used to determine if the hero is in the air, needs some work though
         private bool hasJumped = false;
 
+        //Could be added in the sprite class but will leave it here for now
         private Rectangle boundingBox;
 
         //Texture for the bounding box
         private Texture2D blokTexture;
 
         //The levels
-        private Level1 level1;
+        //private Level1 level1;
 
         //The hero states and the different directions that the hero can be (left, right)
+        //Could be added in character but will leave it here for now
         private State state;
         private Direction direction;
 
@@ -64,13 +69,8 @@ namespace Game_development_project.Classes.Characters
 
         #region Get/setters
 
-        public static Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
-
-        }
-
+        //Exists in the sprite class
+       
         //Later needed for checking the collision between enemies and hero
         public Rectangle BoundingBox
         {
@@ -80,6 +80,8 @@ namespace Game_development_project.Classes.Characters
         #endregion
 
         #region Initialize
+
+        private float LinearFallVelocity = 0;
 
         //Some sprites are assigned in the base constructor
         private Hero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D boundingBox) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
@@ -101,7 +103,8 @@ namespace Game_development_project.Classes.Characters
             //Start position of the hero
             Position = new Vector2(-1, 0);
             //The default moving speed of the hero
-            speed = new Vector2(4, 0);
+            //speed = new Vector2(4, 0);
+            LinearVelocity = 4;
 
             //Used for the bouding box, will later be removed or set to color white
             this.blokTexture = boundingBox;
@@ -109,6 +112,10 @@ namespace Game_development_project.Classes.Characters
             BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 28, 40);
         }
 
+        public static Hero GetHero()
+        { 
+            return uniqueHero;
+        }
         public static Hero GetHero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D jumpSprite, Texture2D fallSprite, Texture2D boundingBox)
         {
             if (uniqueHero == null)
@@ -133,12 +140,12 @@ namespace Game_development_project.Classes.Characters
             {
                 if (direction is LeftDirection)
                 {
-                    spriteBatch.Draw(idleSprite, position, idleAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    spriteBatch.Draw(idleSprite, Position, idleAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                 }
                 else
                 {
-                    spriteBatch.Draw(idleSprite, position, idleAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    spriteBatch.Draw(idleSprite, Position, idleAnimation.CurrentFrame.SourceRectangle, Color.White);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
 
                 }
@@ -147,12 +154,12 @@ namespace Game_development_project.Classes.Characters
             {
                 if (direction is LeftDirection)
                 {
-                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                 }
                 else if (direction is RightDirection)
                 {
-                    spriteBatch.Draw(moveSprite, position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                 }
             }
@@ -160,12 +167,12 @@ namespace Game_development_project.Classes.Characters
             {
                 if (direction is LeftDirection)
                 {
-                    spriteBatch.Draw(jumpSprite, position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    spriteBatch.Draw(jumpSprite, Position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                 }
                 else if (direction is RightDirection)
                 {
-                    spriteBatch.Draw(jumpSprite, position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    spriteBatch.Draw(jumpSprite, Position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                 }
             }
@@ -173,12 +180,12 @@ namespace Game_development_project.Classes.Characters
             {
                 if (direction is LeftDirection)
                 {
-                    spriteBatch.Draw(attackSprite, position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                 }
                 else if (direction is RightDirection)
                 {
-                    spriteBatch.Draw(attackSprite, position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                 }
             }
@@ -217,11 +224,14 @@ namespace Game_development_project.Classes.Characters
             var direction = inputReader.ReadInput();
 
             //Adjusts x-direction of character 
-            direction.X *= speed.X;
+            //direction.X *= speed.X;
+            direction.X *= LinearVelocity;
             //Updates the position with the new direction
-            position += direction;
+            //position += direction;
+            Position += direction;
 
-            MoveBoundingBox(position);
+            //MoveBoundingBox(position);
+            MoveBoundingBox(Position);
             CheckCollisionWithLevel(level);
 
         }
@@ -339,23 +349,24 @@ namespace Game_development_project.Classes.Characters
 
         public void Jump(float jumpHeight,float fallSpeed)
         {
-            position.Y += speed.Y;
+           
+            Position.Y += LinearFallVelocity;
 
             if (Keyboard.GetState().IsKeyDown(Keys.Up) && hasJumped == false)
             {
                 //position.Y -= jumpHeight;
-                speed.Y = jumpHeight;
+                LinearFallVelocity = jumpHeight;
                 hasJumped = true;
             }
 
             if (hasJumped)
             {
                 float i = 1;
-                speed.Y += fallSpeed * i;
+                LinearFallVelocity += fallSpeed * i;
                 
             }
 
-            if (position.Y + jumpSprite.Height > 600)
+            if (Position.Y + jumpSprite.Height > 600)
             {
                 hasJumped = false;
             }
@@ -372,7 +383,7 @@ namespace Game_development_project.Classes.Characters
 
             if (hasJumped == false)
             {
-                speed.Y = 0f;
+                LinearFallVelocity = 0f;
             }
         }
 
@@ -382,7 +393,7 @@ namespace Game_development_project.Classes.Characters
             {
                 //position.Y = newRectangle.Y - boundingBox.Height;
                 //Last int value depends on the size of the tilemap and sprite
-                position.Y = newRectangle.Top - boundingBox.Height - 50;
+                Position.Y = newRectangle.Top - boundingBox.Height - 50;
                 Debug.WriteLine("Touching top");
                 hasJumped = false;
                 isOnObject = true;
@@ -394,24 +405,24 @@ namespace Game_development_project.Classes.Characters
             }
             if (boundingBox.TouchBottomOf(newRectangle))
             {
-                position.Y = newRectangle.Bottom;
+                Position.Y = newRectangle.Bottom;
             }
             if (boundingBox.TouchLeftOf(newRectangle))
             {
                 //Last int value depends on the size of the tilemap and sprite
-                position.X = newRectangle.X - boundingBox.Width - 60;
+                Position.X = newRectangle.X - boundingBox.Width - 60;
                 Debug.WriteLine("Touching left");
 
             }
             if (boundingBox.TouchRightOf(newRectangle))
             {
-                position.X = newRectangle.Right - boundingBox.Width - 20;
+                Position.X = newRectangle.Right - boundingBox.Width - 20;
                 Debug.WriteLine("Touching right");
 
             }
-            if (position.X < 0)
+            if (Position.X < 0)
             {
-                position.X = 0;
+                Position.X = 0;
                 Debug.WriteLine("Touching left border");
 
             }
