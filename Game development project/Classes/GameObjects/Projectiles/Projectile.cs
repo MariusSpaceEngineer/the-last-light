@@ -10,13 +10,17 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
 {
     internal abstract class Projectile : GameObject
     {
-        private float _timer;
+        public float _timer;
         public float LifeSpan = 0f;
 
         public Projectile(Texture2D texture)
           : base(texture)
         {
 
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, Position, null, Color.White, 0, Origin, 1, SpriteEffects.None, 0);
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -26,7 +30,7 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
             if (_timer >= LifeSpan)
                 IsRemoved = true;
 
-            Position += Direction * LinearVelocity;
+            Position.X += Direction.X * LinearVelocity;
         }
     }
 }
