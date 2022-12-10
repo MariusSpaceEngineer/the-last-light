@@ -1,15 +1,20 @@
 ﻿using Game_development_project.Classes.Animations;
+using Game_development_project.Classes.Characters.CharacterDirections;
+using Game_development_project.Classes.Characters.Enemies;
+using Game_development_project.Classes.GameObjects.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Characters
 {
-    internal class Huntress : Enemy, IGameObject
+    internal class Huntress : ProjectileEnemy //IGameObject
     {
         private Animation attackAnimation;
         private Animation damageAnimation;
@@ -28,26 +33,58 @@ namespace Game_development_project.Classes.Characters
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (LinearVelocity > 0)
             {
                 spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
-
+                direction = new RightDirection();
             }
             else
             {
 
                 spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
-
+                direction = new LeftDirection();
 
             }
         }
 
-        public void Update(GameTime gameTime)
+
+        public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             Patrol();
+            if (heroIsClose)
+            {
+                AddBullet(sprites);
+            }
+            
             moveAnimation.Update(gameTime);
         }
+
+        //    public Arrow projectile;
+
+
+        //    private void AddBullet(List<Sprite> sprites)
+        //    {
+        //        var arrowProjectile = projectile.Clone() as Arrow;
+        //        //if (direction is LeftDirection)
+        //        //{
+        //        //    arrowProjectile.Direction.X = -1;
+        //        //    Debug.WriteLine("Shooting Left");
+        //        //}
+        //        //else
+        //        //{
+        //        //    arrowProjectile.Direction.X = 1;
+        //        //}
+        //        arrowProjectile.Direction = this.Direction;
+        //        arrowProjectile.Position = this.Position;
+        //        arrowProjectile.LinearVelocity = this.LinearVelocity * 2;
+        //        arrowProjectile.LifeSpan = 2f;
+        //        //arrowProjectile.Parent = this;
+
+        //        sprites.Add(arrowProjectile);
+        //    }
+        //}
     }
 }
+

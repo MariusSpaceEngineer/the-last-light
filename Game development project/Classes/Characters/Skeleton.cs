@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Game_development_project.Classes.Animations;
+using Game_development_project.Classes.Characters.Enemies;
 
 namespace Game_development_project.Classes.Characters
 {
-    internal class Skeleton : Enemy, IGameObject
+    internal class Skeleton : MeleeEnemy, IGameObject
     {
       //The sprites and variables needed for the patrol are assigned in the enemy class
 

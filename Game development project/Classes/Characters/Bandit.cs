@@ -1,4 +1,5 @@
 ﻿using Game_development_project.Classes.Animations;
+using Game_development_project.Classes.Characters.Enemies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Characters
 {
-    internal class Bandit : Enemy, IGameObject
+    internal class Bandit : MeleeEnemy, IGameObject
     {
         private Animation attackAnimation;
         private Animation damageAnimation;

@@ -26,7 +26,7 @@ namespace Game_development_project.Classes.Characters
             this.oldDistance = distance;
         }
 
-        public void Patrol()
+        public virtual void Patrol()
         {
             Position.X += LinearVelocity;
             Origin = new Vector2(attackSprite.Width / 2, attackSprite.Height / 2);
@@ -49,25 +49,6 @@ namespace Game_development_project.Classes.Characters
                 distance -= 1;
             }
 
-            float heroPosition = Hero.GetHero().Position.X;
-
-            heroPosition = heroPosition - Position.X;
-
-            if (heroPosition >= -10 && heroPosition <= 10)
-            {
-                if (heroPosition < -1)
-                {
-                    LinearVelocity = -1f;
-                }
-                else if (heroPosition > 1)
-                {
-                    LinearVelocity = 1f;
-                }
-                else if (heroPosition == 0)
-                {
-                    LinearVelocity = 0f;
-                }
-            }
         }
     }
 }

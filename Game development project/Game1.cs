@@ -2,6 +2,7 @@
 using Default_Level;
 using Game_development_project.Classes;
 using Game_development_project.Classes.Characters;
+using Game_development_project.Classes.GameObjects.Projectiles;
 using Game_development_project.Classes.Level_Design;
 using Game_development_project.Classes.Level_Design.Level;
 using Game_development_project.Classes.Level_Design.Level1;
@@ -9,6 +10,7 @@ using Game_development_project.Classes.Level_Design.Level2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace Game_development_project
@@ -59,6 +61,9 @@ namespace Game_development_project
 
         Camera camera;
 
+        private List<Sprite> _sprites;
+        private Texture2D arrowTexture;
+
 
 
 
@@ -99,7 +104,7 @@ namespace Game_development_project
             hero = Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, heroJumpFallInBetween, heroBlokTexture);
             skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(250,475), 2);
             bandit = new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(250, 350), 2, 50);
-            huntress = new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50);
+            //huntress = new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50);
             block = new Rectangle(250, 400,32 , 32);
             _graphics.PreferredBackBufferWidth = 1200;
             _graphics.PreferredBackBufferHeight = 600;
@@ -110,12 +115,26 @@ namespace Game_development_project
         {
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            LoadHuntress();
+            _sprites = new List<Sprite>()
+            {
+                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50)
+             {
+                 Position = new Vector2(100, 350),
+                 projectile = new Arrow(Content.Load<Texture2D>("Sprites/Projectile/Arrow"))
+             },
+            };
+
             heroBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
             LoadHero();
             LoadSkeleton();
             LoadBandit();
-            LoadHuntress();
+           
             camera = new Camera(GraphicsDevice.Viewport);
+
+
+            //arrowTexture = Content.Load<Texture2D>("Sprites/Projectile/Arrow");
+           
 
             // TODO: use this.Content to load your game content here
             Block.Content = Content;
@@ -176,11 +195,27 @@ namespace Game_development_project
             //}
             skeleton.Update(gameTime);
             bandit.Update(gameTime);
-            huntress.Update(gameTime);
+            //huntress.Update(gameTime, _sprites);
             //camera.Update(Hero.Position, level1.Width, level1.Height);
             camera.Update(hero.Position, level2.Width, level2.Height);
 
+            foreach (var sprite in _sprites.ToArray())
+                sprite.Update(gameTime, _sprites);
+
+            PostUpdate();
             base.Update(gameTime);
+        }
+
+        private void PostUpdate()
+        {
+            for (int i = 0; i < _sprites.Count; i++)
+            {
+                if (_sprites[i].IsRemoved)
+                {
+                    _sprites.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         protected override void Draw(GameTime gameTime)
@@ -196,7 +231,14 @@ namespace Game_development_project
             _spriteBatch.Draw(blokTexture, block, Color.Red);
             skeleton.Draw(_spriteBatch);
             bandit.Draw(_spriteBatch);
-            huntress.Draw(_spriteBatch);
+            //huntress.Draw(_spriteBatch);
+            foreach (var sprite in _sprites)
+            {
+         
+                sprite.Draw(_spriteBatch);
+
+
+            }
             _spriteBatch.End();
 
             base.Draw(gameTime);
