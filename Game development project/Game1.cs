@@ -125,7 +125,7 @@ namespace Game_development_project
                  new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,this.blokTexture)
              {
                  Position = new Vector2(100, 350),
-                 projectile = new Arrow(Content.Load<Texture2D>("Sprites/Projectile/Arrow"))
+                 projectile = new Arrow(Content.Load<Texture2D>("Sprites/Projectile/Arrow"), blokTexture)
              },
             };
 

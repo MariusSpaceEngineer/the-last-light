@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game_development_project.Classes.Characters.CharacterDirections;
+using Game_development_project.Classes.Characters.Enemies;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,14 +15,25 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
         public float _timer;
         public float LifeSpan = 0f;
 
-        public Projectile(Texture2D texture)
+        protected Rectangle boundingBox;
+        protected Texture2D blokTexture;
+        public Rectangle BoundingBox
+        {
+            get { return boundingBox; }
+            set { boundingBox = value; }
+        }
+
+        public Projectile(Texture2D texture, Texture2D boundingBoxTexture)
           : base(texture)
         {
+            this.blokTexture = boundingBoxTexture;
+       
 
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, Position, null, Color.White, 0, Origin, 1, SpriteEffects.None, 0);
+          
+
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -31,6 +44,10 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
                 IsRemoved = true;
 
             Position.X += Direction.X * LinearVelocity;
+            
+           
         }
+
+       
     }
 }

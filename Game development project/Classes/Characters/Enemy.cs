@@ -31,6 +31,14 @@ namespace Game_development_project.Classes.Characters
             set { boundingBox = value; }
         }
 
+        protected Rectangle attackBox;
+
+        public Rectangle AttackBox
+        {
+            get { return attackBox; }
+            set { attackBox = value; }
+        }
+
         public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
         {
             this.Position = position;

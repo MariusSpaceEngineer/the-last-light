@@ -14,9 +14,8 @@ namespace Game_development_project.Classes.Characters.Enemies
 {
     internal class ProjectileEnemy : Enemy
     {
-        public bool heroIsClose = false;
-        public bool shot = false;
-        private Direction playerDirection;
+      
+        public static Direction playerDirection;
         public ProjectileEnemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance, boundingBoxTexture)
         {
         }

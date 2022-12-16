@@ -55,11 +55,12 @@ namespace Game_development_project.Classes.Characters
                 if (this.direction is LeftDirection)
                 {
                     spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
-
+                    spriteBatch.Draw(this.blokTexture, AttackBox, Color.Green);
                 }
                 else
                 {
                    spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
+                   spriteBatch.Draw(this.blokTexture, AttackBox, Color.Green);
 
 
                 }
@@ -85,7 +86,21 @@ namespace Game_development_project.Classes.Characters
         {
             Patrol();
             moveAnimation.Update(gameTime);
-            attackAnimation.Update(gameTime);
+            if (this.characterState is AttackState)
+            {
+                attackAnimation.Update(gameTime);
+                if (this.direction is LeftDirection)
+                {
+                    this.attackBox = new Rectangle((int)BoundingBox.X, (int)BoundingBox.Y, 15, 40);
+
+                   
+                }
+                else
+                {
+                    this.attackBox = new Rectangle((int)BoundingBox.Right - 10, (int)BoundingBox.Y, 15, 40);
+                }
+            }
+           
             MoveBoundingBox(Position);
 
         }

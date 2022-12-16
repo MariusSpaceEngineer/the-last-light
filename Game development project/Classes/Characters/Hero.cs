@@ -79,6 +79,15 @@ namespace Game_development_project.Classes.Characters
         }
         #endregion
 
+        private Rectangle attackBox;
+
+        public Rectangle AttackBox
+        {
+            get { return attackBox; }
+            set { attackBox = value; }
+        }
+
+
         #region Initialize
 
         private float LinearFallVelocity = 0;
@@ -182,11 +191,13 @@ namespace Game_development_project.Classes.Characters
                 {
                     spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+                    spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
                 }
                 else if (direction is RightDirection)
                 {
                     spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
                     spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+                    spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
                 }
             }
         }
@@ -232,6 +243,11 @@ namespace Game_development_project.Classes.Characters
 
             //MoveBoundingBox(position);
             MoveBoundingBox(Position);
+            if (state is AttackState)
+            {
+                MoveAttackBox(Position);
+            }
+          
             CheckCollisionWithLevel(level);
 
         }
@@ -240,6 +256,20 @@ namespace Game_development_project.Classes.Characters
         {
             boundingBox.X = (int)position.X + 52;
             boundingBox.Y = (int)position.Y + 40;
+        }
+
+        private void MoveAttackBox(Vector2 position)
+        {
+            if (this.direction is LeftDirection)
+            {
+                this.attackBox = new Rectangle((int)BoundingBox.Left- 50, (int)BoundingBox.Y, 30, 40);
+
+
+            }
+            else
+            {
+                this.attackBox = new Rectangle((int)BoundingBox.Right - 10, (int)BoundingBox.Y, 30, 40);
+            }
         }
         bool isOnObject = false;
         private void CheckCollisionWithLevel(Level level)
