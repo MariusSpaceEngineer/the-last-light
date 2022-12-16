@@ -64,6 +64,8 @@ namespace Game_development_project
         private List<Sprite> _sprites;
         private Texture2D arrowTexture;
 
+        private Texture2D backgroundVillage;
+
 
 
 
@@ -129,7 +131,9 @@ namespace Game_development_project
             LoadHero();
             LoadSkeleton();
             LoadBandit();
-           
+            backgroundVillage = Content.Load<Texture2D>("Background/village_level1");
+
+
             camera = new Camera(GraphicsDevice.Viewport);
 
 
@@ -222,7 +226,11 @@ namespace Game_development_project
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            // TODO: Add your drawi
+            // ng code here
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(backgroundVillage, new Vector2(0, 0), Color.White);
+            _spriteBatch.End();
             _spriteBatch.Begin(SpriteSortMode.Deferred,null,null,null,null,null,camera.Transform);
             hero.Draw(_spriteBatch);
             //map.Draw(_spriteBatch);
