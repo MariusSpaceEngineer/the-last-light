@@ -1,4 +1,5 @@
 ﻿using Game_development_project.Classes.Characters.Behaviors;
+using Game_development_project.Classes.Characters.Character_States;
 using Game_development_project.Classes.Characters.CharacterDirections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,11 +20,25 @@ namespace Game_development_project.Classes.Characters
         protected float oldDistance;
         //private Vector2 origin;
 
-        public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
+        protected Rectangle boundingBox;
+        protected Texture2D blokTexture;
+
+        protected State characterState;
+
+        public Rectangle BoundingBox
+        {
+            get { return boundingBox; }
+            set { boundingBox = value; }
+        }
+
+        public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
         {
             this.Position = position;
             this.LinearVelocity = speed;
             this.oldDistance = distance;
+
+            this.blokTexture = boundingBoxTexture;
+            //this.blokTexture.SetData(new[] { Color.White });
         }
 
         public virtual void Patrol()
@@ -32,11 +47,13 @@ namespace Game_development_project.Classes.Characters
             Origin = new Vector2(attackSprite.Width / 2, attackSprite.Height / 2);
             if (distance <= 0)
             {
+                characterState = new MoveState();
                 direction = new RightDirection();
                 LinearVelocity = 1f;
             }
             else if (distance >= oldDistance)
             {
+                characterState = new MoveState();
                 direction = new LeftDirection();
                 LinearVelocity = -1f;
             }

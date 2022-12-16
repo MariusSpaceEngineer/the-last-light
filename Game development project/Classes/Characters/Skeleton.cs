@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Game_development_project.Classes.Animations;
 using Game_development_project.Classes.Characters.Enemies;
+using Game_development_project.Classes.Characters.Character_States;
 
 namespace Game_development_project.Classes.Characters
 {
@@ -23,7 +24,7 @@ namespace Game_development_project.Classes.Characters
         private Animation moveAnimation;
 
         //Depending on the distance and speed, the skeleton will patrol in a different way
-        public Skeleton(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, float distance, Vector2 position, float speed): base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance)
+        public Skeleton(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, float distance, Vector2 position, float speed, Texture2D boundingBoxTexture): base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance, boundingBoxTexture)
         {
            
 
@@ -34,28 +35,56 @@ namespace Game_development_project.Classes.Characters
             this.moveAnimation = CreateAnimation(moveSprite, 13, 13, 1);
             
             oldDistance = distance;
+
+            BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 28, 40);
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (LinearVelocity > 0)
+            if (this.characterState is MoveState)
             {
-                spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+                if (this.direction is LeftDirection)
+                {
+                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
+
+                    spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
+                }
+                else
+                {
+                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
+
+                    spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
+                }
 
             }
-            else
+            if (this.characterState is AttackState)
             {
-                
-                spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
+                if (this.direction is LeftDirection)
+                {
+                    spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
 
+                }
+                else
+                {
+                    spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
 
+                }
             }
         }
 
         public void Update(GameTime gameTime)
         {
             Patrol();
+            attackAnimation.Update(gameTime);
             moveAnimation.Update(gameTime);
+            MoveBoundingBox(Position);
+        }
+
+        private void MoveBoundingBox(Vector2 position)
+        {
+            boundingBox.X = (int)position.X;
+            boundingBox.Y = (int)position.Y;
         }
     }
 }
