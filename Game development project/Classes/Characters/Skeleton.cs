@@ -12,7 +12,7 @@ using Game_development_project.Classes.Characters.Character_States;
 
 namespace Game_development_project.Classes.Characters
 {
-    internal class Skeleton : MeleeEnemy, IGameObject
+    internal class Skeleton : MeleeEnemy // IGameObject
     {
       //The sprites and variables needed for the patrol are assigned in the enemy class
 
@@ -39,8 +39,9 @@ namespace Game_development_project.Classes.Characters
             BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 28, 40);
 
         }
-
-        public void Draw(SpriteBatch spriteBatch)
+       
+       
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (this.characterState is MoveState)
             {
@@ -75,8 +76,10 @@ namespace Game_development_project.Classes.Characters
             }
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
+            base.Update(gameTime, sprites);
+
             Patrol();
             if (this.characterState is AttackState)
             {
@@ -94,7 +97,12 @@ namespace Game_development_project.Classes.Characters
             }
             moveAnimation.Update(gameTime);
             MoveBoundingBox(Position);
+
         }
+        //public void Update(GameTime gameTime)
+        //{
+           
+        //}
 
         private void MoveBoundingBox(Vector2 position)
         {

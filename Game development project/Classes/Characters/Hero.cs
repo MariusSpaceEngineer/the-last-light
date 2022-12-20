@@ -12,6 +12,7 @@ using Game_development_project.Classes.Animations;
 using System.Reflection.PortableExecutable;
 using Game_development_project.Classes.Input;
 using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 namespace Game_development_project.Classes.Characters
 {
@@ -87,17 +88,25 @@ namespace Game_development_project.Classes.Characters
             set { attackBox = value; }
         }
 
+        private Level level;
+
+        private bool hasDied = false;
+        private int lifes = 100;
+        private bool isHit = false;
+
 
         #region Initialize
 
         private float LinearFallVelocity = 0;
 
         //Some sprites are assigned in the base constructor
-        private Hero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D boundingBox) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
+        private Hero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D jumpSprite, Texture2D jumpFallInBetween, Texture2D boundingBox, Level level) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
         {
             //Maybe find a way to remove this also
             this.jumpSprite = jumpSprite;
             this.fallSprite = jumpFallInBetween;
+
+            
 
             this.attackAnimation = CreateAnimation(this.attackSprite, 4, 4, 1);
             this.damageAnimation = CreateAnimation(this.damageSprite, 1, 1, 1);
@@ -117,19 +126,21 @@ namespace Game_development_project.Classes.Characters
 
             //Used for the bouding box, will later be removed or set to color white
             this.blokTexture = boundingBox;
-            this.blokTexture.SetData(new[] { Color.White });
+            //this.blokTexture.SetData(new[] { Color.White });
             BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 28, 40);
+
+            this.level = level;
         }
 
         public static Hero GetHero()
         { 
             return uniqueHero;
         }
-        public static Hero GetHero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D jumpSprite, Texture2D fallSprite, Texture2D boundingBox)
+        public static Hero GetHero(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D jumpSprite, Texture2D fallSprite, Texture2D boundingBox, Level level)
         {
             if (uniqueHero == null)
             {
-                uniqueHero = new Hero(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, jumpSprite, fallSprite, boundingBox);
+                uniqueHero = new Hero(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, jumpSprite, fallSprite, boundingBox, level);
             }
             return uniqueHero;
         }
@@ -137,7 +148,8 @@ namespace Game_development_project.Classes.Characters
 
         #region Public methods
 
-        public void Draw(SpriteBatch spriteBatch)
+      
+        public override void Draw(SpriteBatch spriteBatch)
         {
             //flips the sprite; facing left
             SpriteEffects flipEffect = SpriteEffects.FlipHorizontally;
@@ -145,17 +157,31 @@ namespace Game_development_project.Classes.Characters
             this.direction = KeyboardReader.herodirection;
             this.state = KeyboardReader.characterState;
 
+            if (hasDied)
+            {
+                this.state = new DeathState();
+            }
+            else
+            {
+                if (isHit)
+                {
+                    this.state = new DamagedState();
+                }
+            }
+
             if (state is IdleState)
             {
                 if (direction is LeftDirection)
                 {
+                    //spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
+
                     spriteBatch.Draw(idleSprite, Position, idleAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
-                    spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                 }
                 else
                 {
                     spriteBatch.Draw(idleSprite, Position, idleAnimation.CurrentFrame.SourceRectangle, Color.White);
-                    spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
 
                 }
             }
@@ -200,17 +226,85 @@ namespace Game_development_project.Classes.Characters
                     spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
                 }
             }
+            else if (state is DamagedState)
+            {
+                if (direction is LeftDirection)
+                {
+                    spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+                    //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
+                }
+                else if (direction is RightDirection)
+                {
+                    spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+                    //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
+                }
+                
+                isHit = false;
+            }
+            else if (state is DeathState)
+            {
+                if (direction is LeftDirection)
+                {
+                    spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+                    //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
+                }
+                else if (direction is RightDirection)
+                {
+                    spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
+                    //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
+                }
+            }
         }
 
-        public void Update(GameTime gameTime, Level level)
+        public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            Move(level);
-            Jump(-6f, 0.15f);
+            base.Update(gameTime, sprites);
+            if (!hasDied)
+            {
+                Move(level);
+                Jump(-6f, 0.15f);
+            }
+
+            foreach (var sprite in sprites)
+            {
+              
+                if (sprite.AttackBox.Intersects(this.boundingBox))
+                {
+                    if (lifes > 0 )
+                    {
+                        Debug.WriteLine("player hit");
+                        this.isHit = true;
+                        this.state = new DamagedState();
+                        lifes--;
+
+                    }
+                    else
+                    {
+                        Debug.WriteLine("player dead");
+                        hasDied = true;
+                        this.state = new DeathState();
+                        this.LinearVelocity = 0;
+                    }     
+                }
+            }
 
             //Needs to use the reader else the animation will give an error when drawing on screen
             if (KeyboardReader.characterState is IdleState)
             {
                 idleAnimation.Update(gameTime);
+               
+            }
+            else if (state is DeathState)
+            {
+                deathAnimation.Update(gameTime);
+            }
+            else if (state is DamagedState)
+            {
+                damageAnimation.Update(gameTime);
             }
             else if (KeyboardReader.characterState is MoveState)
             {
@@ -224,7 +318,32 @@ namespace Game_development_project.Classes.Characters
             {
                 attackAnimation.Update(gameTime);
             }
+           
+
         }
+        //public void Update(GameTime gameTime, Level level)
+        //{
+        //    Move(level);
+        //    Jump(-6f, 0.15f);
+
+        //    //Needs to use the reader else the animation will give an error when drawing on screen
+        //    if (KeyboardReader.characterState is IdleState)
+        //    {
+        //        idleAnimation.Update(gameTime);
+        //    }
+        //    else if (KeyboardReader.characterState is MoveState)
+        //    {
+        //        moveAnimation.Update(gameTime);
+        //    }
+        //    else if (KeyboardReader.characterState is JumpState)
+        //    {
+        //        jumpAnimation.Update(gameTime);
+        //    }
+        //    else if (KeyboardReader.characterState is AttackState)
+        //    {
+        //        attackAnimation.Update(gameTime);
+        //    }
+        //}
         #endregion
 
         #region Private methods
@@ -417,7 +536,7 @@ namespace Game_development_project.Classes.Characters
             }
         }
 
-        public void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        public override void Collision(Rectangle newRectangle, int xOffset, int yOffset)
         {
             if (boundingBox.TouchTopOf(newRectangle))
             {

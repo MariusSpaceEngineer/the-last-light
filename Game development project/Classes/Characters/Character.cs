@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Game_development_project.Classes.Animations;
+using Microsoft.Xna.Framework;
 
 namespace Game_development_project.Classes.Characters
 {
@@ -15,6 +16,14 @@ namespace Game_development_project.Classes.Characters
         protected Texture2D deathSprite;
         protected Texture2D idleSprite;
         protected Texture2D moveSprite;
+
+        //protected Rectangle boundingBox;
+        //protected Texture2D blokTexture;
+        //public Rectangle BoundingBox
+        //{
+        //    get { return boundingBox; }
+        //    set { boundingBox = value; }
+        //}
 
         public Character(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite)
         {

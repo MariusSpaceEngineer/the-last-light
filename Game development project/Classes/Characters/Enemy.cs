@@ -20,24 +20,24 @@ namespace Game_development_project.Classes.Characters
         protected float oldDistance;
         //private Vector2 origin;
 
-        protected Rectangle boundingBox;
-        protected Texture2D blokTexture;
+        //protected Rectangle boundingBox;
+        //protected Texture2D blokTexture;
 
         protected State characterState;
 
-        public Rectangle BoundingBox
-        {
-            get { return boundingBox; }
-            set { boundingBox = value; }
-        }
+        //public Rectangle BoundingBox
+        //{
+        //    get { return boundingBox; }
+        //    set { boundingBox = value; }
+        //}
 
-        protected Rectangle attackBox;
+        //protected Rectangle attackBox;
 
-        public Rectangle AttackBox
-        {
-            get { return attackBox; }
-            set { attackBox = value; }
-        }
+        //public Rectangle AttackBox
+        //{
+        //    get { return attackBox; }
+        //    set { attackBox = value; }
+        //}
 
         public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
         {
@@ -48,6 +48,7 @@ namespace Game_development_project.Classes.Characters
             this.blokTexture = boundingBoxTexture;
             //this.blokTexture.SetData(new[] { Color.White });
         }
+        
 
         public virtual void Patrol()
         {

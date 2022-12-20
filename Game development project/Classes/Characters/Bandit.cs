@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Characters
 {
-    internal class Bandit : MeleeEnemy, IGameObject
+    internal class Bandit : MeleeEnemy //IGameObject
     {
         private Animation attackAnimation;
         private Animation damageAnimation;
@@ -34,7 +34,7 @@ namespace Game_development_project.Classes.Characters
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             if (this.characterState is MoveState)
             {
@@ -81,8 +81,7 @@ namespace Game_development_project.Classes.Characters
 
             //}
         }
-
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             Patrol();
             moveAnimation.Update(gameTime);
@@ -91,19 +90,41 @@ namespace Game_development_project.Classes.Characters
                 attackAnimation.Update(gameTime);
                 if (this.direction is LeftDirection)
                 {
-                    this.attackBox = new Rectangle((int)BoundingBox.X, (int)BoundingBox.Y, 15, 40);
+                    this.attackBox = new Rectangle((int)BoundingBox.Left- 5, (int)BoundingBox.Y, 15, 40);
 
-                   
+
                 }
                 else
                 {
                     this.attackBox = new Rectangle((int)BoundingBox.Right - 10, (int)BoundingBox.Y, 15, 40);
                 }
             }
-           
-            MoveBoundingBox(Position);
 
+            MoveBoundingBox(Position);
         }
+
+        //public void Update(GameTime gameTime)
+        //{
+        //    Patrol();
+        //    moveAnimation.Update(gameTime);
+        //    if (this.characterState is AttackState)
+        //    {
+        //        attackAnimation.Update(gameTime);
+        //        if (this.direction is LeftDirection)
+        //        {
+        //            this.attackBox = new Rectangle((int)BoundingBox.X, (int)BoundingBox.Y, 15, 40);
+
+                   
+        //        }
+        //        else
+        //        {
+        //            this.attackBox = new Rectangle((int)BoundingBox.Right - 10, (int)BoundingBox.Y, 15, 40);
+        //        }
+        //    }
+           
+        //    MoveBoundingBox(Position);
+
+        //}
 
         private void MoveBoundingBox(Vector2 position)
         {

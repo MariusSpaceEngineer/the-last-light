@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace Game_development_project
@@ -103,9 +105,7 @@ namespace Game_development_project
             base.Initialize();
             //hero = new Hero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
             //hero = Hero.GetHero(heroBlokTexture,heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroJumpSprite, heroJumpFallInBetween, heroMoveSprite, new KeyboardReader());
-            hero = Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, heroJumpFallInBetween, heroBlokTexture);
-            skeleton = new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(250,475), 2,blokTexture);
-            bandit = new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(150, 475), 2, 50,blokTexture);
+           
             //huntress = new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50);
             block = new Rectangle(250, 400,32 , 32);
             _graphics.PreferredBackBufferWidth = 1200;
@@ -120,6 +120,9 @@ namespace Game_development_project
             blokTexture = new Texture2D(GraphicsDevice, 1, 1);
             blokTexture.SetData(new[] { Color.White });
             LoadHuntress();
+            LoadHero();
+            LoadSkeleton();
+            LoadBandit();
             _sprites = new List<Sprite>()
             {
                  new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,this.blokTexture)
@@ -127,12 +130,13 @@ namespace Game_development_project
                  Position = new Vector2(100, 350),
                  projectile = new Arrow(Content.Load<Texture2D>("Sprites/Projectile/Arrow"), blokTexture)
              },
-            };
+            Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, heroJumpFallInBetween, blokTexture, level2),
+            new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(250, 475), 2, blokTexture),
+            new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(150, 475), 2, 50, blokTexture)
+        };
 
             heroBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
-            LoadHero();
-            LoadSkeleton();
-            LoadBandit();
+          
             backgroundVillage = Content.Load<Texture2D>("Background/village_level1");
 
 
@@ -193,19 +197,32 @@ namespace Game_development_project
             // TODO: Add your update logic here
 
             //hero.Update(gameTime, level1);
-            hero.Update(gameTime, level2);
+            //hero.Update(gameTime, level2);
             //foreach (Block block in level1.TileList)
             //{
             //    hero.Collision(block.Rectangle, level1.Width, level1.Height);
             //}
-            skeleton.Update(gameTime);
-            bandit.Update(gameTime);
+            //skeleton.Update(gameTime);
+            //bandit.Update(gameTime);
             //huntress.Update(gameTime, _sprites);
             //camera.Update(Hero.Position, level1.Width, level1.Height);
-            camera.Update(hero.Position, level2.Width, level2.Height);
+            camera.Update(Hero.GetHero().Position, level2.Width, level2.Height);
 
             foreach (var sprite in _sprites.ToArray())
+            {
+                if (Hero.GetHero().BoundingBox.TouchLeftOf(sprite.BoundingBox))
+                {
+                    Hero.GetHero().Position.X = sprite.BoundingBox.X - Hero.GetHero().BoundingBox.Width - 55;     
+                }
+                else if (Hero.GetHero().BoundingBox.TouchRightOf(sprite.BoundingBox))
+                {
+                    Hero.GetHero().Position.X = sprite.BoundingBox.Right - Hero.GetHero().BoundingBox.Width - 20;                           
+                }  
                 sprite.Update(gameTime, _sprites);
+
+            }
+           
+               
 
             PostUpdate();
             base.Update(gameTime);
@@ -233,13 +250,13 @@ namespace Game_development_project
             _spriteBatch.Draw(backgroundVillage, new Vector2(0, 0), Color.White);
             _spriteBatch.End();
             _spriteBatch.Begin(SpriteSortMode.Deferred,null,null,null,null,null,camera.Transform);
-            hero.Draw(_spriteBatch);
+            //hero.Draw(_spriteBatch);
             //map.Draw(_spriteBatch);
             //level1.Draw(_spriteBatch);
             level2.Draw(_spriteBatch);
             _spriteBatch.Draw(blokTexture, block, Color.Red);
-            skeleton.Draw(_spriteBatch);
-            bandit.Draw(_spriteBatch);
+           // skeleton.Draw(_spriteBatch);
+            //bandit.Draw(_spriteBatch);
             //huntress.Draw(_spriteBatch);
             foreach (var sprite in _sprites)
             {

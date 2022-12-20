@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Text.Json.Nodes;
 
 namespace Game_development_project.Classes
 {
@@ -37,8 +39,24 @@ namespace Game_development_project.Classes
 
         //What does this do?
         public Sprite Parent;
-  
+
         public bool IsRemoved = false;
+
+        protected Rectangle boundingBox;
+        protected Texture2D blokTexture;
+        public Rectangle BoundingBox
+        {
+            get { return boundingBox; }
+            set { boundingBox = value; }
+        }
+
+        protected Rectangle attackBox;
+
+        public Rectangle AttackBox
+        {
+            get { return attackBox; }
+            set { attackBox = value; }
+        }
 
         public Sprite()
         {
@@ -66,6 +84,11 @@ namespace Game_development_project.Classes
         public object Clone()
         {
             return this.MemberwiseClone();
+        }
+
+        public virtual void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        {
+
         }
     }
 }
