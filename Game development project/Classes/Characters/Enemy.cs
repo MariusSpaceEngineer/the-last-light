@@ -1,4 +1,5 @@
 ﻿using Game_development_project.Classes.Characters.Behaviors;
+using Game_development_project.Classes.Characters.Character_States;
 using Game_development_project.Classes.Characters.CharacterDirections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,35 +13,58 @@ namespace Game_development_project.Classes.Characters
 {
     internal class Enemy : Character, IPatrolBehavior
     {
-        protected Vector2 position;
-        protected Vector2 speed;
+        //protected Vector2 position;
+        //protected Vector2 speed;
         protected Direction direction;
         protected float distance;
         protected float oldDistance;
-        private Vector2 origin;
+        //private Vector2 origin;
 
-        public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Texture2D boundingBoxTexture, Vector2 position, Vector2 speed, float distance) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, boundingBoxTexture)
+        //protected Rectangle boundingBox;
+        //protected Texture2D blokTexture;
+
+        protected State characterState;
+
+        //public Rectangle BoundingBox
+        //{
+        //    get { return boundingBox; }
+        //    set { boundingBox = value; }
+        //}
+
+        //protected Rectangle attackBox;
+
+        //public Rectangle AttackBox
+        //{
+        //    get { return attackBox; }
+        //    set { attackBox = value; }
+        //}
+
+        public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
         {
-            this.position = position;
-            this.speed = speed;
+            this.Position = position;
+            this.LinearVelocity = speed;
             this.oldDistance = distance;
 
-        
+            this.blokTexture = boundingBoxTexture;
+            //this.blokTexture.SetData(new[] { Color.White });
         }
+        
 
-        public void Patrol()
+        public virtual void Patrol()
         {
-            position += speed;
-            origin = new Vector2(attackSprite.Width / 2, attackSprite.Height / 2);
+            Position.X += LinearVelocity;
+            Origin = new Vector2(attackSprite.Width / 2, attackSprite.Height / 2);
             if (distance <= 0)
             {
+                characterState = new MoveState();
                 direction = new RightDirection();
-                speed.X = 1f;
+                LinearVelocity = 1f;
             }
             else if (distance >= oldDistance)
             {
+                characterState = new MoveState();
                 direction = new LeftDirection();
-                speed.X = -1f;
+                LinearVelocity = -1f;
             }
             if (direction is RightDirection)
             {
@@ -51,25 +75,6 @@ namespace Game_development_project.Classes.Characters
                 distance -= 1;
             }
 
-            float heroPosition = Hero.Position.X;
-
-            heroPosition = heroPosition - position.X;
-
-            if (heroPosition >= -10 && heroPosition <= 10)
-            {
-                if (heroPosition < -1)
-                {
-                    speed.X = -1f;
-                }
-                else if (heroPosition > 1)
-                {
-                    speed.X = 1f;
-                }
-                else if (heroPosition == 0)
-                {
-                    speed.X = 0f;
-                }
-            }
         }
     }
 }
