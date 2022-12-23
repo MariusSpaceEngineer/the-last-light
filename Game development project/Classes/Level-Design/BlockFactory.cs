@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace Game_development_project.Classes.Level_Design.Level
 {
-    internal interface BlockFactory
+    public interface BlockFactory
     {
         public Block CreateBlock(int number, Rectangle rectangle);
         

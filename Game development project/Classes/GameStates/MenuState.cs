@@ -22,23 +22,31 @@ namespace Game_development_project.Classes.GameStates
 
             var newGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 200),
+                Position = new Vector2(500, 200),
                 Text = "New Game",
             };
 
             newGameButton.Click += NewGameButton_Click;
 
-            var loadGameButton = new Button(buttonTexture, buttonFont)
+            var level1GameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 250),
-                Text = "Load Game",
+                Position = new Vector2(500, 250),
+                Text = "Load First Level",
             };
 
-            loadGameButton.Click += LoadGameButton_Click;
+            level1GameButton.Click += LoadLevel1GameButton_Click;
+
+            var level2GameButton = new Button(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(500, 300),
+                Text = "Load Second Level",
+            };
+
+            level2GameButton.Click += LoadLevel2GameButton_Click;
 
             var quitGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 300),
+                Position = new Vector2(500, 350),
                 Text = "Quit Game",
             };
 
@@ -47,7 +55,8 @@ namespace Game_development_project.Classes.GameStates
             _components = new List<Component>()
             {
              newGameButton,
-             loadGameButton,
+             level1GameButton,
+             level2GameButton,
              quitGameButton,
             };
         }
@@ -62,14 +71,24 @@ namespace Game_development_project.Classes.GameStates
             spriteBatch.End();
         }
 
-        private void LoadGameButton_Click(object sender, EventArgs e)
+        private void LoadLevel1GameButton_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Load Game");
+            Console.WriteLine("Load Level1");
+            _game.ChangeState(new Level1GameState(_game, _graphicsDevice, _content));
+
+        }
+
+        private void LoadLevel2GameButton_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Load Level2");
+            _game.ChangeState(new Level2GameState(_game, _graphicsDevice, _content));
+
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+            Console.WriteLine("Load new game");
+            _game.ChangeState(new Level1GameState(_game, _graphicsDevice, _content));
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -86,6 +105,11 @@ namespace Game_development_project.Classes.GameStates
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
             _game.Exit();
+        }
+
+        public override void LoadContent()
+        {
+            
         }
     }
 }

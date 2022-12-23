@@ -37,6 +37,7 @@ namespace Game_development_project.Classes.GameStates
         }
 
         public abstract void Update(GameTime gameTime);
+        public abstract void LoadContent();
 
         #endregion
     }

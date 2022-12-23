@@ -84,7 +84,7 @@ namespace Game_development_project.Classes.Characters
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             Patrol();
-            MoveBoundingBox(position);
+            MoveBoundingBox(Position);
             moveAnimation.Update(gameTime);
             if (this.characterState is AttackState)
             {

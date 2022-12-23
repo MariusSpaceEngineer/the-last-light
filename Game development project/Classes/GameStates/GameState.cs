@@ -21,6 +21,7 @@ namespace Game_development_project.Classes.GameStates
 
         }
 
+       
         public override void PostUpdate(GameTime gameTime)
         {
 
@@ -30,6 +31,12 @@ namespace Game_development_project.Classes.GameStates
         {
 
         }
+
+        public override void LoadContent()
+        {
+           
+        }
+
+
     }
 }
-

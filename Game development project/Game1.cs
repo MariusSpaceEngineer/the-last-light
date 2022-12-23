@@ -24,57 +24,59 @@ namespace Game_development_project
         private SpriteBatch _spriteBatch;
 
         private Hero hero;
-        private Texture2D heroAttackSprite;
-        private Texture2D heroDamageSprite;
-        private Texture2D heroDeathSprite;
-        private Texture2D heroIdleSprite;
-        private Texture2D heroJumpSprite;
-        private Texture2D heroJumpFallInBetween;
-        private Texture2D heroMoveSprite;
-        private Texture2D heroBlokTexture;
+        public Texture2D heroAttackSprite;
+        public Texture2D heroDamageSprite;
+        public Texture2D heroDeathSprite;
+        public Texture2D heroIdleSprite;
+        public Texture2D heroJumpSprite;
+        public Texture2D heroJumpFallInBetween;
+        public Texture2D heroMoveSprite;
+        public Texture2D heroBlokTexture;
 
         private Skeleton skeleton;
-        private Texture2D skeletonAttackSprite;
-        private Texture2D skeletonDamageSprite;
-        private Texture2D skeletonDeathSprite;
-        private Texture2D skeletonIdleSprite;
-        private Texture2D skeletonMoveSprite;
+        public Texture2D skeletonAttackSprite;
+        public Texture2D skeletonDamageSprite;
+        public Texture2D skeletonDeathSprite;
+        public Texture2D skeletonIdleSprite;
+        public Texture2D skeletonMoveSprite;
 
         private Bandit bandit;
-        private Texture2D banditAttackSprite;
-        private Texture2D banditDamageSprite;
-        private Texture2D banditDeathSprite;
-        private Texture2D banditIdleSprite;
-        private Texture2D banditMoveSprite;
+        public Texture2D banditAttackSprite;
+        public Texture2D banditDamageSprite;
+        public Texture2D banditDeathSprite;
+        public Texture2D banditIdleSprite;
+        public Texture2D banditMoveSprite;
 
         private Huntress huntress;
-        private Texture2D huntressAttackSprite;
-        private Texture2D huntressDamageSprite;
-        private Texture2D huntressDeathSprite;
-        private Texture2D huntressIdleSprite;
-        private Texture2D huntressMoveSprite;
+        public Texture2D huntressAttackSprite;
+        public Texture2D huntressDamageSprite;
+        public Texture2D huntressDeathSprite;
+        public Texture2D huntressIdleSprite;
+        public Texture2D huntressMoveSprite;
 
-        //Level1 level1;
-        Level2 level2;
+        public Level1 level1;
+        public Level2 level2;
 
         BlockFactory blockFactory;
 
-        Texture2D blokTexture;
+        public Texture2D blokTexture;
         Rectangle block;
 
-        Camera camera;
+        public Camera camera;
 
-        private List<Sprite> _sprites;
-        private Texture2D arrowTexture;
+        public List<Sprite> _sprites;
+        public Texture2D arrowTexture;
         private State _currentState;
 
-        private Texture2D backgroundVillage;
+        public Texture2D backgroundVillage;
         private State _nextState;
 
         public void ChangeState(State state)
         {
             _nextState = state;
         }
+
+        public Texture2D backgroundCastle;
 
 
 
@@ -105,7 +107,7 @@ namespace Game_development_project
         {
             // TODO: Add your initialization logic here
             //map = new Map();
-            //level1 = new Level1(new Level1_BlockFactory());
+            level1 = new Level1(new Level1_BlockFactory());
             level2 = new Level2(new Level2_BlockFactory());
             //level1 = new Level(new Level_1_BlockFactory(), _graphics.GraphicsDevice);
 
@@ -126,36 +128,41 @@ namespace Game_development_project
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             blokTexture = new Texture2D(GraphicsDevice, 1, 1);
             blokTexture.SetData(new[] { Color.White });
+            arrowTexture = Content.Load<Texture2D>("Sprites/Projectile/Arrow");
             LoadHuntress();
             LoadHero();
             LoadSkeleton();
             LoadBandit();
-            _sprites = new List<Sprite>()
-            {
-                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,this.blokTexture)
-             {
-                 Position = new Vector2(100, 350),
-                 projectile = new Arrow(Content.Load<Texture2D>("Sprites/Projectile/Arrow"), blokTexture)
-             },
-            Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, heroJumpFallInBetween, blokTexture, level2),
-            new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(250, 475), 2, blokTexture),
-            new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(150, 475), 2, 50, blokTexture)
-        };
-
+            arrowTexture = Content.Load<Texture2D>("Sprites/Projectile/Arrow");
             heroBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
-          
-            backgroundVillage = Content.Load<Texture2D>("Background/village_level1");
-
-
             camera = new Camera(GraphicsDevice.Viewport);
+            Block.Content = Content;
+            backgroundVillage = Content.Load<Texture2D>("Background/village_level1");
+            backgroundCastle = Content.Load<Texture2D>("Background/castle_level2");
+
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
+            _currentState.LoadContent();
+            
+        //    _sprites = new List<Sprite>()
+        //    {
+        //         new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,this.blokTexture)
+        //     {
+        //         Position = new Vector2(100, 350),
+        //         projectile = new Arrow(Content.Load<Texture2D>("Sprites/Projectile/Arrow"), blokTexture)
+        //     },
+        //    Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, heroJumpFallInBetween, blokTexture, level1),
+        //    new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite, skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(250, 475), 2, blokTexture),
+        //    new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(150, 475), 2, 50, blokTexture)
+        //};
+
+          
 
 
-            //arrowTexture = Content.Load<Texture2D>("Sprites/Projectile/Arrow");
+
+
            
 
             // TODO: use this.Content to load your game content here
-            Block.Content = Content;
             //Tiles.Content = Content;
 
             //level1.Generate(new int[,] {
@@ -177,7 +184,7 @@ namespace Game_development_project
             //}, 32);
 
             //level1.Generate(level1.Map, 64);
-            level2.Generate(level2.Map, 64);
+            //level2.Generate(level2.Map, 64);
             
             //level1.Generate(new int[,] {
             //    { 0,0,0,0,0,0,0,0,0},
@@ -204,6 +211,10 @@ namespace Game_development_project
 
             // TODO: Add your update logic here
 
+            _currentState.Update(gameTime);
+
+            _currentState.PostUpdate(gameTime);
+
             //hero.Update(gameTime, level1);
             //hero.Update(gameTime, level2);
             //foreach (Block block in level1.TileList)
@@ -214,26 +225,26 @@ namespace Game_development_project
             //bandit.Update(gameTime);
             //huntress.Update(gameTime, _sprites);
             //camera.Update(Hero.Position, level1.Width, level1.Height);
-            camera.Update(Hero.GetHero().Position, level2.Width, level2.Height);
+            //camera.Update(Hero.GetHero().Position, level2.Width, level2.Height);
 
-            foreach (var sprite in _sprites.ToArray())
-            {
-                if (Hero.GetHero().BoundingBox.TouchLeftOf(sprite.BoundingBox))
-                {
-                    Hero.GetHero().Position.X = sprite.BoundingBox.X - Hero.GetHero().BoundingBox.Width - 55;     
-                }
-                else if (Hero.GetHero().BoundingBox.TouchRightOf(sprite.BoundingBox))
-                {
-                    Hero.GetHero().Position.X = sprite.BoundingBox.Right - Hero.GetHero().BoundingBox.Width - 20;                           
-                }  
-                sprite.Update(gameTime, _sprites);
+            //foreach (var sprite in _sprites.ToArray())
+            //{
+            //    if (Hero.GetHero().BoundingBox.TouchLeftOf(sprite.BoundingBox))
+            //    {
+            //        Hero.GetHero().Position.X = sprite.BoundingBox.X - Hero.GetHero().BoundingBox.Width - 55;
+            //    }
+            //    else if (Hero.GetHero().BoundingBox.TouchRightOf(sprite.BoundingBox))
+            //    {
+            //        Hero.GetHero().Position.X = sprite.BoundingBox.Right - Hero.GetHero().BoundingBox.Width - 20;
+            //    }
+            //    sprite.Update(gameTime, _sprites);
 
-            }
-           
-               
+            //}
 
-            PostUpdate();
-            base.Update(gameTime);
+
+
+            //PostUpdate();
+            //base.Update(gameTime);
 
             if (_nextState != null)
             {
@@ -242,6 +253,11 @@ namespace Game_development_project
                 _nextState = null;
             }
 
+           
+
+            base.Update(gameTime);
+
+        }
         private void PostUpdate()
         {
             for (int i = 0; i < _sprites.Count; i++)
@@ -254,40 +270,34 @@ namespace Game_development_project
             }
         }
 
-            _currentState.Update(gameTime);
-
-            _currentState.PostUpdate(gameTime);
-
-            base.Update(gameTime);
-        }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _currentState.Draw(gameTime, _spriteBatch);
 
-            // TODO: Add your drawi
-            // ng code here
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(backgroundVillage, new Vector2(0, 0), Color.White);
-            _spriteBatch.End();
-            _spriteBatch.Begin(SpriteSortMode.Deferred,null,null,null,null,null,camera.Transform);
-            //hero.Draw(_spriteBatch);
-            //map.Draw(_spriteBatch);
-            //level1.Draw(_spriteBatch);
-            level2.Draw(_spriteBatch);
-            _spriteBatch.Draw(blokTexture, block, Color.Red);
-           // skeleton.Draw(_spriteBatch);
-            //bandit.Draw(_spriteBatch);
-            //huntress.Draw(_spriteBatch);
-            foreach (var sprite in _sprites)
-            {
+           // // TODO: Add your drawi
+           // // ng code here
+           // _spriteBatch.Begin();
+           // _spriteBatch.Draw(backgroundVillage, new Vector2(0, 0), Color.White);
+           // _spriteBatch.End();
+           // _spriteBatch.Begin(SpriteSortMode.Deferred,null,null,null,null,null,camera.Transform);
+           // //hero.Draw(_spriteBatch);
+           // //map.Draw(_spriteBatch);
+           // //level1.Draw(_spriteBatch);
+           // level2.Draw(_spriteBatch);
+           // _spriteBatch.Draw(blokTexture, block, Color.Red);
+           //// skeleton.Draw(_spriteBatch);
+           // //bandit.Draw(_spriteBatch);
+           // //huntress.Draw(_spriteBatch);
+           // foreach (var sprite in _sprites)
+           // {
          
-                sprite.Draw(_spriteBatch);
+           //     sprite.Draw(_spriteBatch);
 
 
-            }
-            _spriteBatch.End();
+           // }
+           // _spriteBatch.End();
 
             base.Draw(gameTime);
         }

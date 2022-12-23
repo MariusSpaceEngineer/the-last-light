@@ -18,18 +18,18 @@ namespace Game_development_project.Classes.Characters
         protected Texture2D moveSprite;
         protected Texture2D boundingBoxTexture;
 
-        protected Rectangle boundingBox;
-        public Rectangle BoundingBox
-        {
-            get { return boundingBox; }
-            set { boundingBox = value; }
-        }
+        //protected Rectangle boundingBox;
+        //public Rectangle BoundingBox
+        //{
+        //    get { return boundingBox; }
+        //    set { boundingBox = value; }
+        //}
 
-        protected static Vector2 position;
-        public static Vector2 Position
-        {
-            get { return position; }
-            set { position = value; }
+        //protected static Vector2 position;
+        //public static Vector2 Position
+        //{
+        //    get { return position; }
+        //    set { position = value; }
 
         //protected Rectangle boundingBox;
         //protected Texture2D blokTexture;

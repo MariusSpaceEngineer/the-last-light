@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Level_Design.Level2
 {
-    internal class Level2 : Default_Level.Level
+    public class Level2 : Default_Level.Level
     {
         public Level2(BlockFactory blockFactory) : base(blockFactory)
         {

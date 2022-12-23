@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Default_Block
 {
-   abstract internal class Block
+   abstract public class Block
     {
         protected Texture2D texture;
 

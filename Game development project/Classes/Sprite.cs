@@ -11,7 +11,7 @@ using System.Text.Json.Nodes;
 
 namespace Game_development_project.Classes
 {
-    internal class Sprite : ICloneable
+    public class Sprite : ICloneable
     {
         //Characters have more textures so it should be removed or made in a list
         //protected Texture2D _texture;

@@ -11,7 +11,7 @@ using Game_development_project.Classes.Level_Design.Level;
 
 namespace Default_Level
 {
-    abstract internal class Level
+    abstract public class Level
     {
       
         private List<Block> tileList = new List<Block>();
