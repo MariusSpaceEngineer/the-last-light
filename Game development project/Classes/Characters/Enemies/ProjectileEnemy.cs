@@ -23,7 +23,8 @@ namespace Game_development_project.Classes.Characters.Enemies
         {
             base.Patrol();
 
-            float heroPosition = Hero.GetHero().BoundingBox.X;
+            Hero hero = Hero.GetHero();
+            float heroPosition = hero.BoundingBox.X;
 
             //if heroPosition is negative then is position of the enemy bigger than the one of the hero
             heroPosition = heroPosition - Position.X;
@@ -62,6 +63,12 @@ namespace Game_development_project.Classes.Characters.Enemies
                         this.characterState = new AttackState();
                         LinearVelocity = 0f;
                     }
+                }
+                if (hero.AttackBox.Intersects(this.boundingBox))
+                {
+
+                    this.characterState = new DamagedState();
+
                 }
                 //else if (heroPosition == 0)
                 //{

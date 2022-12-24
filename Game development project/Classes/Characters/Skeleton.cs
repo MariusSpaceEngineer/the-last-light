@@ -59,7 +59,7 @@ namespace Game_development_project.Classes.Characters
                 }
 
             }
-            if (this.characterState is AttackState)
+            else if (this.characterState is AttackState)
             {
                 if (this.direction is LeftDirection)
                 {
@@ -74,14 +74,45 @@ namespace Game_development_project.Classes.Characters
 
                 }
             }
+            else if (this.characterState is DamagedState)
+            {
+                if (this.direction is LeftDirection)
+                {
+                    spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
+                    //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
+                    spriteBatch.Draw(this.blokTexture, AttackBox, Color.Green);
+                    //this.characterState = new MoveState();
+                }
+                else
+                {
+                    spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
+                    spriteBatch.Draw(this.blokTexture, AttackBox, Color.Green);
+                    //this.characterState = new MoveState();
+
+
+
+                }
+            }
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             base.Update(gameTime, sprites);
+            this.attackBox = new Rectangle();
 
             Patrol();
-            if (this.characterState is AttackState)
+            if (this.characterState is MoveState)
+            {
+                moveAnimation.Update(gameTime);
+
+            }
+            else if (this.characterState is DamagedState)
+            {
+                damageAnimation.Update(gameTime);
+
+            }
+            else if (this.characterState is AttackState)
             {
                 attackAnimation.Update(gameTime);
                 if (this.direction is LeftDirection)
@@ -95,7 +126,7 @@ namespace Game_development_project.Classes.Characters
                     this.attackBox = new Rectangle((int)BoundingBox.Right - 10, (int)BoundingBox.Y, 15, 40);
                 }
             }
-            moveAnimation.Update(gameTime);
+            //moveAnimation.Update(gameTime);
             MoveBoundingBox(Position);
 
         }

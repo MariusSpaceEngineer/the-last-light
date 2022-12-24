@@ -54,6 +54,7 @@ namespace Game_development_project.Classes.Characters
         {
             Position.X += LinearVelocity;
             Origin = new Vector2(attackSprite.Width / 2, attackSprite.Height / 2);
+            
             if (distance <= 0)
             {
                 characterState = new MoveState();
@@ -74,7 +75,7 @@ namespace Game_development_project.Classes.Characters
             {
                 distance -= 1;
             }
-
+           
         }
     }
 }

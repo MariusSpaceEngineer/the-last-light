@@ -13,6 +13,10 @@ namespace Game_development_project.Classes.Characters.Enemies
 {
     internal class MeleeEnemy : Enemy
     {
+        protected bool hasDied = false;
+        protected int lifes = 100;
+        protected bool isHit = false;
+
         public MeleeEnemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance, boundingBoxTexture)
         {
         }
@@ -76,6 +80,12 @@ namespace Game_development_project.Classes.Characters.Enemies
                         LinearVelocity = 1f;
 
                     }
+                }
+                if (hero.AttackBox.Intersects(this.boundingBox))
+                {
+
+                    this.characterState = new DamagedState();
+
                 }
                 //if (heroPosition == 0f)
                 //{

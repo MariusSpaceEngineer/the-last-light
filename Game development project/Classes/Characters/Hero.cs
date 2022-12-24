@@ -230,13 +230,15 @@ namespace Game_development_project.Classes.Characters
             {
                 if (direction is LeftDirection)
                 {
-                    spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    //spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                     //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
                 }
                 else if (direction is RightDirection)
                 {
-                    spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    //spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
                     //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                     //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
                 }
@@ -263,6 +265,8 @@ namespace Game_development_project.Classes.Characters
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             base.Update(gameTime, sprites);
+            this.attackBox = new Rectangle();
+
             if (!hasDied)
             {
                 Move(level);
@@ -304,7 +308,9 @@ namespace Game_development_project.Classes.Characters
             }
             else if (state is DamagedState)
             {
-                damageAnimation.Update(gameTime);
+               // damageAnimation.Update(gameTime);
+                moveAnimation.Update(gameTime);
+
             }
             else if (KeyboardReader.characterState is MoveState)
             {
@@ -388,6 +394,7 @@ namespace Game_development_project.Classes.Characters
             else
             {
                 this.attackBox = new Rectangle((int)BoundingBox.Right - 10, (int)BoundingBox.Y, 30, 40);
+
             }
         }
         bool isOnObject = false;

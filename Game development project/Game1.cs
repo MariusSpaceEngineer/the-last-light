@@ -327,7 +327,7 @@ namespace Game_development_project
         private void LoadBandit()
         {
             banditAttackSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Attack");
-            //banditDamageSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Hit");
+            banditDamageSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Hit");
             banditDeathSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Death");
             banditIdleSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Idle");
             banditMoveSprite = Content.Load<Texture2D>("Sprites/Heavy Bandit/_Run");
@@ -340,6 +340,7 @@ namespace Game_development_project
             huntressDeathSprite = Content.Load<Texture2D>("Sprites/Huntress/_Death");
             huntressIdleSprite = Content.Load<Texture2D>("Sprites/Huntress/_Idle");
             huntressMoveSprite = Content.Load<Texture2D>("Sprites/Huntress/_Run");
+        
 
         }
     }

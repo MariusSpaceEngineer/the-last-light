@@ -92,6 +92,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Heavy Bandit/HeavyBandit_Death.png;Sprites/Heavy Bandit/_Death.png
 
+#begin Sprites/Heavy Bandit/HeavyBandit_Hurt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/Heavy Bandit/HeavyBandit_Hurt.png;Sprites/Heavy Bandit/_Hit.png
+
 #begin Sprites/Heavy Bandit/HeavyBandit_Idle.png
 /importer:TextureImporter
 /processor:TextureProcessor
