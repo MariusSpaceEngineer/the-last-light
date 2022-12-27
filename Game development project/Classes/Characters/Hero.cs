@@ -27,10 +27,13 @@ namespace Game_development_project.Classes.Characters
         private static Hero uniqueHero;
 
         //Maybe add in the IJumpBehavior properties for those variables?
+        //IJumpBehavior is a interface, can't add the Texture to it, maybe as a property?
         private Texture2D jumpSprite;
+        //It's not used, might as well remove it
         private Texture2D fallSprite;
 
         //Needed to keep the animations
+        //Maybe add the right animation to the right state?
         private Animation attackAnimation;
         private Animation damageAnimation;
         private Animation deathAnimation;
@@ -39,22 +42,21 @@ namespace Game_development_project.Classes.Characters
         private Animation fallAnimation;
         private Animation moveAnimation;
 
-        //Used by enemies to determine hero location
-        //The sprite class has a Position variabel
-        //private static Vector2 position;
+      
 
         //It is assigned in the constructor and it's used in the Move() method
         //The sprite class has a LinearVelocity variabel
         //private Vector2 speed;
 
-        //Assigned in the constructor, not really needed but in case new input is added later
+        //Used to determine the direction of the player
         private IInputReader inputReader;
 
         //In ICanJump interface?
         //Used to determine if the hero is in the air, needs some work though
         private bool hasJumped = false;
 
-        //Could be added in the sprite class but will leave it here for now
+     
+        //The Sprite class has a bouding box, can this one be removed?
         private Rectangle boundingBox;
 
         //Texture for the bounding box
@@ -65,6 +67,7 @@ namespace Game_development_project.Classes.Characters
 
         //The hero states and the different directions that the hero can be (left, right)
         //Could be added in character but will leave it here for now
+        //State can be made an abstract class and can have his own update and draw method
         public State state;
         private Direction direction;
 
@@ -72,8 +75,7 @@ namespace Game_development_project.Classes.Characters
 
         #region Get/setters
 
-        //Exists in the sprite class
-       
+        //Exists in the sprite class, can it be removed?
         //Later needed for checking the collision between enemies and hero
         public Rectangle BoundingBox
         {
@@ -82,6 +84,7 @@ namespace Game_development_project.Classes.Characters
         }
         #endregion
 
+        //In the sprite class, can it be removed?
         private Rectangle attackBox;
 
         public Rectangle AttackBox
@@ -90,15 +93,20 @@ namespace Game_development_project.Classes.Characters
             set { attackBox = value; }
         }
 
+        //Used by the gamemanager to change the level of the hero for the correct collision
         public Level level;
 
+        //If the bool is true it triggers the gameover screen
         public bool hasDied = false;
+        //Is equal to 2 hits of a melee enemy, maybe a beter way to do it than this?
         public int lifes = 100;
+        //Used to stop the animation
         private bool isHit = false;
 
 
         #region Initialize
 
+        //Used in to Jump method en initialized in the constructor, maybe it can be added to the IJumpBehavior?
         private float LinearFallVelocity = 0;
 
         //Some sprites are assigned in the base constructor
@@ -106,31 +114,37 @@ namespace Game_development_project.Classes.Characters
         {
             //Maybe find a way to remove this also
             this.jumpSprite = jumpSprite;
-            this.fallSprite = jumpFallInBetween;
+            //Not used can be removed
+            //this.fallSprite = jumpFallInBetween;
 
             
-
+            //Maybe create those animations in the character state?
             this.attackAnimation = CreateAnimation(this.attackSprite, 4, 4, 1);
             this.damageAnimation = CreateAnimation(this.damageSprite, 1, 1, 1);
             this.deathAnimation = CreateAnimation(this.deathSprite, 10, 10, 1);
             this.idleAnimation = CreateAnimation(this.idleSprite, 10, 10, 1);
             this.jumpAnimation = CreateAnimation(this.jumpSprite, 3, 3, 1);
-            this.fallAnimation = CreateAnimation(this.fallSprite, 2, 2, 1);
+            //Not used can be removed
+            //this.fallAnimation = CreateAnimation(this.fallSprite, 2, 2, 1);
             this.moveAnimation = CreateAnimation(this.moveSprite, 10, 10, 1);
 
             this.inputReader = new KeyboardReader();
 
             //Start position of the hero
+            //Maybe should be adjustable in the constructor?
             Position = new Vector2(-1, 0);
             //The default moving speed of the hero
+            //Maybe rename it to something else
             //speed = new Vector2(4, 0);
             LinearVelocity = 6;
 
             //Used for the bouding box, will later be removed or set to color white
             this.blokTexture = boundingBox;
+            //This is set in the sprite class
             //this.blokTexture.SetData(new[] { Color.White });
             BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 28, 40);
 
+            //Needed for the CheckCollision() method
             this.level = level;
         }
 
@@ -149,20 +163,28 @@ namespace Game_development_project.Classes.Characters
         #endregion
 
         #region Public methods
+        //Resets the position and life of the hero because he's unique he doesn't get initialized again so he has to be moved manually
+        //Maybe if we use the method of GetHero with parameters will do the same?
         public void ResetHero()
         {
             this.Position = new Vector2(-1, 0);
             this.lifes = 100;
         }
 
-      
+        
         public override void Draw(SpriteBatch spriteBatch)
         {
-            //flips the sprite; facing left
+            //Maybe it's better if we use a for loop with breaks that only triggers when the hero state and direction are the same as the one in the loop
+
+            //flips the sprite horizontally; 
             SpriteEffects flipEffect = SpriteEffects.FlipHorizontally;
 
             this.direction = KeyboardReader.herodirection;
+            //In the KeyboardReader there are also states for the hero
+            //Maybe find a way to keep his states in one class instead of different ones?
             this.state = KeyboardReader.characterState;
+
+            
 
             if (hasDied)
             {
@@ -170,6 +192,7 @@ namespace Game_development_project.Classes.Characters
             }
             else
             {
+                //This conditional is needed otherwise he is in DamagedState all the time 
                 if (isHit)
                 {
                     this.state = new DamagedState();
@@ -249,7 +272,7 @@ namespace Game_development_project.Classes.Characters
                     //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                     //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
                 }
-                
+                //Needed so that the animation stops
                 isHit = false;
             }
             else if (state is DeathState)
@@ -273,20 +296,27 @@ namespace Game_development_project.Classes.Characters
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
+            //Nothing in the base, can be removed
             base.Update(gameTime, sprites);
+            //Used to reset the position of the attackbox, otherwise it remains the same place triggering weird collision of which the hero or enemy can die
             this.attackBox = new Rectangle();
 
+            //If the player is still alive he can move and jump
             if (!hasDied)
             {
+                //Maybe remove the parameter level from Move method and instead make a different method
                 Move(level);
                 Jump(-6f, 0.15f);
             }
             else
             {
+                //Stops the player from moving when dead
+                //Could remain but it's not necessary if we change the gamestate
                 this.LinearVelocity = 0;
 
             }
 
+            //This loop can be added to a method: checkAttackBoxCollision()?
             foreach (var sprite in sprites)
             {
               
@@ -310,6 +340,7 @@ namespace Game_development_project.Classes.Characters
                 }
             }
 
+            //Also here, maybe added to the state class and use a foreach loop 
             //Needs to use the reader else the animation will give an error when drawing on screen
             if (KeyboardReader.characterState is IdleState)
             {
@@ -381,12 +412,14 @@ namespace Game_development_project.Classes.Characters
             Position += direction;
 
             //MoveBoundingBox(position);
+            //This can remain as they are dependent of one another
             MoveBoundingBox(Position);
             if (state is AttackState)
             {
                 MoveAttackBox(Position);
             }
           
+            //This can be his own method in the update
             CheckCollisionWithLevel(level);
 
         }
@@ -411,6 +444,7 @@ namespace Game_development_project.Classes.Characters
 
             }
         }
+        //Used by the jump method, should be put on top
         bool isOnObject = false;
         private void CheckCollisionWithLevel(Level level)
         {
@@ -419,6 +453,7 @@ namespace Game_development_project.Classes.Characters
             {
                 
                 Collision(block.Rectangle, level.Width, level.Height);
+                //Maybe put in the collision method
                 if (block is DirtBlock)
                 {
                     if (boundingBox.TouchTopOf(block.Rectangle))
@@ -528,9 +563,11 @@ namespace Game_development_project.Classes.Characters
 
         public void Jump(float jumpHeight,float fallSpeed)
         {
+            //Maybe use the collision helper to stop the player from falling, it may fix the little jumping when on a new block
            
             Position.Y += LinearFallVelocity;
 
+            //Use the inputreader here maybe?
             if (Keyboard.GetState().IsKeyDown(Keys.Up) && hasJumped == false)
             {
                 //position.Y -= jumpHeight;
@@ -544,7 +581,8 @@ namespace Game_development_project.Classes.Characters
                 LinearFallVelocity += fallSpeed * i;
                 
             }
-
+            //Stops with jumping when hits the buttom of the screen
+            //Not used can be removed
             if (Position.Y + jumpSprite.Height > 600)
             {
                 hasJumped = false;
@@ -606,6 +644,7 @@ namespace Game_development_project.Classes.Characters
                 Debug.WriteLine("Touching left border");
 
             }
+            //If the buttom of the screen is touched by the boudingbox of the hero the GameOverScreen will be triggered
             if (boundingBox.Bottom >= 600)
             {
                 Debug.WriteLine("Player touches the buttom of the screen.");
@@ -636,6 +675,7 @@ namespace Game_development_project.Classes.Characters
 
         }
 
+        //Why is this here??
         public void Update(GameTime gameTime)
         {
             throw new System.NotImplementedException();
