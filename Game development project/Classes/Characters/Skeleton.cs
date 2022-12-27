@@ -94,6 +94,26 @@ namespace Game_development_project.Classes.Characters
 
                 }
             }
+            else if (this.characterState is DeathState)
+            {
+                if (this.direction is LeftDirection)
+                {
+                    spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
+                    spriteBatch.Draw(this.blokTexture, AttackBox, Color.Green);
+                    //this.characterState = new MoveState();
+                }
+                else
+                {
+                    spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
+                    //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
+                    spriteBatch.Draw(this.blokTexture, AttackBox, Color.Green);
+                    //this.characterState = new MoveState();
+
+
+
+                }
+            }
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)

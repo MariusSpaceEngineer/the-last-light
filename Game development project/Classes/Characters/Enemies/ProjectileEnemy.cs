@@ -14,6 +14,7 @@ namespace Game_development_project.Classes.Characters.Enemies
 {
     internal class ProjectileEnemy : Enemy
     {
+        private int lifes = 100;
       
         public static Direction playerDirection;
         public ProjectileEnemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance, boundingBoxTexture)
@@ -66,8 +67,18 @@ namespace Game_development_project.Classes.Characters.Enemies
                 }
                 if (hero.AttackBox.Intersects(this.boundingBox))
                 {
+                    if (lifes > 0)
+                    {
+                        this.characterState = new DamagedState();
+                        this.lifes--;
+                    }
+                    else
+                    {
+                        this.characterState = new DeathState();
+                        this.IsRemoved = true;
+                    }
 
-                    this.characterState = new DamagedState();
+                    
 
                 }
                 //else if (heroPosition == 0)

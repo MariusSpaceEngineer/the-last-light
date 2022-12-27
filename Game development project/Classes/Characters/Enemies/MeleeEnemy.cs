@@ -83,8 +83,18 @@ namespace Game_development_project.Classes.Characters.Enemies
                 }
                 if (hero.AttackBox.Intersects(this.boundingBox))
                 {
+                    if (lifes > 0)
+                    {
+                        this.characterState = new DamagedState();
+                        this.lifes--;
+                    }
+                    else
+                    {
+                        this.characterState = new DeathState();
+                        this.IsRemoved = true;
+                    }
 
-                    this.characterState = new DamagedState();
+                   
 
                 }
                 //if (heroPosition == 0f)
