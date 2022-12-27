@@ -66,10 +66,10 @@ namespace Game_development_project
 
         public List<Sprite> _sprites;
         public Texture2D arrowTexture;
-        private State _currentState;
+        public State _currentState;
 
         public Texture2D backgroundVillage;
-        private State _nextState;
+        public State _nextState;
 
         public void ChangeState(State state)
         {
@@ -251,7 +251,17 @@ namespace Game_development_project
                 _currentState = _nextState;
 
                 _nextState = null;
+
+              
             }
+            //else if (Hero.GetHero().hasDied)
+            //{
+               
+            //        ChangeState(new GameOverState(this, this.GraphicsDevice, this.Content));
+              
+            //}
+
+            
 
            
 

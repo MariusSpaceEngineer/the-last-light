@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,19 +68,39 @@ namespace Game_development_project.Classes.GameStates
 
         public override void Update(GameTime gameTime)
         {
-            game.camera.Update(Hero.GetHero().Position, game.level2.Width, game.level2.Height);
-
-            foreach (var sprite in spriteList.ToArray())
+            // TODO: Add your update logic here
+            if (Hero.GetHero().hasDied)
             {
-                if (Hero.GetHero().BoundingBox.TouchLeftOf(sprite.BoundingBox))
+
+                game.ChangeState(new GameOverState(game, game.GraphicsDevice, game.Content));
+                foreach (var sprite in spriteList)
                 {
-                    Hero.GetHero().Position.X = sprite.BoundingBox.X - Hero.GetHero().BoundingBox.Width - 55;
+                    if (sprite is Hero)
+                    {
+                        Debug.WriteLine("Hero found");
+                        Hero.GetHero().ResetHero();
+                        Hero.GetHero().hasDied = false;
+                    }
                 }
-                else if (Hero.GetHero().BoundingBox.TouchRightOf(sprite.BoundingBox))
+
+            }
+            else
+            {
+                game.camera.Update(Hero.GetHero().Position, game.level2.Width, game.level2.Height);
+
+                foreach (var sprite in spriteList.ToArray())
                 {
-                    Hero.GetHero().Position.X = sprite.BoundingBox.Right - Hero.GetHero().BoundingBox.Width - 20;
+                    if (Hero.GetHero().BoundingBox.TouchLeftOf(sprite.BoundingBox))
+                    {
+                        Hero.GetHero().Position.X = sprite.BoundingBox.X - Hero.GetHero().BoundingBox.Width - 55;
+                    }
+                    else if (Hero.GetHero().BoundingBox.TouchRightOf(sprite.BoundingBox))
+                    {
+                        Hero.GetHero().Position.X = sprite.BoundingBox.Right - Hero.GetHero().BoundingBox.Width - 20;
+                    }
+                    sprite.Update(gameTime, spriteList);
+
                 }
-                sprite.Update(gameTime, spriteList);
 
             }
 

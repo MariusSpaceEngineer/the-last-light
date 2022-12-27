@@ -90,7 +90,7 @@ namespace Game_development_project.Classes.Characters
 
         private Level level;
 
-        private bool hasDied = false;
+        public bool hasDied = false;
         private int lifes = 100;
         private bool isHit = false;
 
@@ -147,6 +147,11 @@ namespace Game_development_project.Classes.Characters
         #endregion
 
         #region Public methods
+        public void ResetHero()
+        {
+            this.Position = new Vector2(-1, 0);
+            this.lifes = 100;
+        }
 
       
         public override void Draw(SpriteBatch spriteBatch)
@@ -249,13 +254,15 @@ namespace Game_development_project.Classes.Characters
             {
                 if (direction is LeftDirection)
                 {
-                    spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    //spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                     //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
                 }
                 else if (direction is RightDirection)
                 {
-                    spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White);
+                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
+                    //spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White);
                     //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                     //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
                 }
@@ -271,6 +278,11 @@ namespace Game_development_project.Classes.Characters
             {
                 Move(level);
                 Jump(-6f, 0.15f);
+            }
+            else
+            {
+                this.LinearVelocity = 0;
+
             }
 
             foreach (var sprite in sprites)
@@ -291,7 +303,7 @@ namespace Game_development_project.Classes.Characters
                         Debug.WriteLine("player dead");
                         hasDied = true;
                         this.state = new DeathState();
-                        this.LinearVelocity = 0;
+                        //this.LinearVelocity = 0;
                     }     
                 }
             }
