@@ -15,6 +15,10 @@ namespace Game_development_project.Classes.GameStates
     internal class GameOverState : State
     {
         private List<Component> _components;
+        private Texture2D gameOverText;
+        private Texture2D backgroundImage;
+
+
         public GameOverState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
         
@@ -52,10 +56,22 @@ namespace Game_development_project.Classes.GameStates
              mainMenuButton,
              quitGameButton,
             };
+
+            this.gameOverText = _content.Load<Texture2D>("Menu/GameOver_Text");
+            this.backgroundImage = _content.Load<Texture2D>("Background/gameOver");
+
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin();
+            spriteBatch.Draw(backgroundImage, new Vector2(0, 0), Color.White);
+            spriteBatch.End();
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(gameOverText, new Vector2(450, 50), Color.White);
+            spriteBatch.End();
+
             spriteBatch.Begin();
 
             foreach (var component in _components)

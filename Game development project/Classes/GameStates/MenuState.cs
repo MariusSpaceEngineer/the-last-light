@@ -13,6 +13,7 @@ namespace Game_development_project.Classes.GameStates
     internal class MenuState : State
     {
         private List<Component> _components;
+        private Texture2D backgroundImage;
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
           : base(game, graphicsDevice, content)
@@ -59,10 +60,16 @@ namespace Game_development_project.Classes.GameStates
              level2GameButton,
              quitGameButton,
             };
+
+            this.backgroundImage = _content.Load<Texture2D>("Background/mainMenu");
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin();
+            spriteBatch.Draw(backgroundImage, new Vector2(0, 0), Color.White);
+            spriteBatch.End();
+
             spriteBatch.Begin();
 
             foreach (var component in _components)
