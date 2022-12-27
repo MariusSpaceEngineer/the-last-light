@@ -119,7 +119,7 @@ namespace Game_development_project.Classes.GameStates
             spriteList = new List<Sprite>() {
                  new Huntress(game.huntressAttackSprite,game.huntressDamageSprite, game.huntressDeathSprite, game.huntressIdleSprite, game.huntressMoveSprite, new Vector2(212, 475), 2, 50,game.blokTexture)
                  {
-                 Position = new Vector2(100, 350),
+                 Position = new Vector2(500, 400),
                      projectile = new Arrow(game.arrowTexture, game.blokTexture)
              },
                   new Huntress(game.huntressAttackSprite,game.huntressDamageSprite, game.huntressDeathSprite, game.huntressIdleSprite, game.huntressMoveSprite, new Vector2(212, 475), 2, 50,game.blokTexture)

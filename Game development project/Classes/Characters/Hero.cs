@@ -63,7 +63,7 @@ namespace Game_development_project.Classes.Characters
 
         //The hero states and the different directions that the hero can be (left, right)
         //Could be added in character but will leave it here for now
-        private State state;
+        public State state;
         private Direction direction;
 
         #endregion
@@ -91,7 +91,7 @@ namespace Game_development_project.Classes.Characters
         private Level level;
 
         public bool hasDied = false;
-        private int lifes = 100;
+        public int lifes = 100;
         private bool isHit = false;
 
 
