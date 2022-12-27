@@ -66,14 +66,17 @@ namespace Game_development_project.Classes.GameStates
 
         private void ReloadLevelButton_Click(object sender, EventArgs e)
         {
-            
-            if (_game._currentState is Level1GameState)
+            Debug.WriteLine(_game._previousState);
+            //_game.ChangeState(_game._currentState);
+            //Debug.WriteLine("Changed to current state");
+
+            if (_game._previousState is Level1GameState)
             {
                 Debug.WriteLine("Change to level 1");
                 //Hero.GetHero().ResetHero();
                 _game.ChangeState(new Level1GameState(_game, _graphicsDevice, _content));
             }
-            else if (_game._currentState is Level2GameState)
+            else if (_game._previousState is Level2GameState)
             {
                 Debug.WriteLine("Change to level 2");
                 //Hero.GetHero().ResetHero();

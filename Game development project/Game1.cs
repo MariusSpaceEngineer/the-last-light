@@ -71,6 +71,8 @@ namespace Game_development_project
         public Texture2D backgroundVillage;
         public State _nextState;
 
+        public State _previousState;
+
         public void ChangeState(State state)
         {
             _nextState = state;
@@ -248,6 +250,7 @@ namespace Game_development_project
 
             if (_nextState != null)
             {
+                _previousState = _currentState;
                 _currentState = _nextState;
 
                 _nextState = null;
