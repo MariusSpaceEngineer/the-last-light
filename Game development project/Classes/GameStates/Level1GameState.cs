@@ -73,6 +73,7 @@ namespace Game_development_project.Classes.GameStates
                         Debug.WriteLine("Hero found");
                         Hero.GetHero().ResetHero();
                         Hero.GetHero().hasDied = false;
+                        
                     }
                 }
                 

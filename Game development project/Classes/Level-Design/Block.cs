@@ -15,6 +15,8 @@ namespace Default_Block
 
         private Rectangle rectangle;
 
+        public bool isTrigger;
+
         public Rectangle Rectangle
         {
             get { return rectangle; }
@@ -31,11 +33,12 @@ namespace Default_Block
         public Block(Rectangle newrectangle)
         {
             this.Rectangle = newrectangle;
+            this.isTrigger = false;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, rectangle, Color.Blue);
+            spriteBatch.Draw(texture, rectangle, Color.White);
         }
     }
 }

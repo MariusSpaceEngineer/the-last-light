@@ -80,6 +80,8 @@ namespace Game_development_project
 
         public Texture2D backgroundCastle;
 
+        public static Texture2D triggerBlokTexture;
+
 
 
 
@@ -130,6 +132,9 @@ namespace Game_development_project
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             blokTexture = new Texture2D(GraphicsDevice, 1, 1);
             blokTexture.SetData(new[] { Color.White });
+            triggerBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
+            triggerBlokTexture.SetData(new[] { Color.Red });
+
             arrowTexture = Content.Load<Texture2D>("Sprites/Projectile/Arrow");
             LoadHuntress();
             LoadHero();

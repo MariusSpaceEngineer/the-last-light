@@ -13,8 +13,10 @@ namespace Game_development_project.Classes.Level_Design.Level1
     {
         public GrassBlock(Rectangle newrectangle) : base(newrectangle)
         {
+             this.isTrigger = false;
             texture = Content.Load<Texture2D>("Tile" + 1);
             this.Rectangle = newrectangle;
+           
          
         }
     }

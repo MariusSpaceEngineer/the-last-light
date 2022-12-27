@@ -13,6 +13,8 @@ using System.Reflection.PortableExecutable;
 using Game_development_project.Classes.Input;
 using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using System;
+using Game_development_project.Classes.Level_Design.TypeBlocks;
 
 namespace Game_development_project.Classes.Characters
 {
@@ -88,7 +90,7 @@ namespace Game_development_project.Classes.Characters
             set { attackBox = value; }
         }
 
-        private Level level;
+        public Level level;
 
         public bool hasDied = false;
         public int lifes = 100;
@@ -122,7 +124,7 @@ namespace Game_development_project.Classes.Characters
             Position = new Vector2(-1, 0);
             //The default moving speed of the hero
             //speed = new Vector2(4, 0);
-            LinearVelocity = 4;
+            LinearVelocity = 6;
 
             //Used for the bouding box, will later be removed or set to color white
             this.blokTexture = boundingBox;
@@ -366,7 +368,7 @@ namespace Game_development_project.Classes.Characters
 
         #region Private methods
 
-        private void Move(Level level)
+        public void Move(Level level)
         {
             //Reads input
             var direction = inputReader.ReadInput();
@@ -415,7 +417,16 @@ namespace Game_development_project.Classes.Characters
             //Checks if the bounding box intersects with ther other rectangles from the tileset
             foreach (Block block in level.TileList)
             {
+                
                 Collision(block.Rectangle, level.Width, level.Height);
+                if (block is DirtBlock)
+                {
+                    if (boundingBox.TouchTopOf(block.Rectangle))
+                    {
+                        Debug.WriteLine("player touches trigger");
+                    }
+                }
+              
             }
 
             //foreach (Block block in level.TileList)
@@ -559,6 +570,7 @@ namespace Game_development_project.Classes.Characters
         {
             if (boundingBox.TouchTopOf(newRectangle))
             {
+               
                 //position.Y = newRectangle.Y - boundingBox.Height;
                 //Last int value depends on the size of the tilemap and sprite
                 Position.Y = newRectangle.Top - boundingBox.Height - 50;
@@ -594,6 +606,17 @@ namespace Game_development_project.Classes.Characters
                 Debug.WriteLine("Touching left border");
 
             }
+            if (boundingBox.Bottom >= 600)
+            {
+                Debug.WriteLine("Player touches the buttom of the screen.");
+                hasDied = true;
+                state = new DeathState();
+            }
+            //if (boundingBox.Right >= 1200)
+            //{
+            //    Debug.WriteLine("Player touches the right of the screen");
+
+            //}
             //Should later be assigned to a variable because now it's hardcoded
             //if (position.X > 1200 - boundingBox.Width -50 )
             //{

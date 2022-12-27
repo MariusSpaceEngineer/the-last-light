@@ -19,7 +19,7 @@ namespace Game_development_project.Classes.Level_Design.Level2
 
             if (number == 1)
             {
-                block = new GrassBlock(rectangle);
+                block = new CastleGroundBlock(rectangle);
             }
             else if (number == 2)
             {

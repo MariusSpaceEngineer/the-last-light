@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game_development_project.Classes.Characters;
 
 namespace Game_development_project.Classes.GameStates
 {
@@ -14,6 +15,7 @@ namespace Game_development_project.Classes.GameStates
     {
         private List<Component> _components;
         private Texture2D backgroundImage;
+        private Game1 game;
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
           : base(game, graphicsDevice, content)
@@ -62,6 +64,7 @@ namespace Game_development_project.Classes.GameStates
             };
 
             this.backgroundImage = _content.Load<Texture2D>("Background/mainMenu");
+            this.game = game;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -81,6 +84,7 @@ namespace Game_development_project.Classes.GameStates
         private void LoadLevel1GameButton_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Load Level1");
+            Hero.GetHero().level = _game.level1;
             _game.ChangeState(new Level1GameState(_game, _graphicsDevice, _content));
 
         }
@@ -88,6 +92,7 @@ namespace Game_development_project.Classes.GameStates
         private void LoadLevel2GameButton_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Load Level2");
+            Hero.GetHero().level = _game.level2;
             _game.ChangeState(new Level2GameState(_game, _graphicsDevice, _content));
 
         }
