@@ -24,7 +24,7 @@ namespace Game_development_project.Classes.Characters
         private Animation moveAnimation;
 
         //Depending on the distance and speed, the skeleton will patrol in a different way
-        public Skeleton(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, float distance, Vector2 position, float speed, Texture2D boundingBoxTexture): base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance, boundingBoxTexture)
+        public Skeleton(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, float patrolDistance, Vector2 position, float speed, Texture2D boundingBoxTexture): base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, patrolDistance, boundingBoxTexture)
         {
            
 
@@ -34,7 +34,7 @@ namespace Game_development_project.Classes.Characters
             this.idleAnimation = CreateAnimation(idleSprite, 11, 11 ,1);
             this.moveAnimation = CreateAnimation(moveSprite, 13, 13, 1);
             
-            oldDistance = distance;
+            PatrolDistance = patrolDistance;
 
             BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 28, 40);
 
@@ -43,74 +43,68 @@ namespace Game_development_project.Classes.Characters
        
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (this.characterState is MoveState)
+            if (CharacterState is MoveState)
             {
-                if (this.direction is LeftDirection)
+                if (Direction is LeftDirection)
                 {
                     spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
 
-                    spriteBatch.Draw(this.boundingBoxTexture, BoundingBox, Color.Blue);
+                    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Blue);
                 }
                 else
                 {
                     spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
 
-                    spriteBatch.Draw(this.boundingBoxTexture, BoundingBox, Color.Blue);
+                    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Blue);
                 }
 
             }
-            else if (this.characterState is AttackState)
+            else if (this.CharacterState is AttackState)
             {
-                if (this.direction is LeftDirection)
+                if (this.Direction is LeftDirection)
                 {
                     spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
-                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
+                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
 
                 }
                 else
                 {
                     spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
-                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
+                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
 
                 }
             }
-            else if (this.characterState is DamagedState)
+            else if (this.CharacterState is DamagedState)
             {
-                if (this.direction is LeftDirection)
+                if (this.Direction is LeftDirection)
                 {
                     spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
-                    //this.characterState = new MoveState();
+                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
                 }
                 else
                 {
                     spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
-                    //this.characterState = new MoveState();
+                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
 
 
 
                 }
             }
-            else if (this.characterState is DeathState)
+            else if (this.CharacterState is DeathState)
             {
-                if (this.direction is LeftDirection)
+                if (this.Direction is LeftDirection)
                 {
                     spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
-                    //this.characterState = new MoveState();
+                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
                 }
                 else
                 {
                     spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
-                    //this.characterState = new MoveState();
-
-
+                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
 
                 }
             }
@@ -118,44 +112,43 @@ namespace Game_development_project.Classes.Characters
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            base.Update(gameTime, sprites);
-            this.attackBox = new Rectangle();
+            AttackBox = new Rectangle();
 
             Patrol();
-            if (this.characterState is MoveState)
+            if (this.CharacterState is MoveState)
             {
                 moveAnimation.Update(gameTime);
 
             }
-            else if (this.characterState is DamagedState)
+            else if (this.CharacterState is DamagedState)
             {
                 damageAnimation.Update(gameTime);
 
             }
-            else if (this.characterState is AttackState)
+            else if (this.CharacterState is AttackState)
             {
                 attackAnimation.Update(gameTime);
-                if (this.direction is LeftDirection)
-                {
-                    this.attackBox = new Rectangle((int)BoundingBox.X, (int)BoundingBox.Y, 15, 40);
-
-
-                }
-                else
-                {
-                    this.attackBox = new Rectangle((int)BoundingBox.Right - 10, (int)BoundingBox.Y, 15, 40);
-                }
+                MoveAttackBox();
             }
-            //moveAnimation.Update(gameTime);
+
             MoveBoundingBox(Position);
-
         }
-        //public void Update(GameTime gameTime)
-        //{
-           
-        //}
 
-        private void MoveBoundingBox(Vector2 position)
+        public override void MoveAttackBox()
+        {
+            if (Direction is LeftDirection)
+            {
+                attackBox = new Rectangle((int)BoundingBox.X - 10, (int)BoundingBox.Y, 15, 40);
+
+
+            }
+            else
+            {
+                attackBox = new Rectangle((int)BoundingBox.Right - 10, (int)BoundingBox.Y, 15, 40);
+            }
+        }
+
+        public override void MoveBoundingBox(Vector2 position)
         {
             boundingBox.X = (int)position.X;
             boundingBox.Y = (int)position.Y;
