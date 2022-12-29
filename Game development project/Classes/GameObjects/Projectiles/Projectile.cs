@@ -18,25 +18,20 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
         public float _timer;
         public float LifeSpan = 0f;
 
-        protected Rectangle boundingBox;
-        protected Texture2D blokTexture;
-        public Rectangle BoundingBox
-        {
-            get { return boundingBox; }
-            set { boundingBox = value; }
-        }
+        //protected Rectangle boundingBox;
+        //protected Texture2D boundingBoxTexture;
+        //public Rectangle BoundingBox
+        //{
+        //    get { return boundingBox; }
+        //    set { boundingBox = value; }
+        //}
 
         public Projectile(Texture2D texture, Texture2D boundingBoxTexture)
           : base(texture)
         {
-            this.blokTexture = boundingBoxTexture;
+            this.boundingBoxTexture = boundingBoxTexture;
             this.HorizontalVelocity = 2;
        
-
-        }
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-          
 
         }
 
@@ -50,35 +45,30 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
             }
             if (boundingBox.Intersects(Hero.GetHero().BoundingBox))
             {
-                Debug.WriteLine("player hit");
-                
-                
-
-                if (Hero.GetHero().Health > 0)
-                {
-                    Debug.WriteLine("player hit");
-                    //Hero.GetHero(). = true;
-                   
-                    Hero.GetHero().Health -= 25;
-
-                }
-                else
-                {
-                    Debug.WriteLine("player dead");
-                    Hero.GetHero().HasDied = true;
-
-                    Hero.GetHero().CharacterState = new DeathState();
-                    //Hero.GetHero().state = new DeathState();
-                    //this.LinearVelocity = 0;
-                }
+                CheckTargetHealth(Hero.GetHero());
             }
 
             Position.X += Direction.X * HorizontalVelocity;
-            Debug.WriteLine(HorizontalVelocity);
-            
-           
+     
         }
 
-       
+        public void CheckTargetHealth(Character target)
+        {
+            if (target.Health > 0)
+            {
+                Debug.WriteLine("player hit");
+                target.Health -= 25;
+
+            }
+            else
+            {
+                Debug.WriteLine("player dead");
+                target.HasDied = true;
+                target.CharacterState = new DeathState();
+            }
+
+        }
+
+
     }
 }

@@ -29,7 +29,7 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
                 spriteBatch.Draw(texture, Position, null, Color.White, 0, Origin, 1, SpriteEffects.None, 0);
             }
             
-            spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
+            spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Blue);
         }
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
@@ -37,7 +37,7 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
             MoveBoundingBox(Position);
         }
 
-        private void MoveBoundingBox(Vector2 position)
+        public override void MoveBoundingBox(Vector2 position)
         {
             boundingBox.X = (int)position.X - 20;
             boundingBox.Y = (int)position.Y - 8;
