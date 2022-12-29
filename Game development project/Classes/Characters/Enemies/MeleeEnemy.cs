@@ -51,12 +51,12 @@ namespace Game_development_project.Classes.Characters.Enemies
                     if (this.boundingBox.TouchRightOf(hero.BoundingBox))
                     {
                         Debug.WriteLine("Touching player right");
-                        LinearVelocity = 0;
+                        HorizontalVelocity = 0;
                         this.characterState = new AttackState();
                     }
                     else
                     {
-                        LinearVelocity = -1f;
+                        HorizontalVelocity = -1f;
 
                     }
                 }
@@ -72,12 +72,12 @@ namespace Game_development_project.Classes.Characters.Enemies
                     if (this.boundingBox.TouchLeftOf(hero.BoundingBox))
                     {
                         Debug.WriteLine("Touching player left");
-                        LinearVelocity = 0;
+                        HorizontalVelocity = 0;
                         this.characterState = new AttackState();
                     }
                     else
                     {
-                        LinearVelocity = 1f;
+                        HorizontalVelocity = 1f;
 
                     }
                 }

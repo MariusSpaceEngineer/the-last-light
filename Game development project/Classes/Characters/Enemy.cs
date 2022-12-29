@@ -42,30 +42,30 @@ namespace Game_development_project.Classes.Characters
         public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
         {
             this.Position = position;
-            this.LinearVelocity = speed;
+            this.HorizontalVelocity = speed;
             this.oldDistance = distance;
 
-            this.blokTexture = boundingBoxTexture;
+            this.boundingBoxTexture = boundingBoxTexture;
             //this.blokTexture.SetData(new[] { Color.White });
         }
         
 
         public virtual void Patrol()
         {
-            Position.X += LinearVelocity;
+            Position.X += HorizontalVelocity;
             Origin = new Vector2(attackSprite.Width / 2, attackSprite.Height / 2);
             
             if (distance <= 0)
             {
                 characterState = new MoveState();
                 direction = new RightDirection();
-                LinearVelocity = 1f;
+                HorizontalVelocity = 1f;
             }
             else if (distance >= oldDistance)
             {
                 characterState = new MoveState();
                 direction = new LeftDirection();
-                LinearVelocity = -1f;
+                HorizontalVelocity = -1f;
             }
             if (direction is RightDirection)
             {

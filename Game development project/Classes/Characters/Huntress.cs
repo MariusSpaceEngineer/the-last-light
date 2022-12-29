@@ -77,14 +77,14 @@ namespace Game_development_project.Classes.Characters
                 {
                     spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(this.blokTexture, AttackBox, Color.Green);
+                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
                     //this.characterState = new MoveState();
                 }
                 else
                 {
                     spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(this.blokTexture, AttackBox, Color.Green);
+                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
                     //this.characterState = new MoveState();
 
 
@@ -99,14 +99,14 @@ namespace Game_development_project.Classes.Characters
                 {
                     spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(this.blokTexture, AttackBox, Color.Green);
+                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
                     //this.characterState = new MoveState();
                 }
                 else
                 {
                     spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(this.blokTexture, AttackBox, Color.Green);
+                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
                     //this.characterState = new MoveState();
 
 

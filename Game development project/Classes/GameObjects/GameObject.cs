@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.GameObjects
 {
-    internal abstract class GameObject : Sprite
+    internal abstract class GameObject : MovableSprite
     {
         protected Texture2D texture;
 

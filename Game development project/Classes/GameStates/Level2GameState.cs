@@ -40,7 +40,7 @@ namespace Game_development_project.Classes.GameStates
                  Position = new Vector2(300, 350),
                      projectile = new Arrow(game.arrowTexture, game.blokTexture)
              },
-                Hero.GetHero(game.heroAttackSprite, game.heroDamageSprite, game.heroDeathSprite, game.heroIdleSprite, game.heroMoveSprite, game.heroJumpSprite, game.heroJumpFallInBetween, game.blokTexture, game.level2),
+                Hero.GetHero(game.heroAttackSprite, game.heroDamageSprite, game.heroDeathSprite, game.heroIdleSprite, game.heroMoveSprite, game.heroJumpSprite, game.blokTexture, game.level2),
                 new Skeleton(game.skeletonAttackSprite, game.skeletonDamageSprite, game.skeletonDeathSprite, game.skeletonIdleSprite, game.skeletonMoveSprite, 50, new Vector2(250, 475), 2, game.blokTexture),
                 new Bandit(game.banditAttackSprite, game.banditDamageSprite, game.banditDeathSprite, game.banditIdleSprite, game.banditMoveSprite, new Vector2(150, 475), 2, 50, game.blokTexture),
             };
@@ -69,7 +69,7 @@ namespace Game_development_project.Classes.GameStates
         public override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
-            if (Hero.GetHero().hasDied)
+            if (Hero.GetHero().HasDied)
             {
 
                 game.ChangeState(new GameOverState(game, game.GraphicsDevice, game.Content));
@@ -79,7 +79,7 @@ namespace Game_development_project.Classes.GameStates
                     {
                         Debug.WriteLine("Hero found");
                         Hero.GetHero().ResetHero();
-                        Hero.GetHero().hasDied = false;
+                        Hero.GetHero().HasDied = false;
                     }
                 }
 

@@ -30,6 +30,7 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
           : base(texture)
         {
             this.blokTexture = boundingBoxTexture;
+            this.HorizontalVelocity = 2;
        
 
         }
@@ -53,25 +54,27 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
                 
                 
 
-                if (Hero.GetHero().lifes > 0)
+                if (Hero.GetHero().Health > 0)
                 {
                     Debug.WriteLine("player hit");
                     //Hero.GetHero(). = true;
                    
-                    Hero.GetHero().lifes -= 25;
+                    Hero.GetHero().Health -= 25;
 
                 }
                 else
                 {
                     Debug.WriteLine("player dead");
-                    Hero.GetHero().hasDied = true;
+                    Hero.GetHero().HasDied = true;
 
-                    Hero.GetHero().state = new DeathState();
+                    Hero.GetHero().CharacterState = new DeathState();
+                    //Hero.GetHero().state = new DeathState();
                     //this.LinearVelocity = 0;
                 }
             }
 
-            Position.X += Direction.X * LinearVelocity;
+            Position.X += Direction.X * HorizontalVelocity;
+            Debug.WriteLine(HorizontalVelocity);
             
            
         }
