@@ -41,13 +41,13 @@ namespace Game_development_project.Classes.Characters.Enemies
                     playerDirection = new LeftDirection();
                     this.direction = new LeftDirection();
                  
-                    LinearVelocity = -1f;
+                    HorizontalVelocity = -1f;
 
                     if (heroPosition >= -100)
                     {
                         Debug.WriteLine("Shooting arrow left");
                         this.characterState = new AttackState();
-                        LinearVelocity = 0f;
+                        HorizontalVelocity = 0f;
                     }
 
                 }
@@ -56,13 +56,13 @@ namespace Game_development_project.Classes.Characters.Enemies
                 {
                     playerDirection = new RightDirection();
                     this.direction = new RightDirection();
-                    LinearVelocity = 1f;
+                    HorizontalVelocity = 1f;
 
                     if (heroPosition >= 100)
                     {
                         Debug.WriteLine("Shooting arrow right");
                         this.characterState = new AttackState();
-                        LinearVelocity = 0f;
+                        HorizontalVelocity = 0f;
                     }
                 }
                 if (hero.AttackBox.Intersects(this.boundingBox))

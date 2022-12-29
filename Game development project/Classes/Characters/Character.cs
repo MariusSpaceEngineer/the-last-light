@@ -6,17 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Game_development_project.Classes.Animations;
 using Microsoft.Xna.Framework;
+using Game_development_project.Classes.Characters.Character_States;
 
 namespace Game_development_project.Classes.Characters
 {
-    internal abstract class Character : Sprite
+    internal abstract class Character : MovableSprite
     {
         protected Texture2D attackSprite;
         protected Texture2D damageSprite;
         protected Texture2D deathSprite;
         protected Texture2D idleSprite;
         protected Texture2D moveSprite;
-        protected Texture2D boundingBoxTexture;
+
+        public State CharacterState;
+
+        public bool HasDied = false;
+        public int Health = 100;
+        public bool IsHit = false;
 
         //protected Rectangle boundingBox;
         //public Rectangle BoundingBox
@@ -48,12 +54,19 @@ namespace Game_development_project.Classes.Characters
             this.moveSprite = moveSprite;
         }
 
-        public Animation CreateAnimation(Texture2D sprite, int fps, int numberOfWidthSprites, int numberOfHeightSprites)
+        public virtual void MoveAttackBox()
         {
-            Animation animation = new Animation(fps);
-            animation.GetFramesFromTextureProperties(sprite.Width, sprite.Height, numberOfWidthSprites, numberOfHeightSprites);
-            return animation;
+
         }
+
+        public virtual void Attack(Sprite target)
+        {
+
+        }
+
+
+
+       
 
 
     }

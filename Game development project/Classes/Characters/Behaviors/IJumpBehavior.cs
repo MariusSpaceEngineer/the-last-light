@@ -9,6 +9,8 @@ namespace Game_development_project.Classes.Characters.Behaviors
 {
     internal interface IJumpBehavior
     {
+        public bool HasJumped { get; set; }
+        public float FallVelocity { get; set; }
         void Jump(float jumpHeight, float fallSpeed);
     }
 }

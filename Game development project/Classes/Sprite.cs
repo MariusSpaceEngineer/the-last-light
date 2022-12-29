@@ -13,37 +13,20 @@ namespace Game_development_project.Classes
 {
     public class Sprite : ICloneable
     {
-        //Characters have more textures so it should be removed or made in a list
-        //protected Texture2D _texture;
-
-        //No rotation in-game
-        //protected float _rotation;
-
-        //Keyboardreader has this already
-        //protected KeyboardState _currentKey;
-
-        //protected KeyboardState _previousKey;
+        //Maybe add these in a interface as they are used in every class
 
         //These can remain
+
         public Vector2 Position;
 
         public Vector2 Origin;
 
-        public Vector2 Direction;
-
-        //Not needed
-        //public float RotationVelocity = 3f;
-
-        //Can be used
-        public float LinearVelocity = 4f;
-
-        //What does this do?
-        public Sprite Parent;
+       
 
         public bool IsRemoved = false;
 
         protected Rectangle boundingBox;
-        protected Texture2D blokTexture;
+        protected Texture2D boundingBoxTexture;
         public Rectangle BoundingBox
         {
             get { return boundingBox; }
@@ -51,7 +34,6 @@ namespace Game_development_project.Classes
         }
 
         protected Rectangle attackBox;
-
         public Rectangle AttackBox
         {
             get { return attackBox; }
@@ -60,12 +42,7 @@ namespace Game_development_project.Classes
 
         public Sprite()
         {
-            //Should be assigned in another sub-class
-            //_texture = texture;
-
-            // The default origin in the centre of the sprite
-            //Maybe assigned in every concrete class
-            //Origin = new Vector2(_texture.Width / 2, _texture.Height / 2);
+         
         }
 
         //It shouldn't be needed as we have and IGameObject interface with it
@@ -86,10 +63,12 @@ namespace Game_development_project.Classes
             return this.MemberwiseClone();
         }
 
-        public virtual void Collision(Rectangle newRectangle, int xOffset, int yOffset)
+        public virtual void CheckCollision(Rectangle newRectangle)
         {
 
         }
+
+        
     }
 }
 
