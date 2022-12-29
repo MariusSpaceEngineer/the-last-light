@@ -11,71 +11,68 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Characters
 {
-    internal class Enemy : Character, IPatrolBehavior
+    internal abstract class Enemy : Character, IPatrolBehavior
     {
-        //protected Vector2 position;
-        //protected Vector2 speed;
-        protected Direction direction;
-        protected float distance;
-        protected float oldDistance;
-        //private Vector2 origin;
+        public float CurrentDistance { get; set; }
+        public float PatrolDistance { get; set; }
 
-        //protected Rectangle boundingBox;
-        //protected Texture2D blokTexture;
-
-        protected State characterState;
-
-        //public Rectangle BoundingBox
-        //{
-        //    get { return boundingBox; }
-        //    set { boundingBox = value; }
-        //}
-
-        //protected Rectangle attackBox;
-
-        //public Rectangle AttackBox
-        //{
-        //    get { return attackBox; }
-        //    set { attackBox = value; }
-        //}
-
-        public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
+        public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float patrolDistance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
         {
             this.Position = position;
             this.HorizontalVelocity = speed;
-            this.oldDistance = distance;
+            this.PatrolDistance = patrolDistance;
 
             this.boundingBoxTexture = boundingBoxTexture;
-            //this.blokTexture.SetData(new[] { Color.White });
         }
         
-
         public virtual void Patrol()
         {
             Position.X += HorizontalVelocity;
             Origin = new Vector2(attackSprite.Width / 2, attackSprite.Height / 2);
             
-            if (distance <= 0)
+            if (CurrentDistance <= 0)
             {
-                characterState = new MoveState();
-                direction = new RightDirection();
+                CharacterState = new MoveState();
+                Direction = new RightDirection();
                 HorizontalVelocity = 1f;
             }
-            else if (distance >= oldDistance)
+            else if (CurrentDistance >= PatrolDistance)
             {
-                characterState = new MoveState();
-                direction = new LeftDirection();
+                CharacterState = new MoveState();
+                Direction = new LeftDirection();
                 HorizontalVelocity = -1f;
             }
-            if (direction is RightDirection)
+            if (Direction is RightDirection)
             {
-                distance += 1;
+                CurrentDistance += 1;
             }
             else
             {
-                distance -= 1;
+                CurrentDistance -= 1;
             }
+
            
+        }
+
+        public void CheckEnemyHealth(Hero hero)
+        {
+            if (hero.AttackBox.Intersects(boundingBox))
+            {
+                if (Health > 0)
+                {
+                    CharacterState = new DamagedState();
+                    Health--;
+                }
+                else
+                {
+                    CharacterState = new DeathState();
+                    IsRemoved = true;
+                }
+
+
+
+            }
+
         }
     }
 }

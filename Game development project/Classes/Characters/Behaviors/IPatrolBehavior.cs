@@ -8,6 +8,8 @@ namespace Game_development_project.Classes.Characters.Behaviors
 {
     internal interface IPatrolBehavior
     {
+        public float CurrentDistance { get; set; }
+        public float PatrolDistance { get; set; }
         void Patrol();
     }
 }

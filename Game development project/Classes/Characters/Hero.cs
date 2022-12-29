@@ -61,7 +61,6 @@ namespace Game_development_project.Classes.Characters
         //Could be added in character but will leave it here for now
         //State can be made an abstract class and can have his own update and draw method
         //public State state;
-        private Direction direction;
 
         #endregion
 
@@ -163,7 +162,7 @@ namespace Game_development_project.Classes.Characters
             //flips the sprite horizontally; 
             SpriteEffects flipEffect = SpriteEffects.FlipHorizontally;
 
-            this.direction = KeyboardReader.herodirection;
+            this.Direction = KeyboardReader.herodirection;
             //In the KeyboardReader there are also states for the hero
             //Maybe find a way to keep his states in one class instead of different ones?
             CharacterState = KeyboardReader.characterState;
@@ -188,7 +187,7 @@ namespace Game_development_project.Classes.Characters
             if (CharacterState is IdleState)
             {
 
-                if (direction is LeftDirection)
+                if (Direction is LeftDirection)
                 {
 
 
@@ -206,12 +205,12 @@ namespace Game_development_project.Classes.Characters
             {
                 //else if (state is MoveState)
                 //{
-                if (direction is LeftDirection)
+                if (Direction is LeftDirection)
                 {
                     spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
                 }
-                else if (direction is RightDirection)
+                else if (Direction is RightDirection)
                 {
                     spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
                     spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
@@ -222,12 +221,12 @@ namespace Game_development_project.Classes.Characters
 
                 //else if (state is JumpState)
                 //{
-                if (direction is LeftDirection)
+                if (Direction is LeftDirection)
                 {
                     spriteBatch.Draw(jumpSprite, Position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
                 }
-                else if (direction is RightDirection)
+                else if (Direction is RightDirection)
                 {
                     spriteBatch.Draw(jumpSprite, Position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White);
                     spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
@@ -235,13 +234,13 @@ namespace Game_development_project.Classes.Characters
             }
             else if (CharacterState is AttackState)
             {
-                if (direction is LeftDirection)
+                if (Direction is LeftDirection)
                 {
                     spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
                     spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Pink);
                 }
-                else if (direction is RightDirection)
+                else if (Direction is RightDirection)
                 {
                     spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
                     spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
@@ -250,14 +249,14 @@ namespace Game_development_project.Classes.Characters
             }
             else if (CharacterState is DamagedState)
             {
-                if (direction is LeftDirection)
+                if (Direction is LeftDirection)
                 {
                     spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     //spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                     //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
                 }
-                else if (direction is RightDirection)
+                else if (Direction is RightDirection)
                 {
                     spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     //spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
@@ -270,14 +269,14 @@ namespace Game_development_project.Classes.Characters
             else if (CharacterState is DeathState)
             {
 
-                if (direction is LeftDirection)
+                if (Direction is LeftDirection)
                 {
                     spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     //spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
                     //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
                 }
-                else if (direction is RightDirection)
+                else if (Direction is RightDirection)
                 {
                     spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
                     //spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White);
@@ -408,7 +407,7 @@ namespace Game_development_project.Classes.Characters
 
         public override void MoveAttackBox()
         {
-            if (this.direction is LeftDirection)
+            if (this.Direction is LeftDirection)
             {
                 this.attackBox = new Rectangle((int)BoundingBox.Left - 50, (int)BoundingBox.Y, 30, 40);
 

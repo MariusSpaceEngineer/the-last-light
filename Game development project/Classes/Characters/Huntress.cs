@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Characters
 {
-    internal class Huntress : ProjectileEnemy //IGameObject
+    internal class Huntress : ProjectileEnemy
     {
         private Animation attackAnimation;
         private Animation damageAnimation;
@@ -38,9 +38,9 @@ namespace Game_development_project.Classes.Characters
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (this.characterState is MoveState)
+            if (CharacterState is MoveState)
             {
-                if (this.direction is RightDirection)
+                if (Direction is RightDirection)
                 {
                     spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
@@ -56,9 +56,9 @@ namespace Game_development_project.Classes.Characters
 
 
             }
-            else if (this.characterState is AttackState)
+            else if (CharacterState is AttackState)
             {
-                if (this.direction is LeftDirection)
+                if (Direction is LeftDirection)
                 {
                     spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
 
@@ -71,45 +71,39 @@ namespace Game_development_project.Classes.Characters
 
                 }
             }
-            else if(this.characterState is DamagedState)
+            else if(CharacterState is DamagedState)
             {
-                if (this.direction is LeftDirection)
+                if (Direction is LeftDirection)
                 {
                     spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
                     spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
-                    //this.characterState = new MoveState();
+             
                 }
                 else
                 {
                     spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
                     spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
-                    //this.characterState = new MoveState();
-
-
-
+  
                 }
 
             }
 
-            else if (this.characterState is DeathState)
+            else if (CharacterState is DeathState)
             {
-                if (this.direction is LeftDirection)
+                if (Direction is LeftDirection)
                 {
                     spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
-                    //this.characterState = new MoveState();
+                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
+           
                 }
                 else
                 {
                     spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
                     //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(this.boundingBoxTexture, AttackBox, Color.Green);
-                    //this.characterState = new MoveState();
-
-
+                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
 
                 }
             }
@@ -119,57 +113,31 @@ namespace Game_development_project.Classes.Characters
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             Patrol();
-            if (this.characterState is AttackState)
+            if (CharacterState is AttackState)
             {
                 attackAnimation.Update(gameTime);
-                AddBullet(sprites);
+                ShootProjectile(sprites);
             }
-            else if (this.characterState is MoveState)
+            else if (CharacterState is MoveState)
             {
                 moveAnimation.Update(gameTime);
 
             }
-            else if (this.characterState is DamagedState)
+            else if (this.CharacterState is DamagedState)
             {
                 damageAnimation.Update(gameTime);
 
             }
-
-            //moveAnimation.Update(gameTime);
             MoveBoundingBox(Position);
 
         }
 
-        private void MoveBoundingBox(Vector2 position)
+        public override void MoveBoundingBox(Vector2 position)
         {
             boundingBox.X = (int)position.X + 32;
             boundingBox.Y = (int)position.Y + 30;
         }
 
-        //    public Arrow projectile;
-
-
-        //    private void AddBullet(List<Sprite> sprites)
-        //    {
-        //        var arrowProjectile = projectile.Clone() as Arrow;
-        //        //if (direction is LeftDirection)
-        //        //{
-        //        //    arrowProjectile.Direction.X = -1;
-        //        //    Debug.WriteLine("Shooting Left");
-        //        //}
-        //        //else
-        //        //{
-        //        //    arrowProjectile.Direction.X = 1;
-        //        //}
-        //        arrowProjectile.Direction = this.Direction;
-        //        arrowProjectile.Position = this.Position;
-        //        arrowProjectile.LinearVelocity = this.LinearVelocity * 2;
-        //        arrowProjectile.LifeSpan = 2f;
-        //        //arrowProjectile.Parent = this;
-
-        //        sprites.Add(arrowProjectile);
-        //    }
-        //}
     }
 }
 
