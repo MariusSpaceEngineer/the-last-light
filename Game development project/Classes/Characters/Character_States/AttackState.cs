@@ -1,4 +1,5 @@
-﻿using Game_development_project.Classes.Characters.CharacterDirections;
+﻿using Game_development_project.Classes.Animations;
+using Game_development_project.Classes.Characters.CharacterDirections;
 using Game_development_project.Classes.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,6 +14,6 @@ namespace Game_development_project.Classes.Characters.Character_States
     internal class AttackState : State
     {
 
-   
+      
     }
 }

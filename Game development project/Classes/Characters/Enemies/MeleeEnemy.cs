@@ -38,7 +38,7 @@ namespace Game_development_project.Classes.Characters.Enemies
                     }
                     else
                     {
-                        HorizontalVelocity = -1f;
+                        HorizontalVelocity = Direction.movementDirection.X;
 
                     }
                 }
@@ -53,7 +53,7 @@ namespace Game_development_project.Classes.Characters.Enemies
                     }
                     else
                     {
-                        HorizontalVelocity = 1f;
+                        HorizontalVelocity = Direction.movementDirection.X;
 
                     }
                 }

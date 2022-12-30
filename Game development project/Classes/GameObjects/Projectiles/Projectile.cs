@@ -18,6 +18,8 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
         public float _timer;
         public float LifeSpan = 0f;
 
+        public float movementDirection;
+
         //protected Rectangle boundingBox;
         //protected Texture2D boundingBoxTexture;
         //public Rectangle BoundingBox
@@ -31,8 +33,9 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
         {
             this.boundingBoxTexture = boundingBoxTexture;
             this.HorizontalVelocity = 2;
-       
 
+            //this.movementDirection = this.Direction.movementDirection.X;
+ 
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -48,7 +51,7 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
                 CheckTargetHealth(Hero.GetHero());
             }
 
-            Position.X += Direction.X * HorizontalVelocity;
+            Position.X += movementDirection * HorizontalVelocity;
      
         }
 

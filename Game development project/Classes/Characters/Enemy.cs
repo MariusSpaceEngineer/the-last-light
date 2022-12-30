@@ -34,13 +34,13 @@ namespace Game_development_project.Classes.Characters
             {
                 CharacterState = new MoveState();
                 Direction = new RightDirection();
-                HorizontalVelocity = 1f;
+                HorizontalVelocity = Direction.movementDirection.X;
             }
             else if (CurrentDistance >= PatrolDistance)
             {
                 CharacterState = new MoveState();
                 Direction = new LeftDirection();
-                HorizontalVelocity = -1f;
+                HorizontalVelocity = Direction.movementDirection.X;
             }
             if (Direction is RightDirection)
             {

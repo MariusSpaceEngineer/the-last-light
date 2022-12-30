@@ -43,71 +43,29 @@ namespace Game_development_project.Classes.Characters
        
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (CharacterState is MoveState)
+            if (CharacterState is IdleState)
             {
-                if (Direction is LeftDirection)
-                {
-                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
-
-                    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Blue);
-                }
-                else
-                {
-                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
-
-                    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Blue);
-                }
+                CharacterState.Draw(spriteBatch, idleSprite, idleAnimation, Direction, Position, this);
+            }
+            else if (CharacterState is MoveState)
+            {
+                CharacterState.Draw(spriteBatch, moveSprite, moveAnimation, Direction, Position, this);
+            }
+            else if (CharacterState is AttackState)
+            {
+                CharacterState.Draw(spriteBatch, attackSprite, attackAnimation, Direction, Position, this);
 
             }
-            else if (this.CharacterState is AttackState)
+            else if (CharacterState is DamagedState)
             {
-                if (this.Direction is LeftDirection)
-                {
-                    spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
-                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-                }
-                else
-                {
-                    spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
-                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-                }
+                CharacterState.Draw(spriteBatch, damageSprite, damageAnimation, Direction, Position, this);
+                IsHit = false;
             }
-            else if (this.CharacterState is DamagedState)
+            else if (CharacterState is DeathState)
             {
-                if (this.Direction is LeftDirection)
-                {
-                    spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
-                    //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-                }
-                else
-                {
-                    spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
-                    //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-
-
-                }
+                CharacterState.Draw(spriteBatch, deathSprite, deathAnimation, Direction, Position, this);
             }
-            else if (this.CharacterState is DeathState)
-            {
-                if (this.Direction is LeftDirection)
-                {
-                    spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White);
-                    //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-                }
-                else
-                {
-                    spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
-                    //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-                }
-            }
+           
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
