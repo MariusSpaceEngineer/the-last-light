@@ -13,7 +13,7 @@ using System.Reflection.Metadata;
 
 namespace Game_development_project.Classes.GameStates
 {
-    internal class In_GameState : State
+    internal class In_GameState : GameState
     {
         protected List<Sprite> spriteList;
         protected Texture2D backgroundLevel;
