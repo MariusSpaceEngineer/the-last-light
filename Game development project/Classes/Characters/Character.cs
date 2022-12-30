@@ -20,7 +20,7 @@ namespace Game_development_project.Classes.Characters
         protected Texture2D moveSprite;
 
         public State CharacterState;
-        public Direction Direction;
+        //public Direction Direction;
 
         public bool HasDied = false;
         public int Health = 100;

@@ -12,7 +12,8 @@ namespace Game_development_project.Classes
 {
     internal abstract class MovableSprite : Sprite
     {
-        public Vector2 Direction;
+
+        public Direction Direction;
 
         public float HorizontalVelocity;
 

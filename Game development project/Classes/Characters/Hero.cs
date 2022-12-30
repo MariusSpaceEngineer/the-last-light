@@ -151,6 +151,7 @@ namespace Game_development_project.Classes.Characters
         public void ResetHero()
         {
             this.Position = new Vector2(-1, 0);
+            FallVelocity = 0;
             this.Health = 100;
         }
 
@@ -158,17 +159,10 @@ namespace Game_development_project.Classes.Characters
         public override void Draw(SpriteBatch spriteBatch)
         {
             //Maybe it's better if we use a for loop with breaks that only triggers when the hero state and direction are the same as the one in the loop
-
-            //flips the sprite horizontally; 
-            SpriteEffects flipEffect = SpriteEffects.FlipHorizontally;
-
             this.Direction = KeyboardReader.herodirection;
             //In the KeyboardReader there are also states for the hero
             //Maybe find a way to keep his states in one class instead of different ones?
             CharacterState = KeyboardReader.characterState;
-
-
-
 
             if (HasDied)
             {
@@ -186,112 +180,37 @@ namespace Game_development_project.Classes.Characters
             }
             if (CharacterState is IdleState)
             {
-
-                if (Direction is LeftDirection)
-                {
-
-
-                    spriteBatch.Draw(idleSprite, Position, idleAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
-                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
-                }
-                else
-                {
-                    spriteBatch.Draw(idleSprite, Position, idleAnimation.CurrentFrame.SourceRectangle, Color.White);
-                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
-
-                }
+                CharacterState.Draw(spriteBatch, idleSprite, idleAnimation, Direction, Position, this); 
             }
             else if (CharacterState is MoveState)
             {
-                //else if (state is MoveState)
-                //{
-                if (Direction is LeftDirection)
-                {
-                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
-                    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
-                }
-                else if (Direction is RightDirection)
-                {
-                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
-                    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
-                }
+                CharacterState.Draw(spriteBatch, moveSprite, moveAnimation, Direction, Position, this);
             }
             else if (CharacterState is JumpState)
             {
-
-                //else if (state is JumpState)
-                //{
-                if (Direction is LeftDirection)
-                {
-                    spriteBatch.Draw(jumpSprite, Position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
-                    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
-                }
-                else if (Direction is RightDirection)
-                {
-                    spriteBatch.Draw(jumpSprite, Position, jumpAnimation.CurrentFrame.SourceRectangle, Color.White);
-                    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
-                }
+                CharacterState.Draw(spriteBatch, jumpSprite, jumpAnimation, Direction, Position, this);
             }
             else if (CharacterState is AttackState)
             {
-                if (Direction is LeftDirection)
-                {
-                    spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
-                    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
-                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Pink);
-                }
-                else if (Direction is RightDirection)
-                {
-                    spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
-                    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Red);
-                    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Pink);
-                }
+                CharacterState.Draw(spriteBatch,attackSprite,attackAnimation, Direction, Position, this);
+               
             }
             else if (CharacterState is DamagedState)
             {
-                if (Direction is LeftDirection)
-                {
-                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
-                    //spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
-                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
-                    //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
-                }
-                else if (Direction is RightDirection)
-                {
-                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
-                    //spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
-                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
-                    //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
-                }
-                //Needed so that the animation stops
+                CharacterState.Draw(spriteBatch, damageSprite, damageAnimation, Direction, Position, this);
                 IsHit = false;
             }
             else if (CharacterState is DeathState)
             {
-
-                if (Direction is LeftDirection)
-                {
-                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
-                    //spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
-                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
-                    //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
-                }
-                else if (Direction is RightDirection)
-                {
-                    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, flipEffect, 0);
-                    //spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White);
-                    //spriteBatch.Draw(blokTexture, BoundingBox, Color.Red);
-                    //spriteBatch.Draw(blokTexture, AttackBox, Color.Pink);
-                }
+                CharacterState.Draw(spriteBatch, deathSprite, deathAnimation, Direction, Position, this);
             }
         }
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
-            //Nothing in the base, can be removed
-            base.Update(gameTime, sprites);
             //Used to reset the position of the attackbox, otherwise it remains the same place triggering weird collision of which the hero or enemy can die
             this.attackBox = new Rectangle();
+           
 
             //If the player is still alive he can move and jump
             if (!HasDied)
@@ -299,6 +218,12 @@ namespace Game_development_project.Classes.Characters
                 //Maybe remove the parameter level from Move method and instead make a different method
                 Move(level);
                 Jump(-6f, 0.15f);
+                CharacterState = KeyboardReader.characterState;
+                foreach (var sprite in sprites)
+                {
+                    Attack(sprite);
+
+                }
             }
             else
             {
@@ -309,16 +234,12 @@ namespace Game_development_project.Classes.Characters
             }
 
             //This loop can be added to a method: checkAttackBoxCollision()?
-            foreach (var sprite in sprites)
-            {
-                Attack(sprite);
-
-            }
-
+           
 
             //Also here, maybe added to the state class and use a foreach loop 
             //Needs to use the reader else the animation will give an error when drawing on screen
-            if (KeyboardReader.characterState is IdleState)
+
+            if (CharacterState is IdleState)
             {
                 idleAnimation.Update(gameTime);
 
@@ -331,18 +252,18 @@ namespace Game_development_project.Classes.Characters
             else if (CharacterState is DamagedState)
             {
 
-                moveAnimation.Update(gameTime);
+                damageAnimation.Update(gameTime);
 
             }
-            else if (KeyboardReader.characterState is MoveState)
+            else if (CharacterState is MoveState)
             {
                 moveAnimation.Update(gameTime);
             }
-            else if (KeyboardReader.characterState is JumpState)
+            else if (CharacterState is JumpState)
             {
                 jumpAnimation.Update(gameTime);
             }
-            else if (KeyboardReader.characterState is AttackState)
+            else if (CharacterState is AttackState)
             {
                 attackAnimation.Update(gameTime);
             }
@@ -356,16 +277,27 @@ namespace Game_development_project.Classes.Characters
 
         public override void Attack(Sprite sprite)
         {
+           
             if (sprite.AttackBox.Intersects(this.boundingBox))
             {
                 if (Health > 0)
                 {
                     Debug.WriteLine("player hit");
+                  
                     this.IsHit = true;
                     CharacterState = new DamagedState();
+                    if (sprite.AttackBox.TouchRightOf(this.boundingBox))
+                    {
+                        Debug.WriteLine("Enemy attacks right");
+                        Direction = new RightDirection();
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Enemy attacks left");
+                        Direction = new LeftDirection();
+                    }
 
                     Health--;
-
                 }
                 else
                 {
