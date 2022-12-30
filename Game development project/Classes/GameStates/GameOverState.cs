@@ -12,19 +12,17 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.GameStates
 {
-    internal class GameOverState : State
+    internal class GameOverState : MenuState
     {
-        private List<Component> _components;
-        private Texture2D gameOverText;
-        private Texture2D backgroundImage;
 
+        private Texture2D gameOverText;
 
         public GameOverState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-        
 
-            var buttonTexture = base.content.Load<Texture2D>("Menu/Button/Button_style");
-            var buttonFont = base.content.Load<SpriteFont>("Menu/Button/Button_Font");
+        }
+        public override void InitializeContent()
+        {
 
             var reloadLevelButton = new Button(buttonTexture, buttonFont)
             {
@@ -50,36 +48,32 @@ namespace Game_development_project.Classes.GameStates
 
             quitGameButton.Click += QuitGameButton_Click;
 
-            _components = new List<Component>()
+            buttonList = new List<Component>()
             {
              reloadLevelButton,
              mainMenuButton,
              quitGameButton,
             };
 
-            this.gameOverText = base.content.Load<Texture2D>("Menu/GameOver_Text");
-            this.backgroundImage = base.content.Load<Texture2D>("Background/gameOver");
-
         }
 
+        public override void LoadContent(ContentManager content)
+        {
+            base.LoadContent(content);
+            gameOverText = content.Load<Texture2D>("Menu/GameOver_Text");
+            backgroundImage = content.Load<Texture2D>("Background/gameOver");
+
+        }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(backgroundImage, new Vector2(0, 0), Color.White);
-            spriteBatch.End();
-
+            
+            base.Draw(gameTime, spriteBatch);
             spriteBatch.Begin();
             spriteBatch.Draw(gameOverText, new Vector2(450, 50), Color.White);
             spriteBatch.End();
 
-            spriteBatch.Begin();
-
-            foreach (var component in _components)
-                component.Draw(gameTime, spriteBatch);
-
-            spriteBatch.End();
         }
-
+   
         private void ReloadLevelButton_Click(object sender, EventArgs e)
         {
             Debug.WriteLine(game._previousState);
@@ -102,20 +96,8 @@ namespace Game_development_project.Classes.GameStates
         private void MainMenuGameButton_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Load Main Menu");
-            game.ChangeState(new MenuState(game,graphicsDevice,content));
+            game.ChangeState(new MainMenuState(game,graphicsDevice,content));
 
-        }
-
-        private void QuitGameButton_Click(object sender, EventArgs e)
-        {
-            game.Exit();
-        }
-
-
-        public override void Update(GameTime gameTime)
-        {
-            foreach (var component in _components)
-                component.Update(gameTime);
         }
 
 

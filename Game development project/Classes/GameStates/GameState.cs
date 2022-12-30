@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.GameStates
 {
-    public abstract class State
+    public abstract class GameState
     {
         protected Game1 game;
 
@@ -17,7 +17,7 @@ namespace Game_development_project.Classes.GameStates
 
         protected ContentManager content;
 
-        public State(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
+        public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
         {
             this.game = game;
 
@@ -25,6 +25,7 @@ namespace Game_development_project.Classes.GameStates
 
             this.content = content;
         }
+
         public virtual void LoadContent(ContentManager content)
         {
 

@@ -38,19 +38,19 @@ namespace Game_development_project.Classes.GameStates
             level.Generate(level.Map, 64);
 
             spriteList = new List<Sprite>() {
-                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,game.blokTexture)
+                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,game.boundingBoxTexture)
                  {
                  Position = new Vector2(500, 400),
-                     projectile = new Arrow(arrowTexture, game.blokTexture)
+                     projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
              },
-                  new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,game.blokTexture)
+                  new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,game.boundingBoxTexture)
                  {
                  Position = new Vector2(300, 350),
-                     projectile = new Arrow(arrowTexture, game.blokTexture)
+                     projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
              },
-                Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, game.blokTexture, level),
-                new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(250, 475), 2, game.blokTexture),
-                new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(150, 475), 2, 50, game.blokTexture),
+                Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, game.boundingBoxTexture, level),
+                new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(250, 475), 2, game.boundingBoxTexture),
+                new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(150, 475), 2, 50, game.boundingBoxTexture),
             };
         }
 
