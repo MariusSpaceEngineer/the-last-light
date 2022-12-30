@@ -11,35 +11,46 @@ namespace Game_development_project.Classes.GameStates
 {
     public abstract class State
     {
-        #region Fields
+        protected Game1 game;
 
-        protected ContentManager _content;
+        protected GraphicsDevice graphicsDevice;
 
-        protected GraphicsDevice _graphicsDevice;
-
-        protected Game1 _game;
-
-        #endregion
-
-        #region Methods
-
-        public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
-
-        public abstract void PostUpdate(GameTime gameTime);
+        protected ContentManager content;
 
         public State(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
         {
-            _game = game;
+            this.game = game;
 
-            _graphicsDevice = graphicsDevice;
+            this.graphicsDevice = graphicsDevice;
 
-            _content = content;
+            this.content = content;
+        }
+        public virtual void LoadContent(ContentManager content)
+        {
+
+        }
+        public virtual void InitializeContent()
+        {
+
         }
 
-        public abstract void Update(GameTime gameTime);
-        public abstract void LoadContent();
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
 
-        #endregion
+        }
+
+
+        public virtual void Update(GameTime gameTime)
+        {
+
+        }
+
+        public virtual void PostUpdate()
+        {
+
+        }
+
+
     }
 }
 

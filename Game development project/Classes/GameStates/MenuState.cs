@@ -13,16 +13,80 @@ namespace Game_development_project.Classes.GameStates
 {
     internal class MenuState : State
     {
-        private List<Component> _components;
-        private Texture2D backgroundImage;
         private Game1 game;
+
+        private List<Component> buttonList;
+        private Texture2D buttonTexture;
+        private SpriteFont buttonFont;
+        private Texture2D backgroundImage;
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
           : base(game, graphicsDevice, content)
-        {
-            var buttonTexture = _content.Load<Texture2D>("Menu/Button/Button_style");
-            var buttonFont = _content.Load<SpriteFont>("Menu/Button/Button_Font");
+        { 
+            LoadContent(content);
+            InitializeContent();
 
+            this.game = game;
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(backgroundImage, new Vector2(0, 0), Color.White);
+            spriteBatch.End();
+
+            spriteBatch.Begin();
+
+            foreach (var button in buttonList)
+                button.Draw(gameTime, spriteBatch);
+
+            spriteBatch.End();
+        }
+
+        private void LoadLevel1GameButton_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Load Level1");
+            base.game.ChangeState(new Level1GameState(base.game, graphicsDevice, content));
+            Hero.GetHero().CurrentLevel = Level1GameState.level;
+        }
+
+        private void LoadLevel2GameButton_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Load Level2");
+            base.game.ChangeState(new Level2GameState(base.game, graphicsDevice, content));
+            Hero.GetHero().CurrentLevel = Level2GameState.level;
+
+        }
+
+        private void NewGameButton_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Load new game");
+            base.game.ChangeState(new Level1GameState(base.game, graphicsDevice, content));
+            Hero.GetHero().CurrentLevel = Level1GameState.level;
+
+        }
+
+
+        public override void Update(GameTime gameTime)
+        {
+            foreach (var button in buttonList)
+                button.Update(gameTime);
+        }
+
+        private void QuitGameButton_Click(object sender, EventArgs e)
+        {
+            base.game.Exit();
+        }
+
+        public override void LoadContent(ContentManager content)
+        {
+            buttonTexture = content.Load<Texture2D>("Menu/Button/Button_style");
+            buttonFont = content.Load<SpriteFont>("Menu/Button/Button_Font");
+            backgroundImage = base.content.Load<Texture2D>("Background/mainMenu");
+        }
+
+        public override void InitializeContent()
+        {
             var newGameButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2(500, 200),
@@ -55,73 +119,13 @@ namespace Game_development_project.Classes.GameStates
 
             quitGameButton.Click += QuitGameButton_Click;
 
-            _components = new List<Component>()
+            buttonList = new List<Component>()
             {
              newGameButton,
              level1GameButton,
              level2GameButton,
              quitGameButton,
             };
-
-            this.backgroundImage = _content.Load<Texture2D>("Background/mainMenu");
-            this.game = game;
-        }
-
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin();
-            spriteBatch.Draw(backgroundImage, new Vector2(0, 0), Color.White);
-            spriteBatch.End();
-
-            spriteBatch.Begin();
-
-            foreach (var component in _components)
-                component.Draw(gameTime, spriteBatch);
-
-            spriteBatch.End();
-        }
-
-        private void LoadLevel1GameButton_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Load Level1");
-            Hero.GetHero().level = _game.level1;
-            _game.ChangeState(new Level1GameState(_game, _graphicsDevice, _content));
-
-        }
-
-        private void LoadLevel2GameButton_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Load Level2");
-            Hero.GetHero().level = _game.level2;
-            _game.ChangeState(new Level2GameState(_game, _graphicsDevice, _content));
-
-        }
-
-        private void NewGameButton_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Load new game");
-            _game.ChangeState(new Level1GameState(_game, _graphicsDevice, _content));
-        }
-
-        public override void PostUpdate(GameTime gameTime)
-        {
-            // remove sprites if they're not needed
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            foreach (var component in _components)
-                component.Update(gameTime);
-        }
-
-        private void QuitGameButton_Click(object sender, EventArgs e)
-        {
-            _game.Exit();
-        }
-
-        public override void LoadContent()
-        {
-            
         }
     }
 }

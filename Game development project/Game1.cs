@@ -111,7 +111,6 @@ namespace Game_development_project
         {
             // TODO: Add your initialization logic here
             //map = new Map();
-            level1 = new Level1(new Level1_BlockFactory());
             level2 = new Level2(new Level2_BlockFactory());
             //level1 = new Level(new Level_1_BlockFactory(), _graphics.GraphicsDevice);
 
@@ -128,6 +127,7 @@ namespace Game_development_project
 
         protected override void LoadContent()
         {
+            camera = new Camera(GraphicsDevice.Viewport);
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             blokTexture = new Texture2D(GraphicsDevice, 1, 1);
@@ -135,20 +135,20 @@ namespace Game_development_project
             triggerBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
             triggerBlokTexture.SetData(new[] { Color.Red });
 
-            arrowTexture = Content.Load<Texture2D>("Sprites/Projectile/Arrow");
-            LoadHuntress();
-            LoadHero();
-            LoadSkeleton();
-            LoadBandit();
-            arrowTexture = Content.Load<Texture2D>("Sprites/Projectile/Arrow");
+            //arrowTexture = Content.Load<Texture2D>("Sprites/Projectile/Arrow");
+            //LoadHuntress();
+            //LoadHero();
+            //LoadSkeleton();
+            //LoadBandit();
+            //arrowTexture = Content.Load<Texture2D>("Sprites/Projectile/Arrow");
             heroBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
-            camera = new Camera(GraphicsDevice.Viewport);
+           
             Block.Content = Content;
-            backgroundVillage = Content.Load<Texture2D>("Background/village_level1");
-            backgroundCastle = Content.Load<Texture2D>("Background/castle_level2");
+            //backgroundVillage = Content.Load<Texture2D>("Background/village_level1");
+            //backgroundCastle = Content.Load<Texture2D>("Background/castle_level2");
 
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
-            _currentState.LoadContent();
+            _currentState.LoadContent(Content);
             
         //    _sprites = new List<Sprite>()
         //    {
@@ -220,7 +220,7 @@ namespace Game_development_project
 
             _currentState.Update(gameTime);
 
-            _currentState.PostUpdate(gameTime);
+            _currentState.PostUpdate();
 
             //hero.Update(gameTime, level1);
             //hero.Update(gameTime, level2);
@@ -276,19 +276,7 @@ namespace Game_development_project
             base.Update(gameTime);
 
         }
-        private void PostUpdate()
-        {
-            for (int i = 0; i < _sprites.Count; i++)
-            {
-                if (_sprites[i].IsRemoved)
-                {
-                    _sprites.RemoveAt(i);
-                    i--;
-                }
-            }
-        }
-
-
+       
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);

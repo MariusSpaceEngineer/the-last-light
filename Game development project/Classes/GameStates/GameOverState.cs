@@ -23,8 +23,8 @@ namespace Game_development_project.Classes.GameStates
         {
         
 
-            var buttonTexture = _content.Load<Texture2D>("Menu/Button/Button_style");
-            var buttonFont = _content.Load<SpriteFont>("Menu/Button/Button_Font");
+            var buttonTexture = base.content.Load<Texture2D>("Menu/Button/Button_style");
+            var buttonFont = base.content.Load<SpriteFont>("Menu/Button/Button_Font");
 
             var reloadLevelButton = new Button(buttonTexture, buttonFont)
             {
@@ -57,8 +57,8 @@ namespace Game_development_project.Classes.GameStates
              quitGameButton,
             };
 
-            this.gameOverText = _content.Load<Texture2D>("Menu/GameOver_Text");
-            this.backgroundImage = _content.Load<Texture2D>("Background/gameOver");
+            this.gameOverText = base.content.Load<Texture2D>("Menu/GameOver_Text");
+            this.backgroundImage = base.content.Load<Texture2D>("Background/gameOver");
 
         }
 
@@ -82,18 +82,18 @@ namespace Game_development_project.Classes.GameStates
 
         private void ReloadLevelButton_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine(_game._previousState);
+            Debug.WriteLine(game._previousState);
           
 
-            if (_game._previousState is Level1GameState)
+            if (game._previousState is Level1GameState)
             {
                 Debug.WriteLine("Change to level 1");  
-                _game.ChangeState(new Level1GameState(_game, _graphicsDevice, _content));
+                game.ChangeState(new Level1GameState(game, graphicsDevice, content));
             }
-            else if (_game._previousState is Level2GameState)
+            else if (game._previousState is Level2GameState)
             {
                 Debug.WriteLine("Change to level 2");
-                _game.ChangeState(new Level2GameState(_game, _graphicsDevice, _content));
+                game.ChangeState(new Level2GameState(game, graphicsDevice, content));
 
             }
 
@@ -102,19 +102,15 @@ namespace Game_development_project.Classes.GameStates
         private void MainMenuGameButton_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Load Main Menu");
-            _game.ChangeState(new MenuState(_game,_graphicsDevice,_content));
+            game.ChangeState(new MenuState(game,graphicsDevice,content));
 
         }
 
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
-            _game.Exit();
+            game.Exit();
         }
 
-        public override void PostUpdate(GameTime gameTime)
-        {
-            // remove sprites if they're not needed
-        }
 
         public override void Update(GameTime gameTime)
         {
@@ -122,9 +118,6 @@ namespace Game_development_project.Classes.GameStates
                 component.Update(gameTime);
         }
 
-        public override void LoadContent()
-        {
-            
-        }
+
     }
 }
