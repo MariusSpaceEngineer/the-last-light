@@ -81,7 +81,7 @@ namespace Game_development_project.Classes.Characters
 
 
         //Used by the gamemanager to change the level of the hero for the correct collision
-        public Level level;
+        public Level CurrentLevel;
 
         //If the bool is true it triggers the gameover screen
         //Is equal to 2 hits of a melee enemy, maybe a beter way to do it than this?
@@ -89,6 +89,7 @@ namespace Game_development_project.Classes.Characters
 
         //Used by the jump method, should be put on top
         bool isOnObject = false;
+
 
 
         #region Initialize
@@ -128,7 +129,7 @@ namespace Game_development_project.Classes.Characters
             BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 28, 40);
 
             //Needed for the CheckCollision() method
-            this.level = level;
+            this.CurrentLevel = level;
         }
 
         public static Hero GetHero()
@@ -216,7 +217,7 @@ namespace Game_development_project.Classes.Characters
             if (!HasDied)
             {
                 //Maybe remove the parameter level from Move method and instead make a different method
-                Move(level);
+                Move(CurrentLevel);
                 Jump(-6f, 0.15f);
                 CharacterState = KeyboardReader.characterState;
                 foreach (var sprite in sprites)

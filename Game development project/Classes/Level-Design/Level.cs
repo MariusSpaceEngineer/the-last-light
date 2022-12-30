@@ -25,6 +25,11 @@ namespace Default_Level
         public int Height { get { return height; } }
 
         BlockFactory blockFactory;
+
+        private int[,] map;
+
+  
+        public int[,] Map { get { return map; } set { map = value; } }
         public Level(BlockFactory blockFactory) {
             this.blockFactory = blockFactory;
         }
