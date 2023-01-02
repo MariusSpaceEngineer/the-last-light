@@ -36,21 +36,37 @@ namespace Game_development_project.Classes.GameStates
         {
             level = new Level1(new Level1_BlockFactory());
             level.Generate(level.Map, 64);
+            
 
             spriteList = new List<Sprite>() {
-                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,game.boundingBoxTexture)
+                 Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, game.boundingBoxTexture, level),
+
+                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(1030, 450), 2, 50,game.boundingBoxTexture)
                  {
-                 Position = new Vector2(500, 400),
+                     //Position = new Vector2(1030, 303),
                      projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
-             },
-                  new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,game.boundingBoxTexture)
+                 },
+                 new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(1552, 475), 2, game.boundingBoxTexture),
+                 new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(1852, 465), 2, 50, game.boundingBoxTexture),
+                 new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(2890, 285), 2, game.boundingBoxTexture),
+                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(4180, 450), 2, 50,game.boundingBoxTexture)
                  {
-                 Position = new Vector2(300, 350),
+                     //Position = new Vector2(300, 350),
                      projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
-             },
-                Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, game.boundingBoxTexture, level),
-                new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(250, 475), 2, game.boundingBoxTexture),
-                new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(150, 475), 2, 50, game.boundingBoxTexture),
+                 },
+                 new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(4594, 335), 2, 50, game.boundingBoxTexture),
+                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(5518, 450), 6, 50,game.boundingBoxTexture)
+                 {
+                     //Position = new Vector2(300, 350),
+                     projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
+                 },
+                   new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(5068, 450), 6, 50,game.boundingBoxTexture)
+                 {
+                     //Position = new Vector2(300, 350),
+                     projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
+                 },
+                 new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 100, new Vector2(6546,475), 3, game.boundingBoxTexture),
+                 new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(6954, 475), 3, 100, game.boundingBoxTexture),
             };
         }
 

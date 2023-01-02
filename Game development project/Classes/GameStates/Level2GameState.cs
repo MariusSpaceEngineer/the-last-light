@@ -40,19 +40,26 @@ namespace Game_development_project.Classes.GameStates
             level.Generate(level.Map, 64);
 
             spriteList = new List<Sprite>() {
-                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,game.boundingBoxTexture)
+                 Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, game.boundingBoxTexture, level),
+                 new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(444, 475), 2, game.boundingBoxTexture),
+                 new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(1750, 475), 2, game.boundingBoxTexture),
+                 new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(1840, 475), 2, 50, game.boundingBoxTexture),
+                 new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(2770, 475), 2, game.boundingBoxTexture),
+                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(2946, 245), 0.5f, 10,game.boundingBoxTexture)
                  {
-                 Position = new Vector2(500, 400),
                      projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
-             },
-                  new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(212, 475), 2, 50,game.boundingBoxTexture)
+                 },
+                  new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(4190, 450), 2, 50,game.boundingBoxTexture)
                  {
-                 Position = new Vector2(300, 350),
                      projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
-             },
-                Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, game.boundingBoxTexture, level),
-                new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(250, 475), 2, game.boundingBoxTexture),
-                new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(150, 475), 2, 50, game.boundingBoxTexture),
+                 },
+                 new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(4653, 410), 2, 50, game.boundingBoxTexture),
+                 new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(6388, 475), 4, game.boundingBoxTexture),
+                 new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(6766, 475), 4, 50, game.boundingBoxTexture),
+                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(7408, 450), 2, 50,game.boundingBoxTexture)
+                 {
+                     projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
+                 },
             };
         }
 
