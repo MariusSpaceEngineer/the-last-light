@@ -16,6 +16,7 @@ namespace Game_development_project.Classes.Characters.Enemies
 
         public MeleeEnemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance, boundingBoxTexture)
         {
+            this.ChasingSpeed = speed;
         }
         public override void Patrol()
         {
@@ -38,7 +39,7 @@ namespace Game_development_project.Classes.Characters.Enemies
                     }
                     else
                     {
-                        HorizontalVelocity = Direction.movementDirection.X;
+                        HorizontalVelocity = Direction.movementDirection.X * ChasingSpeed;
 
                     }
                 }
@@ -53,7 +54,7 @@ namespace Game_development_project.Classes.Characters.Enemies
                     }
                     else
                     {
-                        HorizontalVelocity = Direction.movementDirection.X;
+                        HorizontalVelocity = Direction.movementDirection.X * ChasingSpeed;
 
                     }
                 }
