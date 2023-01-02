@@ -23,7 +23,7 @@ namespace Game_development_project.Classes.Level_Design.Level2
             }
             else if (number == 2)
             {
-                block = new DirtBlock(rectangle);
+                block = new TriggerBlock(rectangle);
             }
             return block;
         }

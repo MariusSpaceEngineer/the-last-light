@@ -90,6 +90,8 @@ namespace Game_development_project.Classes.Characters
         //Used by the jump method, should be put on top
         bool isOnObject = false;
 
+        public bool isOnTrigger = false;
+
 
 
         #region Initialize
@@ -203,7 +205,9 @@ namespace Game_development_project.Classes.Characters
             }
             else if (CharacterState is DeathState)
             {
-                CharacterState.Draw(spriteBatch, deathSprite, deathAnimation, Direction, Position, this);
+                CharacterState.Draw(spriteBatch, idleSprite, idleAnimation, Direction, Position, this);
+
+                //CharacterState.Draw(spriteBatch, deathSprite, deathAnimation, Direction, Position, this);
             }
         }
 
@@ -362,12 +366,15 @@ namespace Game_development_project.Classes.Characters
 
                 CheckCollision(block.Rectangle);
                 //Maybe put in the collision method
-                if (block is DirtBlock)
+                if (block is TriggerBlock)
                 {
                     if (boundingBox.TouchTopOf(block.Rectangle))
                     {
                         Debug.WriteLine("player touches trigger");
+                        isOnTrigger = true;
+
                     }
+
                 }
 
             }

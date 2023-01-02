@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Level_Design.TypeBlocks
 {
-    internal class DirtBlock : Block
+    internal class TriggerBlock : Block
     {
-        public DirtBlock(Rectangle newrectangle) : base(newrectangle)
+        public TriggerBlock(Rectangle newrectangle) : base(newrectangle)
         {
             this.isTrigger = true;
             this.texture = Game1.triggerBlokTexture;
