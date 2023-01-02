@@ -60,8 +60,8 @@ namespace Game_development_project.Classes.GameStates
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-            gameOverText = content.Load<Texture2D>("Menu/GameOver_Text");
-            backgroundImage = content.Load<Texture2D>("Background/gameOver");
+            gameOverText = content.Load<Texture2D>("Textures/Menu/GameOverText");
+            backgroundImage = content.Load<Texture2D>("Textures/Backgrounds/GameOverBackground");
 
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

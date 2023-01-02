@@ -67,14 +67,14 @@ namespace Game_development_project.Classes.GameStates
             base.LoadContent(content);
             if (game._currentState is Level1GameState)
             {
-                levelCompletedText = content.Load<Texture2D>("Menu/level1CompletedText");
-                backgroundImage = content.Load<Texture2D>("Background/level1Completed");
+                levelCompletedText = content.Load<Texture2D>("Textures/Menu/Level1CompletedText");
+                backgroundImage = content.Load<Texture2D>("Textures/Backgrounds/Level1CompleteBackground");
 
             }
             else if (game._currentState is Level2GameState)
             {
-                levelCompletedText = content.Load<Texture2D>("Menu/level2CompletedText");
-                backgroundImage = content.Load<Texture2D>("Background/level2Completed");
+                levelCompletedText = content.Load<Texture2D>("Textures/Menu/Level2CompletedText");
+                backgroundImage = content.Load<Texture2D>("Textures/Backgrounds/Level2CompleteBackground");
             }
     }
 

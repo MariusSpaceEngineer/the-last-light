@@ -13,98 +13,14 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Background/castle_level2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Background/castle_level2.png
-
-#begin Background/gameOver.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Background/gameOver.png
-
-#begin Background/level1Completed.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Background/level1Completed.png
-
-#begin Background/level2Completed.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Background/level2Completed.png
-
-#begin Background/mainMenu.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Background/mainMenu.png
-
-#begin Background/village_level1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Background/village_level1.png
-
-#begin Castle_Ground.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Castle_Ground.png
-
-#begin Menu/Button/Button_Font.spritefont
+#begin Fonts/ButtonFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Menu/Button/Button_Font.spritefont
+/build:Fonts/ButtonFont.spritefont
 
-#begin Menu/Button/Button_style.png
+#begin Textures/Backgrounds/CastleBackgroundLevel2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -114,9 +30,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Menu/Button/Button_style.png
+/build:Textures/Backgrounds/CastleBackgroundLevel2.png
 
-#begin Menu/GameOver_Text.png
+#begin Textures/Backgrounds/GameOverBackground.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -126,9 +42,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Menu/GameOver_Text.png
+/build:Textures/Backgrounds/GameOverBackground.png
 
-#begin Menu/level1CompletedText.png
+#begin Textures/Backgrounds/Level1CompleteBackground.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -138,9 +54,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Menu/level1CompletedText.png
+/build:Textures/Backgrounds/Level1CompleteBackground.png
 
-#begin Menu/level2CompletedText.png
+#begin Textures/Backgrounds/Level2CompleteBackground.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -150,9 +66,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Menu/level2CompletedText.png
+/build:Textures/Backgrounds/Level2CompleteBackground.png
 
-#begin Sprites/Heavy Bandit/HeavyBandit_Attack.png
+#begin Textures/Backgrounds/MainMenuBackground.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -162,9 +78,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/HeavyBandit_Attack.png;Sprites/Heavy Bandit/_Attack.png
+/build:Textures/Backgrounds/MainMenuBackground.png
 
-#begin Sprites/Heavy Bandit/HeavyBandit_Death.png
+#begin Textures/Backgrounds/VillageBackgroundLevel1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -174,9 +90,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/HeavyBandit_Death.png;Sprites/Heavy Bandit/_Death.png
+/build:Textures/Backgrounds/VillageBackgroundLevel1.png
 
-#begin Sprites/Heavy Bandit/HeavyBandit_Hurt.png
+#begin Textures/Menu/Button.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -186,9 +102,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/HeavyBandit_Hurt.png;Sprites/Heavy Bandit/_Hit.png
+/build:Textures/Menu/Button.png
 
-#begin Sprites/Heavy Bandit/HeavyBandit_Idle.png
+#begin Textures/Menu/GameOverText.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -198,9 +114,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/HeavyBandit_Idle.png;Sprites/Heavy Bandit/_Idle.png
+/build:Textures/Menu/GameOverText.png
 
-#begin Sprites/Heavy Bandit/HeavyBandit_Run.png
+#begin Textures/Menu/Level1CompletedText.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -210,9 +126,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Heavy Bandit/HeavyBandit_Run.png;Sprites/Heavy Bandit/_Run.png
+/build:Textures/Menu/Level1CompletedText.png
 
-#begin Sprites/Huntress/Attack.png
+#begin Textures/Menu/Level2CompletedText.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -222,9 +138,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Huntress/Attack.png;Sprites/Huntress/_Attack.png
+/build:Textures/Menu/Level2CompletedText.png
 
-#begin Sprites/Huntress/Death.png
+#begin Textures/Sprites/HeavyBandit/HeavyBandit_Attack.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -234,9 +150,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Huntress/Death.png;Sprites/Huntress/_Death.png
+/build:Textures/Sprites/HeavyBandit/HeavyBandit_Attack.png
 
-#begin Sprites/Huntress/Fall.png
+#begin Textures/Sprites/HeavyBandit/HeavyBandit_Death.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -246,9 +162,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Huntress/Fall.png
+/build:Textures/Sprites/HeavyBandit/HeavyBandit_Death.png
 
-#begin Sprites/Huntress/Get Hit.png
+#begin Textures/Sprites/HeavyBandit/HeavyBandit_Hit.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -258,9 +174,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Huntress/Get Hit.png;Sprites/Huntress/_Hit.png
+/build:Textures/Sprites/HeavyBandit/HeavyBandit_Hit.png
 
-#begin Sprites/Huntress/Idle.png
+#begin Textures/Sprites/HeavyBandit/HeavyBandit_Idle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -270,9 +186,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Huntress/Idle.png;Sprites/Huntress/_Idle.png
+/build:Textures/Sprites/HeavyBandit/HeavyBandit_Idle.png
 
-#begin Sprites/Huntress/Jump.png
+#begin Textures/Sprites/HeavyBandit/HeavyBandit_Run.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -282,9 +198,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Huntress/Jump.png;Sprites/Huntress/_Jump.png
+/build:Textures/Sprites/HeavyBandit/HeavyBandit_Run.png
 
-#begin Sprites/Huntress/Run.png
+#begin Textures/Sprites/Huntress/Huntress_Attack.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -294,9 +210,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Huntress/Run.png;Sprites/Huntress/_Run.png
+/build:Textures/Sprites/Huntress/Huntress_Attack.png
 
-#begin Sprites/Knight/_Attack.png
+#begin Textures/Sprites/Huntress/Huntress_Death.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -306,9 +222,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Knight/_Attack.png
+/build:Textures/Sprites/Huntress/Huntress_Death.png
 
-#begin Sprites/Knight/_Death.png
+#begin Textures/Sprites/Huntress/Huntress_Hit.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -318,9 +234,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Knight/_Death.png
+/build:Textures/Sprites/Huntress/Huntress_Hit.png
 
-#begin Sprites/Knight/_Fall.png
+#begin Textures/Sprites/Huntress/Huntress_Idle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -330,9 +246,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Knight/_Fall.png
+/build:Textures/Sprites/Huntress/Huntress_Idle.png
 
-#begin Sprites/Knight/_Hit.png
+#begin Textures/Sprites/Huntress/Huntress_Run.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -342,9 +258,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Knight/_Hit.png
+/build:Textures/Sprites/Huntress/Huntress_Run.png
 
-#begin Sprites/Knight/_Idle.png
+#begin Textures/Sprites/Knight/Knight_Attack.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -354,9 +270,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Knight/_Idle.png
+/build:Textures/Sprites/Knight/Knight_Attack.png
 
-#begin Sprites/Knight/_Jump.png
+#begin Textures/Sprites/Knight/Knight_Death.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -366,9 +282,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Knight/_Jump.png
+/build:Textures/Sprites/Knight/Knight_Death.png
 
-#begin Sprites/Knight/_JumpFallInbetween.png
+#begin Textures/Sprites/Knight/Knight_Fall.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -378,9 +294,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Knight/_JumpFallInbetween.png
+/build:Textures/Sprites/Knight/Knight_Fall.png
 
-#begin Sprites/Knight/_Run.png
+#begin Textures/Sprites/Knight/Knight_Hit.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -390,9 +306,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Knight/_Run.png
+/build:Textures/Sprites/Knight/Knight_Hit.png
 
-#begin Sprites/Projectile/Arrow.png
+#begin Textures/Sprites/Knight/Knight_Idle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -402,9 +318,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Projectile/Arrow.png
+/build:Textures/Sprites/Knight/Knight_Idle.png
 
-#begin Sprites/Skeleton/Skeleton Attack.png
+#begin Textures/Sprites/Knight/Knight_Jump.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -414,9 +330,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Skeleton/Skeleton Attack.png;Sprites/Skeleton/_Attack.png
+/build:Textures/Sprites/Knight/Knight_Jump.png
 
-#begin Sprites/Skeleton/Skeleton Dead.png
+#begin Textures/Sprites/Knight/Knight_Run.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -426,9 +342,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Skeleton/Skeleton Dead.png;Sprites/Skeleton/_Death.png
+/build:Textures/Sprites/Knight/Knight_Run.png
 
-#begin Sprites/Skeleton/Skeleton Hit.png
+#begin Textures/Sprites/Projectiles/Arrow.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -438,9 +354,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Skeleton/Skeleton Hit.png;Sprites/Skeleton/_Hit.png
+/build:Textures/Sprites/Projectiles/Arrow.png
 
-#begin Sprites/Skeleton/Skeleton Idle.png
+#begin Textures/Sprites/Skeleton/Skeleton_Attack.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -450,9 +366,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Skeleton/Skeleton Idle.png;Sprites/Skeleton/_Idle.png
+/build:Textures/Sprites/Skeleton/Skeleton_Attack.png
 
-#begin Sprites/Skeleton/Skeleton Walk.png
+#begin Textures/Sprites/Skeleton/Skeleton_Death.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -462,9 +378,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/Skeleton/Skeleton Walk.png;Sprites/Skeleton/_Run.png
+/build:Textures/Sprites/Skeleton/Skeleton_Death.png
 
-#begin Tile1.png
+#begin Textures/Sprites/Skeleton/Skeleton_Hit.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -474,5 +390,53 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Tile1.png
+/build:Textures/Sprites/Skeleton/Skeleton_Hit.png
+
+#begin Textures/Sprites/Skeleton/Skeleton_Idle.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Sprites/Skeleton/Skeleton_Idle.png
+
+#begin Textures/Sprites/Skeleton/Skeleton_Run.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/Sprites/Skeleton/Skeleton_Run.png
+
+#begin Textures/TileAssets/CastleGroundTile.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/TileAssets/CastleGroundTile.png
+
+#begin Textures/TileAssets/GrassTile.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/TileAssets/GrassTile.png
 

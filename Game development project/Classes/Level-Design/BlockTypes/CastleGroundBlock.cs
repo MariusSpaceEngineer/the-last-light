@@ -13,7 +13,7 @@ namespace Game_development_project.Classes.Level_Design.TypeBlocks
     {
         public CastleGroundBlock(Rectangle newrectangle) : base(newrectangle)
         {
-            texture = Content.Load<Texture2D>("Castle_Ground");
+            texture = Content.Load<Texture2D>("Textures/TileAssets/CastleGroundTile");
             this.Rectangle = newrectangle;
 
         }
