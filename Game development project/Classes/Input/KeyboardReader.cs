@@ -13,9 +13,7 @@ namespace Game_development_project.Classes.Input
 
     internal class KeyboardReader : IInputReader
     {
-        //public static SpriteStates SpriteState { get; set; }
-        //public static Direction SpriteDirection { get; set; }
-
+       
         public static Direction herodirection;
 
         public static State characterState;
@@ -23,7 +21,7 @@ namespace Game_development_project.Classes.Input
         public Vector2 ReadInput()
         {
             bool attacking = false;
-            KeyboardState state = Keyboard.GetState();
+            KeyboardState state = (KeyboardState)GetInputState();
             Vector2 direction = Vector2.Zero;
 
             if (!attacking)
@@ -36,11 +34,6 @@ namespace Game_development_project.Classes.Input
 
                     characterState = new MoveState();
                     herodirection = new LeftDirection();
-
-                    //SpriteState = SpriteStates.Left;
-                    //SpriteDirection = Direction.Left;
-
-
                 }
                 else if (state.IsKeyDown(Keys.Right))
                 {
@@ -48,41 +41,30 @@ namespace Game_development_project.Classes.Input
 
                     characterState = new MoveState();
                     herodirection = new RightDirection();
-
-                    //SpriteState = SpriteStates.Right;
-                    //SpriteDirection = Direction.Right;
-
                 }
                 else if (state.IsKeyDown(Keys.Up))
                 {
                     characterState = new JumpState();
-
-
-                    //SpriteState = SpriteStates.Up;
-                }
-                else if (state.IsKeyDown(Keys.Down))
-                {
-
-                    //SpriteState = SpriteStates.Down;
-
                 }
 
                 else if (state.IsKeyDown(Keys.F))
                 {
                     characterState = new AttackState();
-
-                    //SpriteState = SpriteStates.Attack;
                     attacking = true;
                 }
 
                 else
                 {
-                    characterState = new IdleState();
-                    // SpriteState = SpriteStates.Idle;
+                    characterState = new IdleState();     
                 }
             }
 
             return direction;
+        }
+
+        public object GetInputState()
+        {
+            return Keyboard.GetState();
         }
 
     }

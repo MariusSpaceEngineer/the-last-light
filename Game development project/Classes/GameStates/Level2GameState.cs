@@ -18,9 +18,7 @@ namespace Game_development_project.Classes.GameStates
     internal class Level2GameState : In_GameState
     {
 
-        //private Game1 game;
-        //private List<Sprite> spriteList;
-        //private Texture2D backgroundLevel;
+       
 
         public Level2GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {  

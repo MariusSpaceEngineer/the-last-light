@@ -6,36 +6,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game_development_project.Classes.Input;
+using System.Diagnostics;
 
 namespace Game_development_project.Classes.Menu
 {
     internal class Button : Component
     {
      
-        private MouseState _currentMouse;
+        private IInputReader inputReader;
 
-        private SpriteFont _font;
+        private MouseState currentMouseState;
+        private MouseState previousMouseState;
 
-        private bool _isHovering;
+        private bool mouseHooveringOverButton;
 
-        private MouseState _previousMouse;
 
-        private Texture2D _texture;
+        private SpriteFont buttonFont;
+        private Texture2D texture;
 
 
         public event EventHandler Click;
 
-        public bool Clicked { get; private set; }
-
-        public Color PenColour { get; set; }
+        public Color FontColor { get; set; }
 
         public Vector2 Position { get; set; }
 
-        public Rectangle Rectangle
+        private Rectangle positionRectangle
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
             }
         }
 
@@ -43,54 +44,61 @@ namespace Game_development_project.Classes.Menu
 
      
 
-        public Button(Texture2D texture, SpriteFont font)
+        public Button(Texture2D buttonTexture, SpriteFont font)
         {
-            _texture = texture;
+            this.inputReader = new MouseReader();
 
-            _font = font;
+            this.texture = buttonTexture;
 
-            PenColour = Color.Black;
+            buttonFont = font;
+
+            FontColor = Color.Black;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            var colour = Color.White;
+            var buttonColor = Color.White;
 
-            if (_isHovering)
-                colour = Color.Gray;
+            if (mouseHooveringOverButton)
+                buttonColor = Color.Gray;
 
-            spriteBatch.Draw(_texture, Rectangle, colour);
+            spriteBatch.Draw(texture, positionRectangle, buttonColor);
 
             if (!string.IsNullOrEmpty(Text))
             {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
+                var x = (positionRectangle.X + (positionRectangle.Width / 2)) - (buttonFont.MeasureString(Text).X / 2);
+                var y = (positionRectangle.Y + (positionRectangle.Height / 2)) - (buttonFont.MeasureString(Text).Y / 2);
 
-                spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColour);
+                spriteBatch.DrawString(buttonFont, Text, new Vector2(x, y), FontColor);
             }
         }
 
         public override void Update(GameTime gameTime)
         {
-            _previousMouse = _currentMouse;
-            _currentMouse = Mouse.GetState();
+            previousMouseState = currentMouseState;
+            currentMouseState = (MouseState)inputReader.GetInputState();
+            Vector2 mousePosition = inputReader.ReadInput();
+            var mousePositionRectangle = new Rectangle((int)mousePosition.X, (int)mousePosition.Y,1,1);
 
-            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
+            mouseHooveringOverButton = false;
 
-            _isHovering = false;
-
-            if (mouseRectangle.Intersects(Rectangle))
+            if (mousePositionRectangle.Intersects(positionRectangle))
             {
-                _isHovering = true;
+                Debug.WriteLine("Mouse intersects");
+                mouseHooveringOverButton = true;
 
-                if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
+                if (currentMouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed)
                 {
-                    Click?.Invoke(this, new EventArgs());
+                    Click.Invoke(this, new EventArgs());
+                  
                 }
+
+               
             }
+        
         }
 
-    
+
     }
 }
 
