@@ -78,17 +78,27 @@ namespace Game_development_project.Classes.GameStates
 
         public override void Update(GameTime gameTime)
         {
-            if (Hero.GetHero().HasDied)
-            {
 
-                game.ChangeState(new GameOverState(game, game.GraphicsDevice, game.Content));
+            if (Hero.GetHero().HasDied || Hero.GetHero().isOnTrigger)
+            {
+                if (Hero.GetHero().HasDied)
+                {
+                    game.ChangeState(new GameOverState(game, game.GraphicsDevice, game.Content));
+                    Hero.GetHero().HasDied = false;
+                }
+                else if (Hero.GetHero().isOnTrigger)
+                {
+                    game.ChangeState(new LevelCompleteState(game, game.GraphicsDevice, game.Content));
+                    Hero.GetHero().isOnTrigger = false;
+
+                }
+
                 foreach (var sprite in spriteList)
                 {
                     if (sprite is Hero)
                     {
                         Debug.WriteLine("Hero found");
                         Hero.GetHero().ResetHero();
-                        Hero.GetHero().HasDied = false;
 
                     }
                 }

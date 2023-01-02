@@ -54,7 +54,8 @@ namespace Game_development_project
             triggerBlokTexture.SetData(new[] { Color.Red });
 
             Block.Content = Content;
-           
+
+
             _currentState = new MainMenuState(this, _graphics.GraphicsDevice, Content);
             _currentState.LoadContent(Content);
 
