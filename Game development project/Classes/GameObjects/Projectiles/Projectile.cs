@@ -20,6 +20,8 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
 
         public float movementDirection;
 
+        private bool heroTouchedByArrow = false;
+
         //protected Rectangle boundingBox;
         //protected Texture2D boundingBoxTexture;
         //public Rectangle BoundingBox
@@ -42,14 +44,22 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
         {
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (_timer >= LifeSpan || boundingBox.Intersects(Hero.GetHero().BoundingBox))
+            CheckCollision(Hero.GetHero().BoundingBox);
+
+            if (_timer >= LifeSpan || heroTouchedByArrow)
             {
                 IsRemoved = true;
+
             }
-            if (boundingBox.Intersects(Hero.GetHero().BoundingBox))
+
+            if (heroTouchedByArrow)
             {
                 CheckTargetHealth(Hero.GetHero());
+                heroTouchedByArrow = false;
             }
+
+        
+           
 
             Position.X += movementDirection * HorizontalVelocity;
      
@@ -70,6 +80,14 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
                 target.CharacterState = new DeathState();
             }
 
+        }
+
+        public override void CheckCollision(Rectangle newRectangle)
+        {
+            if (BoundingBox.TouchLeftOf(newRectangle) || BoundingBox.TouchRightOf(newRectangle) || BoundingBox.TouchTopOf(newRectangle) || BoundingBox.TouchBottomOf(newRectangle))
+            {
+                heroTouchedByArrow = true;
+            }
         }
 
 
