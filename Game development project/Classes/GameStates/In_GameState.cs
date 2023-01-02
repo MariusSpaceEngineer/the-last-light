@@ -78,6 +78,7 @@ namespace Game_development_project.Classes.GameStates
 
         public override void Update(GameTime gameTime)
         {
+            Debug.WriteLine(Hero.GetHero().Position);
 
             if (Hero.GetHero().HasDied || Hero.GetHero().isOnTrigger)
             {
