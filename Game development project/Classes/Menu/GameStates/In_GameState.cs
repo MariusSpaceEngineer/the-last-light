@@ -153,54 +153,53 @@ namespace Game_development_project.Classes.GameStates
 
         public override void LoadContent(ContentManager content)
         {
-            LoadHero(content);
+            LoadKnight(content);
             LoadSkeleton(content);
             LoadBandit(content);
             LoadHuntress(content);
-            arrowTexture = content.Load<Texture2D>("Sprites/Projectile/Arrow");
+            arrowTexture = content.Load<Texture2D>("Textures/Sprites/Projectiles/Arrow");
 
         }
 
 
 
-        private void LoadHero(ContentManager content)
+        private void LoadKnight(ContentManager content)
         {
 
-            heroAttackSprite = content.Load<Texture2D>("Sprites/Knight/_Attack");
-            heroDamageSprite = content.Load<Texture2D>("Sprites/Knight/_Hit");
-            heroDeathSprite = content.Load<Texture2D>("Sprites/Knight/_Death");
-            heroIdleSprite = content.Load<Texture2D>("Sprites/Knight/_Idle");
-            heroJumpSprite = content.Load<Texture2D>("Sprites/Knight/_Jump");
-            heroJumpFallInBetween = content.Load<Texture2D>("Sprites/Knight/_JumpFallInbetween");
-            heroMoveSprite = content.Load<Texture2D>("Sprites/Knight/_Run");
+            heroAttackSprite = content.Load<Texture2D>("Textures/Sprites/Knight/Knight_Attack");
+            heroDamageSprite = content.Load<Texture2D>("Textures/Sprites/Knight/Knight_Hit");
+            heroDeathSprite = content.Load<Texture2D>("Textures/Sprites/Knight/Knight_Death");
+            heroIdleSprite = content.Load<Texture2D>("Textures/Sprites/Knight/Knight_Idle");
+            heroJumpSprite = content.Load<Texture2D>("Textures/Sprites/Knight/Knight_Jump");
+            heroMoveSprite = content.Load<Texture2D>("Textures/Sprites/Knight/Knight_Run");
 
         }
 
         private void LoadSkeleton(ContentManager content)
         {
-            skeletonAttackSprite = content.Load<Texture2D>("Sprites/Skeleton/_Attack");
-            skeletonDamageSprite = content.Load<Texture2D>("Sprites/Skeleton/_Hit");
-            skeletonDeathSprite = content.Load<Texture2D>("Sprites/Skeleton/_Death");
-            skeletonIdleSprite = content.Load<Texture2D>("Sprites/Skeleton/_Idle");
-            skeletonMoveSprite = content.Load<Texture2D>("Sprites/Skeleton/_Run");
+            skeletonAttackSprite = content.Load<Texture2D>("Textures/Sprites/Skeleton/Skeleton_Attack");
+            skeletonDamageSprite = content.Load<Texture2D>("Textures/Sprites/Skeleton/Skeleton_Hit");
+            skeletonDeathSprite = content.Load<Texture2D>("Textures/Sprites/Skeleton/Skeleton_Death");
+            skeletonIdleSprite = content.Load<Texture2D>("Textures/Sprites/Skeleton/Skeleton_Idle");
+            skeletonMoveSprite = content.Load<Texture2D>("Textures/Sprites/Skeleton/Skeleton_Run");
         }
 
         private void LoadBandit(ContentManager content)
         {
-            banditAttackSprite = content.Load<Texture2D>("Sprites/Heavy Bandit/_Attack");
-            banditDamageSprite = content.Load<Texture2D>("Sprites/Heavy Bandit/_Hit");
-            banditDeathSprite = content.Load<Texture2D>("Sprites/Heavy Bandit/_Death");
-            banditIdleSprite = content.Load<Texture2D>("Sprites/Heavy Bandit/_Idle");
-            banditMoveSprite = content.Load<Texture2D>("Sprites/Heavy Bandit/_Run");
+            banditAttackSprite = content.Load<Texture2D>("Textures/Sprites/HeavyBandit/HeavyBandit_Attack");
+            banditDamageSprite = content.Load<Texture2D>("Textures/Sprites/HeavyBandit/HeavyBandit_Hit");
+            banditDeathSprite = content.Load<Texture2D>("Textures/Sprites/HeavyBandit/HeavyBandit_Death");
+            banditIdleSprite = content.Load<Texture2D>("Textures/Sprites/HeavyBandit/HeavyBandit_Idle");
+            banditMoveSprite = content.Load<Texture2D>("Textures/Sprites/HeavyBandit/HeavyBandit_Run");
         }
 
         private void LoadHuntress(ContentManager content)
         {
-            huntressAttackSprite = content.Load<Texture2D>("Sprites/Huntress/_Attack");
-            huntressDamageSprite = content.Load<Texture2D>("Sprites/Huntress/_Hit");
-            huntressDeathSprite = content.Load<Texture2D>("Sprites/Huntress/_Death");
-            huntressIdleSprite = content.Load<Texture2D>("Sprites/Huntress/_Idle");
-            huntressMoveSprite = content.Load<Texture2D>("Sprites/Huntress/_Run");
+            huntressAttackSprite = content.Load<Texture2D>("Textures/Sprites/Huntress/Huntress_Attack");
+            huntressDamageSprite = content.Load<Texture2D>("Textures/Sprites/Huntress/Huntress_Hit");
+            huntressDeathSprite = content.Load<Texture2D>("Textures/Sprites/Huntress/Huntress_Death");
+            huntressIdleSprite = content.Load<Texture2D>("Textures/Sprites/Huntress/Huntress_Idle");
+            huntressMoveSprite = content.Load<Texture2D>("Textures/Sprites/Huntress/Huntress_Run");
 
 
         }

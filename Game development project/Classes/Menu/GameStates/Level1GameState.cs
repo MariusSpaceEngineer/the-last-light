@@ -32,7 +32,7 @@ namespace Game_development_project.Classes.GameStates
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-            backgroundLevel = content.Load<Texture2D>("Background/village_level1");
+            backgroundLevel = content.Load<Texture2D>("Textures/Backgrounds/VillageBackgroundLevel1");
             
         }
         public override void InitializeContent()
@@ -58,12 +58,12 @@ namespace Game_development_project.Classes.GameStates
                      projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
                  },
                  new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(4594, 335), 2, 50, game.boundingBoxTexture),
-                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(5518, 450), 6, 50,game.boundingBoxTexture)
+                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(5518, 450), 4, 50,game.boundingBoxTexture)
                  {
                      //Position = new Vector2(300, 350),
                      projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
                  },
-                   new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(5068, 450), 6, 50,game.boundingBoxTexture)
+                   new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(5068, 450), 4, 50,game.boundingBoxTexture)
                  {
                      //Position = new Vector2(300, 350),
                      projectile = new Arrow(arrowTexture, game.boundingBoxTexture)

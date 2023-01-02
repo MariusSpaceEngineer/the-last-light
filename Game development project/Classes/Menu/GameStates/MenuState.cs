@@ -59,9 +59,9 @@ namespace Game_development_project.Classes.GameStates
 
         public override void LoadContent(ContentManager content)
         {
-            buttonTexture = content.Load<Texture2D>("Menu/Button/Button_style");
-            buttonFont = content.Load<SpriteFont>("Menu/Button/Button_Font");
-            backgroundImage = content.Load<Texture2D>("Background/mainMenu");
+            buttonTexture = content.Load<Texture2D>("Textures/Menu/Button");
+            buttonFont = content.Load<SpriteFont>("Fonts/ButtonFont");
+            backgroundImage = content.Load<Texture2D>("Textures/Backgrounds/MainMenuBackground");
         }
 
        

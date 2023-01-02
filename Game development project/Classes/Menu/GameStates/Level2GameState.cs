@@ -32,7 +32,7 @@ namespace Game_development_project.Classes.GameStates
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-            backgroundLevel = content.Load<Texture2D>("Background/castle_level2");
+            backgroundLevel = content.Load<Texture2D>("Textures/Backgrounds/CastleBackgroundLevel2");
         }
 
         public override void InitializeContent()

@@ -21,7 +21,7 @@ namespace Game_development_project.Classes.GameStates
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-            backgroundImage = content.Load<Texture2D>("Background/mainMenu");
+            backgroundImage = content.Load<Texture2D>("Textures/Backgrounds/MainMenuBackground");
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
