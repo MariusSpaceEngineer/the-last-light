@@ -1,6 +1,6 @@
 ﻿using Default_Block;
-using Game_development_project.Classes;
 using Game_development_project.Classes.GameStates;
+using Game_development_project.Classes.Miscellaneous;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
