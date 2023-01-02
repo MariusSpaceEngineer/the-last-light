@@ -22,6 +22,7 @@ namespace Game_development_project.Classes.Characters.Enemies
 
         public ProjectileEnemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance, boundingBoxTexture)
         {
+            this.ChasingSpeed = speed;
         }
         public override void Patrol()
         {
@@ -42,7 +43,7 @@ namespace Game_development_project.Classes.Characters.Enemies
                     playerDirection = new LeftDirection();
                     Direction = new LeftDirection();
                  
-                    HorizontalVelocity = Direction.movementDirection.X;
+                    HorizontalVelocity = Direction.movementDirection.X * ChasingSpeed;
 
                     if (heroPosition >= -100)
                     {
@@ -55,7 +56,7 @@ namespace Game_development_project.Classes.Characters.Enemies
                 {
                     playerDirection = new RightDirection();
                     Direction = new RightDirection();
-                    HorizontalVelocity = Direction.movementDirection.X;
+                    HorizontalVelocity = Direction.movementDirection.X * ChasingSpeed;
 
                     if (heroPosition >= 100)
                     {

@@ -15,6 +15,7 @@ namespace Game_development_project.Classes.Characters
     {
         public float CurrentDistance { get; set; }
         public float PatrolDistance { get; set; }
+        public float ChasingSpeed { get; set; }
 
         public Enemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float patrolDistance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite)
         {
