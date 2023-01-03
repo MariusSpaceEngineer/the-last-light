@@ -26,9 +26,9 @@ namespace Game_development_project.Classes.GameStates
         public Texture2D heroDeathSprite;
         public Texture2D heroIdleSprite;
         public Texture2D heroJumpSprite;
-        public Texture2D heroJumpFallInBetween;
+        //public Texture2D heroJumpFallInBetween;
         public Texture2D heroMoveSprite;
-        public Texture2D heroBlokTexture;
+        //public Texture2D heroBlokTexture;
 
         public Texture2D skeletonAttackSprite;
         public Texture2D skeletonDamageSprite;
@@ -77,59 +77,26 @@ namespace Game_development_project.Classes.GameStates
             }
             spriteBatch.End();
         }
-
         public override void Update(GameTime gameTime)
         {
-            Debug.WriteLine(Hero.GetHero().Position);
+            Hero hero = Hero.GetHero();
+            Debug.WriteLine(hero.Position);
 
-            if (Hero.GetHero().HasDied || Hero.GetHero().isOnTrigger)
+            if (hero.HasDied || hero.isOnTrigger)
             {
-                if (Hero.GetHero().HasDied)
-                {
-                    game.ChangeState(new GameOverState(game, game.GraphicsDevice, game.Content));
-                    Hero.GetHero().HasDied = false;
-                }
-                else if (Hero.GetHero().isOnTrigger)
-                {
-                    game.ChangeState(new LevelCompleteState(game, game.GraphicsDevice, game.Content));
-                    Hero.GetHero().isOnTrigger = false;
-
-                }
-
-                foreach (var sprite in spriteList)
-                {
-                    if (sprite is Hero)
-                    {
-                        Debug.WriteLine("Hero found");
-                        Hero.GetHero().ResetHero();
-
-                    }
-                }
+               CheckPlayerState(hero);
 
             }
             else
             {
-                camera.Update(Hero.GetHero().Position, Hero.GetHero().CurrentLevel.Width, Hero.GetHero().CurrentLevel.Height);
-                if (spriteList != null)
+                camera.Update(hero.Position, hero.CurrentLevel.Width);
+
+                foreach (var sprite in spriteList.ToArray())
                 {
-                    foreach (var sprite in spriteList.ToArray())
-                    {
-                        if (Hero.GetHero().BoundingBox.TouchLeftOf(sprite.BoundingBox))
-                        {
-                            Hero.GetHero().Position.X = sprite.BoundingBox.X - Hero.GetHero().BoundingBox.Width - 55;
-                        }
-                        else if (Hero.GetHero().BoundingBox.TouchRightOf(sprite.BoundingBox))
-                        {
-                            Hero.GetHero().Position.X = sprite.BoundingBox.Right - Hero.GetHero().BoundingBox.Width - 20;
-                        }
-                        sprite.Update(gameTime, spriteList);
+                    CheckPlayerCollisionWithEnemies(hero, sprite);
 
-                    }
-
+                    sprite.Update(gameTime, spriteList);
                 }
-
-               
-
             }
             PostUpdate();
         }
@@ -150,6 +117,45 @@ namespace Game_development_project.Classes.GameStates
             }
             
         }
+        private void CheckPlayerState(Hero player)
+        {
+            if (player.HasDied)
+            {
+                game.ChangeState(new GameOverState(game, game.GraphicsDevice, game.Content));
+                Hero.GetHero().HasDied = false;
+            }
+            else if (player.isOnTrigger)
+            {
+                game.ChangeState(new LevelCompleteState(game, game.GraphicsDevice, game.Content));
+                Hero.GetHero().isOnTrigger = false;
+
+            }
+
+            foreach (var sprite in spriteList)
+            {
+                if (sprite is Hero)
+                {
+                    Debug.WriteLine("Hero found");
+                    player.ResetHero();
+
+                }
+            }
+
+        }
+
+        private void CheckPlayerCollisionWithEnemies(Hero player, Sprite enemy)
+        {
+            if (player.BoundingBox.TouchLeftOf(enemy.BoundingBox))
+            {
+                player.Position.X = enemy.BoundingBox.X - player.BoundingBox.Width - 55;
+            }
+            else if (player.BoundingBox.TouchRightOf(enemy.BoundingBox))
+            {
+                player.Position.X = enemy.BoundingBox.Right - player.BoundingBox.Width - 20;
+            }
+
+        }
+
 
         public override void LoadContent(ContentManager content)
         {
