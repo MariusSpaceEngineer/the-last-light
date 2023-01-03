@@ -12,7 +12,7 @@ namespace Game_development_project.Classes.Miscellaneous
     {
         private Matrix transform;
         public Matrix Transform { get { return transform; } }
-        private Vector2 centre;
+        private Vector2 centerView;
         private Viewport viewport;
 
         public Camera(Viewport newViewport)
@@ -20,34 +20,27 @@ namespace Game_development_project.Classes.Miscellaneous
             viewport = newViewport;
         }
 
-        public void Update(Vector2 position, int xOffset, int yOffset)
+        public void Update(Vector2 targetPosition, int xOffset)
         {
-            if (position.X < viewport.Width / 2)
+            if (targetPosition.X < viewport.Width / 2)
             {
-                centre.X = viewport.Width / 2;
+                centerView.X = viewport.Width / 2;
             }
-            else if (position.X > xOffset - viewport.Width / 2)
+            else if (targetPosition.X > xOffset - viewport.Width / 2)
             {
-                centre.X = xOffset - viewport.Width / 2;
+                centerView.X = xOffset - viewport.Width / 2;
             }
             else
             {
-                centre.X = position.X;
+                centerView.X = targetPosition.X;
             }
 
-            if (position.Y < viewport.Height / 2)
+            if (targetPosition.Y < viewport.Height / 2)
             {
-                centre.Y = viewport.Height / 2;
+                centerView.Y = viewport.Height / 2;
             }
-            //else if (position.Y > yOffset - (viewport.Height / 2))
-            //{
-            //    centre.Y = yOffset - (viewport.Height / 2);
-            //}
-            //else
-            //{
-            //    centre.Y = position.Y;
-            //}
-            transform = Matrix.CreateTranslation(new Vector3(-centre.X + viewport.Width / 2, -centre.Y + viewport.Height / 2, 0));
+
+            transform = Matrix.CreateTranslation(new Vector3(-centerView.X + viewport.Width / 2, -centerView.Y + viewport.Height / 2, 0));
 
         }
     }
