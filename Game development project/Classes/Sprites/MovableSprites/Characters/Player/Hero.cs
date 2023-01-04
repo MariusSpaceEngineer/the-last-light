@@ -52,7 +52,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
 
         //In ICanJump interface?
         //Used to determine if the hero is in the air, needs some work though
-        public bool HasJumped { get; set; } = false;
+        public bool HasJumped { get; set; }
         public float FallVelocity { get; set; } = 0;
 
 
@@ -386,6 +386,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
         {
             //Maybe use the collision helper to stop the player from falling, it may fix the little jumping when on a new block
 
+
             Position.Y += FallVelocity;
 
             //Use the inputreader here maybe?
@@ -393,17 +394,24 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
             {
                 FallVelocity = jumpHeight;
                 HasJumped = true;
+                isOnObject = false;
             }
 
-            if (HasJumped)
+            if (HasJumped && isOnObject == false)
             {
                 float i = 1;
                 FallVelocity += fallSpeed * i;
 
+
+            }
+            else if (HasJumped == false && isOnObject == true )
+            {
+                FallVelocity = 0f;
             }
             //Stops with jumping when hits the buttom of the screen
             //Not used can be removed
-            if (Position.Y + jumpSprite.Height > 600)
+
+            if (isOnObject == false)
             {
                 HasJumped = false;
             }
@@ -412,22 +420,27 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
                 HasJumped = true;
             }
 
-            if (HasJumped == false)
-            {
-                FallVelocity = 0f;
-            }
+
+            //if (HasJumped == false && isOnObject == true)
+            //{
+            //    FallVelocity = 0f;
+
+            //}
+
         }
 
         public override void CheckCollision(Rectangle newRectangle)
         {
             if (boundingBox.TouchTopOf(newRectangle))
             {
-
-                //Last int value depends on the size of the tilemap and sprite
-                Position.Y = newRectangle.Top - boundingBox.Height - 50;
-                Debug.WriteLine("Touching top");
-                HasJumped = false;
                 isOnObject = true;
+                HasJumped = false;
+                //Last int value depends on the size of the tilemap and sprite
+                //If the last value is bigger than 43 the player will start jumping on the tile for a while
+                Position.Y = newRectangle.Top - boundingBox.Height - 43;
+                Debug.WriteLine("Touching top");
+               
+                
 
             }
             else
