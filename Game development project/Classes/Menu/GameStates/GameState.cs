@@ -11,11 +11,34 @@ namespace Game_development_project.Classes.GameStates
 {
     public abstract class GameState
     {
-        protected Game1 game;
+        #region Private variables
 
-        protected GraphicsDevice graphicsDevice;
+        private Game1 game;
+        private GraphicsDevice graphicsDevice;
+        private ContentManager content;
 
-        protected ContentManager content;
+        #endregion
+
+        #region Get/Setters
+
+        public Game1 Game
+        {
+            get { return game; }
+        }
+
+        public GraphicsDevice GraphicsDevice
+        {
+            get { return graphicsDevice; }
+        }
+
+        public ContentManager Content
+        {
+            get { return content; }
+            set { content = value; }
+        }
+
+        #endregion
+
 
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
         {
@@ -23,8 +46,10 @@ namespace Game_development_project.Classes.GameStates
 
             this.graphicsDevice = graphicsDevice;
 
-            this.content = content;
+            this.Content = content;
         }
+
+        #region Virtual methods
 
         public virtual void LoadContent(ContentManager content)
         {
@@ -50,6 +75,8 @@ namespace Game_development_project.Classes.GameStates
         {
 
         }
+
+        #endregion
 
 
     }

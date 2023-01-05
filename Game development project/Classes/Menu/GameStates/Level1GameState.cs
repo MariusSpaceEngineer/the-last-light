@@ -1,6 +1,7 @@
 ﻿using Default_Block;
 using Default_Level;
 using Game_development_project.Classes.GameObjects.Projectiles;
+using Game_development_project.Classes.Level_Design.Level;
 using Game_development_project.Classes.Level_Design.Level1;
 using Game_development_project.Classes.Level_Design.Level2;
 using Game_development_project.Classes.Sprites;
@@ -23,56 +24,60 @@ namespace Game_development_project.Classes.GameStates
 {
     internal class Level1GameState : In_GameState
     {
-        
+
         public Level1GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
+            Level = new Level1(new Level1BlockFactory());
             LoadContent(content);
             InitializeContent();
         }
+
+        #region Override methods
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-            backgroundLevel = content.Load<Texture2D>("Textures/Backgrounds/VillageBackgroundLevel1");
-            
+            BackgroundLevel = content.Load<Texture2D>("Textures/Backgrounds/VillageBackgroundLevel1");
+
         }
+
         public override void InitializeContent()
         {
-            level = new Level1(new Level1BlockFactory());
-            level.Generate(level.Map, 64);
-            
-
-            spriteList = new List<Sprite>() {
-                 Hero.GetHero(heroAttackSprite, heroDamageSprite, heroDeathSprite, heroIdleSprite, heroMoveSprite, heroJumpSprite, game.boundingBoxTexture, level),
-
-                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(1030, 450), 2, 50,game.boundingBoxTexture)
-                 {
-                     //Position = new Vector2(1030, 303),
-                     projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
-                 },
-                 new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(1552, 475), 2, game.boundingBoxTexture),
-                 new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(1852, 465), 2, 50, game.boundingBoxTexture),
-                 new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 50, new Vector2(2890, 285), 2, game.boundingBoxTexture),
-                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(4180, 450), 2, 50,game.boundingBoxTexture)
-                 {
-                     //Position = new Vector2(300, 350),
-                     projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
-                 },
-                 new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(4594, 335), 2, 50, game.boundingBoxTexture),
-                 new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(5518, 450), 4, 50,game.boundingBoxTexture)
-                 {
-                     //Position = new Vector2(300, 350),
-                     projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
-                 },
-                   new Huntress(huntressAttackSprite,huntressDamageSprite, huntressDeathSprite, huntressIdleSprite, huntressMoveSprite, new Vector2(5068, 450), 4, 50,game.boundingBoxTexture)
-                 {
-                     //Position = new Vector2(300, 350),
-                     projectile = new Arrow(arrowTexture, game.boundingBoxTexture)
-                 },
-                 new Skeleton(skeletonAttackSprite, skeletonDamageSprite, skeletonDeathSprite,skeletonIdleSprite, skeletonMoveSprite, 100, new Vector2(6546,475), 3, game.boundingBoxTexture),
-                 new Bandit(banditAttackSprite, banditDamageSprite, banditDeathSprite, banditIdleSprite, banditMoveSprite, new Vector2(6954, 475), 3, 100, game.boundingBoxTexture),
-            };
+            Level = GenerateLevel(Level, 64);
+            SpriteList = GenerateLevelSpriteList();
         }
 
+        public override List<Sprite> GenerateLevelSpriteList()
+        {
+            List<Sprite> spriteList = new List<Sprite>(){
+                 Hero.GetHero(HeroAttackSprite, HeroDamageSprite, HeroDeathSprite, HeroIdleSprite, HeroMoveSprite, HeroJumpSprite, Game.boundingBoxTexture, Level),
+
+                 new Huntress(HuntressAttackSprite,HuntressDamageSprite, HuntressDeathSprite, HuntressIdleSprite, HuntressMoveSprite, new Vector2(1030, 450), 2, 50,Game.boundingBoxTexture)
+                 {
+                    Projectile = new Arrow(ArrowTexture, Game.boundingBoxTexture)
+                 },
+                 new Skeleton(SkeletonAttackSprite, SkeletonDamageSprite, SkeletonDeathSprite,SkeletonIdleSprite, SkeletonMoveSprite, 50, new Vector2(1552, 475), 2, Game.boundingBoxTexture),
+                 new Bandit(BanditAttackSprite, BanditDamageSprite, BanditDeathSprite, BanditIdleSprite, BanditMoveSprite, new Vector2(1852, 465), 2, 50, Game.boundingBoxTexture),
+                 new Skeleton(SkeletonAttackSprite, SkeletonDamageSprite, SkeletonDeathSprite,SkeletonIdleSprite, SkeletonMoveSprite, 50, new Vector2(2890, 285), 2, Game.boundingBoxTexture),
+                 new Huntress(HuntressAttackSprite,HuntressDamageSprite, HuntressDeathSprite, HuntressIdleSprite, HuntressMoveSprite, new Vector2(4180, 450), 2, 50,Game.boundingBoxTexture)
+                 {
+                    Projectile = new Arrow(ArrowTexture, Game.boundingBoxTexture)
+                 },
+                 new Bandit(BanditAttackSprite, BanditDamageSprite, BanditDeathSprite, BanditIdleSprite, BanditMoveSprite, new Vector2(4594, 335), 2, 50, Game.boundingBoxTexture),
+                 new Huntress(HuntressAttackSprite,HuntressDamageSprite, HuntressDeathSprite, HuntressIdleSprite, HuntressMoveSprite, new Vector2(5518, 450), 4, 50,Game.boundingBoxTexture)
+                 {
+                     Projectile = new Arrow(ArrowTexture, Game.boundingBoxTexture)
+                 },
+                   new Huntress(HuntressAttackSprite,HuntressDamageSprite, HuntressDeathSprite, HuntressIdleSprite, HuntressMoveSprite, new Vector2(5068, 450), 4, 50,Game.boundingBoxTexture)
+                 {
+                     Projectile = new Arrow(ArrowTexture, Game.boundingBoxTexture)
+                 },
+                 new Skeleton(SkeletonAttackSprite, SkeletonDamageSprite, SkeletonDeathSprite,SkeletonIdleSprite, SkeletonMoveSprite, 100, new Vector2(6546,475), 3, Game.boundingBoxTexture),
+                 new Bandit(BanditAttackSprite, BanditDamageSprite, BanditDeathSprite, BanditIdleSprite, BanditMoveSprite, new Vector2(6954, 475), 3, 100, Game.boundingBoxTexture),
+            };
+            return spriteList;
+        }
+
+        #endregion
 
     }
 

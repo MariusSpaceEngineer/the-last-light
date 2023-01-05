@@ -13,26 +13,42 @@ namespace Default_Level
 {
     abstract public class Level
     {
-      
+        #region Private variables
+
+        //The list which will hold the tiles of the tilemap
         private List<Block> tileList = new List<Block>();
+
+        //The width and height of the level
+        private int width;
+        private int height;
+        
+        //The map in matrix-form
+        private int[,] map;
+
+        //The factory that will be used to create tiles
+        private BlockFactory blockFactory;
+
+        #endregion
+
+        #region Get/Setters
+
         public List<Block> TileList
         {
             get { return tileList; }
         }
 
-        private int width, height;
         public int Width { get { return width; } }
         public int Height { get { return height; } }
 
-        BlockFactory blockFactory;
-
-        private int[,] map;
-
-  
         public int[,] Map { get { return map; } set { map = value; } }
+
+        #endregion
+
         public Level(BlockFactory blockFactory) {
             this.blockFactory = blockFactory;
         }
+
+        #region Public methods
 
         public void Generate(int[,] map, int size)
         {
@@ -62,6 +78,8 @@ namespace Default_Level
                 tile.Draw(spriteBatch);
             }
         }
+
+        #endregion
     }
 }
 

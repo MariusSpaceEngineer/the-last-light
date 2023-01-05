@@ -9,25 +9,37 @@ namespace Game_development_project.Classes.Animations
 {
     internal class Animation
     {
-        public AnimationFrame CurrentFrame { get; set; }
+        #region Private variables
+
         private List<AnimationFrame> frames;
         private int counter;
-        private int FPS;
+        private double secondCounter = 0;
+        private int fps;
+
+        #endregion
+
+        #region Get/Setters
+
+        public AnimationFrame CurrentFrame { get; set; }
+
+        #endregion
 
         public Animation(int fps)
         {
             frames = new List<AnimationFrame>();
-            FPS = fps;
+            this.fps = fps;
         }
 
-        public void AddFrame(AnimationFrame frame)
-        {
-            frames.Add(frame);
-            CurrentFrame = frames[0];
-        }
+        #region Public methods
+
+        //public void AddFrame(AnimationFrame frame)
+        //{
+        //    frames.Add(frame);
+        //    CurrentFrame = frames[0];
+        //}
 
 
-        private double secondCounter = 0;
+    
 
         public void Update(GameTime gameTime)
         {
@@ -36,7 +48,7 @@ namespace Game_development_project.Classes.Animations
             secondCounter += gameTime.ElapsedGameTime.TotalSeconds;
 
 
-            if (secondCounter >= 1d / FPS)
+            if (secondCounter >= 1d / fps)
             {
                 counter++;
                 secondCounter = 0;
@@ -62,6 +74,8 @@ namespace Game_development_project.Classes.Animations
                 }
             }
         }
+
+        #endregion
     }
 }
 

@@ -13,10 +13,29 @@ namespace Game_development_project.Classes.GameStates
 {
     internal class MenuState : GameState
     {
-        protected List<MenuComponent> buttonList;
-        protected Texture2D buttonTexture;
-        protected SpriteFont buttonFont;
-        protected Texture2D backgroundImage;
+        #region Private variables
+
+        private List<MenuComponent> buttonList;
+
+        #endregion
+
+        #region Get/Setters
+
+        public List<MenuComponent> ButtonList
+        {
+            get { return buttonList; }
+            set { buttonList = value; }
+        }
+
+        public Texture2D ButtonTexture { get; private set; }
+        public SpriteFont ButtonFont { get; private set; }
+        public Texture2D BackgroundImage { get; set; }
+        public Texture2D MainText { get; set; }
+
+        #endregion
+
+
+        #region Methods
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
           : base(game, graphicsDevice, content)
@@ -28,14 +47,14 @@ namespace Game_development_project.Classes.GameStates
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(backgroundImage, new Vector2(0, 0), Color.White);
+            spriteBatch.Draw(BackgroundImage, new Vector2(0, 0), Color.White);
             spriteBatch.End();
 
             spriteBatch.Begin();
 
-            if (buttonList != null)
+            if (ButtonList != null)
             {
-                foreach (var button in buttonList)
+                foreach (var button in ButtonList)
                     button.Draw(gameTime, spriteBatch);
             }
            
@@ -44,9 +63,9 @@ namespace Game_development_project.Classes.GameStates
 
         public override void Update(GameTime gameTime)
         {
-            if (buttonList != null)
+            if (ButtonList != null)
             {
-                foreach (var button in buttonList)
+                foreach (var button in ButtonList)
                     button.Update(gameTime);
             }
             
@@ -54,17 +73,19 @@ namespace Game_development_project.Classes.GameStates
 
         protected void QuitGameButton_Click(object sender, EventArgs e)
         {
-            game.Exit();
+            Game.Exit();
         }
 
         public override void LoadContent(ContentManager content)
         {
-            buttonTexture = content.Load<Texture2D>("Textures/Menu/Button");
-            buttonFont = content.Load<SpriteFont>("Fonts/ButtonFont");
-            backgroundImage = content.Load<Texture2D>("Textures/Backgrounds/MainMenuBackground");
+            ButtonTexture = content.Load<Texture2D>("Textures/Menu/Button");
+            ButtonFont = content.Load<SpriteFont>("Fonts/ButtonFont");
+            BackgroundImage = content.Load<Texture2D>("Textures/Backgrounds/MainMenuBackground");
         }
 
-       
+        #endregion
+
+
     }
 }
 

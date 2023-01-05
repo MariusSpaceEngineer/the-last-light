@@ -11,10 +11,11 @@ using Game_development_project.Classes.Characters.Character_States;
 
 namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Enemies.MeleeEnemies
 {
-    internal class Skeleton : MeleeEnemy // IGameObject
+    internal class Skeleton : MeleeEnemy
     {
-        //The sprites and variables needed for the patrol are assigned in the enemy class
 
+
+        #region Private variables
 
         private Animation attackAnimation;
         private Animation damageAnimation;
@@ -22,6 +23,9 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
         private Animation idleAnimation;
         private Animation moveAnimation;
 
+        #endregion
+
+        //The sprites and variables needed for the patrol are assigned in the enemy class
         //Depending on the distance and speed, the skeleton will patrol in a different way
         public Skeleton(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, float patrolDistance, Vector2 position, float speed, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, patrolDistance, boundingBoxTexture)
         {
@@ -39,30 +43,32 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
 
         }
 
+        #region Override methods
+
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (CharacterState is IdleState)
             {
-                CharacterState.Draw(spriteBatch, idleSprite, idleAnimation, Direction, Position, this);
+                CharacterState.Draw(spriteBatch, IdleSprite, idleAnimation, Direction, Position, this);
             }
             else if (CharacterState is MoveState)
             {
-                CharacterState.Draw(spriteBatch, moveSprite, moveAnimation, Direction, Position, this);
+                CharacterState.Draw(spriteBatch, MoveSprite, moveAnimation, Direction, Position, this);
             }
             else if (CharacterState is AttackState)
             {
-                CharacterState.Draw(spriteBatch, attackSprite, attackAnimation, Direction, Position, this);
+                CharacterState.Draw(spriteBatch, AttackSprite, attackAnimation, Direction, Position, this);
 
             }
             else if (CharacterState is DamagedState)
             {
-                CharacterState.Draw(spriteBatch, damageSprite, damageAnimation, Direction, Position, this);
+                CharacterState.Draw(spriteBatch, DamageSprite, damageAnimation, Direction, Position, this);
                 IsHit = false;
             }
             else if (CharacterState is DeathState)
             {
-                CharacterState.Draw(spriteBatch, deathSprite, deathAnimation, Direction, Position, this);
+                CharacterState.Draw(spriteBatch, DeathSprite, deathAnimation, Direction, Position, this);
             }
 
         }
@@ -110,5 +116,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
             boundingBox.X = (int)position.X;
             boundingBox.Y = (int)position.Y;
         }
+
+        #endregion
     }
 }

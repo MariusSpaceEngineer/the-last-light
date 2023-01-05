@@ -12,14 +12,17 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Enemies.MeleeEnemies
 {
-    internal class Bandit : MeleeEnemy //IGameObject
+    internal class Bandit : MeleeEnemy 
     {
+        #region Private variables
+
         private Animation attackAnimation;
         private Animation damageAnimation;
         private Animation deathAnimation;
         private Animation idleAnimation;
         private Animation moveAnimation;
 
+        #endregion
         public Bandit(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance, boundingBoxTexture)
         {
             attackAnimation = CreateAnimation(attackSprite, 8, 8, 1);
@@ -34,106 +37,33 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
 
         }
 
+        #region Override methods
+
         public override void Draw(SpriteBatch spriteBatch)
         {
 
             if (CharacterState is IdleState)
             {
-                CharacterState.Draw(spriteBatch, idleSprite, idleAnimation, Direction, Position, this);
+                CharacterState.Draw(spriteBatch, IdleSprite, idleAnimation, Direction, Position, this);
             }
             else if (CharacterState is MoveState)
             {
-                CharacterState.Draw(spriteBatch, moveSprite, moveAnimation, Direction, Position, this);
+                CharacterState.Draw(spriteBatch, MoveSprite, moveAnimation, Direction, Position, this);
             }
             else if (CharacterState is AttackState)
             {
-                CharacterState.Draw(spriteBatch, attackSprite, attackAnimation, Direction, Position, this);
+                CharacterState.Draw(spriteBatch, AttackSprite, attackAnimation, Direction, Position, this);
 
             }
             else if (CharacterState is DamagedState)
             {
-                CharacterState.Draw(spriteBatch, damageSprite, damageAnimation, Direction, Position, this);
+                CharacterState.Draw(spriteBatch, DamageSprite, damageAnimation, Direction, Position, this);
                 IsHit = false;
             }
             else if (CharacterState is DeathState)
             {
-                CharacterState.Draw(spriteBatch, deathSprite, deathAnimation, Direction, Position, this);
+                CharacterState.Draw(spriteBatch, DeathSprite, deathAnimation, Direction, Position, this);
             }
-
-            //if (Direction is LeftDirection)
-            //{
-            //    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White);
-            //    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Blue);
-            //    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-            //}
-            //else
-            //{
-            //    spriteBatch.Draw(moveSprite, Position, moveAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
-            //    spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Blue);
-            //    spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-            //}
-
-
-            //else if (CharacterState is AttackState)
-            //{
-            //    if (Direction is LeftDirection)
-            //    {
-            //        spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White);
-            //        spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-            //        spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-            //    }
-            //    else
-            //    {
-            //        spriteBatch.Draw(attackSprite, Position, attackAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
-            //        spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-            //        spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-
-            //    }
-            //}
-            //else if (CharacterState is DamagedState)
-            //{
-            //    if (Direction is LeftDirection)
-            //    {
-            //        spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White);
-            //        //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-            //        spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-            //    }
-            //    else
-            //    {
-            //        spriteBatch.Draw(damageSprite, Position, damageAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
-            //        //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-            //        spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-
-
-
-            //    }
-            //}
-            //else if (CharacterState is DeathState)
-            //{
-            //    if (Direction is LeftDirection)
-            //    {
-            //        spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White);
-            //        //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-            //        spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-            //    }
-            //    else
-            //    {
-            //        spriteBatch.Draw(deathSprite, Position, deathAnimation.CurrentFrame.SourceRectangle, Color.White, 0, new Vector2(0, 0), 1, SpriteEffects.FlipHorizontally, 0);
-            //        //spriteBatch.Draw(this.blokTexture, BoundingBox, Color.Blue);
-            //        spriteBatch.Draw(boundingBoxTexture, AttackBox, Color.Green);
-
-
-
-
-            //    }
-
 
         }
         public override void Update(GameTime gameTime, List<Sprite> sprites)
@@ -177,5 +107,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
             boundingBox.X = (int)position.X + 10;
             boundingBox.Y = (int)position.Y + 5;
         }
+
+        #endregion
     }
 }

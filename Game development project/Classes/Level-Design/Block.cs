@@ -11,11 +11,19 @@ namespace Default_Block
 {
    abstract public class Block
     {
+        #region Private variables
+
         protected Texture2D texture;
 
         private Rectangle rectangle;
 
         public bool isTrigger;
+
+        private static ContentManager content;
+
+        #endregion
+
+        #region Get/Setters
 
         public Rectangle Rectangle
         {
@@ -23,7 +31,6 @@ namespace Default_Block
             set { rectangle = value; }
         }
 
-        private static ContentManager content;
         public static ContentManager Content
         {
             protected get { return content; }
@@ -36,9 +43,15 @@ namespace Default_Block
             this.isTrigger = false;
         }
 
+        #endregion
+
+        #region Public methods
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, rectangle, Color.White);
         }
+
+        #endregion
     }
 }

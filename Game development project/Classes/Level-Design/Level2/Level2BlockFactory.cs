@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Level_Design.Level2
 {
-    internal class Level2BlockFactory : BlockFactory
+    public class Level2BlockFactory : BlockFactory
     {
         public Block CreateBlock(int number, Rectangle rectangle)
         {

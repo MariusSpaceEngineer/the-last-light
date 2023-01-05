@@ -21,10 +21,13 @@ namespace Game_development_project.Classes.GameStates
         {
 
         }
+
+        #region Public methods
+
         public override void InitializeContent()
         {
 
-            var reloadLevelButton = new Button(buttonTexture, buttonFont)
+            var reloadLevelButton = new Button(ButtonTexture, ButtonFont)
             {
                 Position = new Vector2(500, 200),
                 Text = "Reload level",
@@ -32,7 +35,7 @@ namespace Game_development_project.Classes.GameStates
 
             reloadLevelButton.Click += ReloadLevelButton_Click;
 
-            var mainMenuButton = new Button(buttonTexture, buttonFont)
+            var mainMenuButton = new Button(ButtonTexture, ButtonFont)
             {
                 Position = new Vector2(500, 250),
                 Text = "Back to main menu",
@@ -40,7 +43,7 @@ namespace Game_development_project.Classes.GameStates
 
             mainMenuButton.Click += MainMenuGameButton_Click;
 
-            var quitGameButton = new Button(buttonTexture, buttonFont)
+            var quitGameButton = new Button(ButtonTexture, ButtonFont)
             {
                 Position = new Vector2(500, 300),
                 Text = "Quit Game",
@@ -48,7 +51,7 @@ namespace Game_development_project.Classes.GameStates
 
             quitGameButton.Click += QuitGameButton_Click;
 
-            buttonList = new List<MenuComponent>()
+            ButtonList = new List<MenuComponent>()
             {
              reloadLevelButton,
              mainMenuButton,
@@ -61,7 +64,7 @@ namespace Game_development_project.Classes.GameStates
         {
             base.LoadContent(content);
             gameOverText = content.Load<Texture2D>("Textures/Menu/GameOverText");
-            backgroundImage = content.Load<Texture2D>("Textures/Backgrounds/GameOverBackground");
+            BackgroundImage = content.Load<Texture2D>("Textures/Backgrounds/GameOverBackground");
 
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -73,21 +76,25 @@ namespace Game_development_project.Classes.GameStates
             spriteBatch.End();
 
         }
-   
+
+        #endregion
+
+        #region Private methods
+
         private void ReloadLevelButton_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine(game._previousState);
+            Debug.WriteLine(Game._previousState);
           
 
-            if (game._previousState is Level1GameState)
+            if (Game._previousState is Level1GameState)
             {
                 Debug.WriteLine("Change to level 1");  
-                game.ChangeState(new Level1GameState(game, graphicsDevice, content));
+                Game.ChangeState(new Level1GameState(Game, GraphicsDevice, Content));
             }
-            else if (game._previousState is Level2GameState)
+            else if (Game._previousState is Level2GameState)
             {
                 Debug.WriteLine("Change to level 2");
-                game.ChangeState(new Level2GameState(game, graphicsDevice, content));
+                Game.ChangeState(new Level2GameState(Game, GraphicsDevice, Content));
 
             }
 
@@ -96,9 +103,11 @@ namespace Game_development_project.Classes.GameStates
         private void MainMenuGameButton_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Load Main Menu");
-            game.ChangeState(new MainMenuState(game,graphicsDevice,content));
+            Game.ChangeState(new MainMenuState(Game,GraphicsDevice,Content));
 
         }
+
+        #endregion
 
 
     }

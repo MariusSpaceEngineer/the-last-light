@@ -10,15 +10,26 @@ namespace Game_development_project.Classes.Miscellaneous
 {
     public class Camera
     {
+        #region Private variables
+
         private Matrix transform;
-        public Matrix Transform { get { return transform; } }
         private Vector2 centerView;
         private Viewport viewport;
+
+        #endregion
+
+        #region Get/Setters
+
+        public Matrix Transform { get { return transform; } }
+
+        #endregion
 
         public Camera(Viewport newViewport)
         {
             viewport = newViewport;
         }
+
+        #region Public methods
 
         public void Update(Vector2 targetPosition, int xOffset)
         {
@@ -43,5 +54,7 @@ namespace Game_development_project.Classes.Miscellaneous
             transform = Matrix.CreateTranslation(new Vector3(-centerView.X + viewport.Width / 2, -centerView.Y + viewport.Height / 2, 0));
 
         }
+
+        #endregion
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Characters.CharacterDirections
 {
-    internal class LeftDirection : Direction
+    internal class LeftDirection : IDirection
     {
         public Vector2 movementDirection { get; set; } = new Vector2(-1, 0);
     }

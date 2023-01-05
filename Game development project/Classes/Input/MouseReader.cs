@@ -15,6 +15,8 @@ namespace Game_development_project.Classes.Input
         {
             MouseState state = (MouseState)GetInputState();
             Debug.WriteLine(state);
+
+            //gets the coordinations of the mouse
             Vector2 directionMouse = new Vector2(state.X, state.Y);
             return directionMouse;
         }

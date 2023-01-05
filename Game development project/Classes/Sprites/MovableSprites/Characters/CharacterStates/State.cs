@@ -14,7 +14,7 @@ namespace Game_development_project.Classes.Characters.Character_States
 {
     internal abstract class State
     {
-        public void Draw(SpriteBatch spriteBatch, Texture2D spriteTexture, Animation animation, Direction direction, Vector2 spritePosition, Sprite sprite)
+        public void Draw(SpriteBatch spriteBatch, Texture2D spriteTexture, Animation animation, IDirection direction, Vector2 spritePosition, Sprite sprite)
         {
             SpriteEffects flipHorizontallyEffect = SpriteEffects.FlipHorizontally;
 

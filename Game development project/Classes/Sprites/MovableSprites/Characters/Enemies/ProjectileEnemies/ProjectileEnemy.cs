@@ -15,16 +15,34 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
 {
     internal class ProjectileEnemy : Enemy
     {
-        public static Direction playerDirection;
+        #region Private variables
+        //The projectile that will be shot
+        private Projectile projectile;
+        //The counter for the projectile, if it reaches a certain value it will be removed
+        private int shootingCounter = 0;
 
-        public Arrow projectile;
-        int shootingCounter = 0;
+        #endregion
 
+        #region Get/Setters
+
+        //Needed to determine which way the projectile will face
+        public static IDirection PlayerDirection { get; private set; }
+
+        public Projectile Projectile
+        {
+            get { return projectile; }
+            set { projectile = value; }
+        }
+
+        #endregion
 
         public ProjectileEnemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance, boundingBoxTexture)
         {
             ChasingSpeed = speed;
         }
+
+        #region Override methods
+
         public override void Patrol()
         {
             base.Patrol();
@@ -41,7 +59,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
                 //the postion is negative so the enemy is in front of the enemy, so the enemy has to move left
                 if (heroPosition < -1)
                 {
-                    playerDirection = new LeftDirection();
+                    PlayerDirection = new LeftDirection();
                     Direction = new LeftDirection();
 
                     HorizontalVelocity = Direction.movementDirection.X * ChasingSpeed;
@@ -55,7 +73,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
 
                 else if (heroPosition > 1)
                 {
-                    playerDirection = new RightDirection();
+                    PlayerDirection = new RightDirection();
                     Direction = new RightDirection();
                     HorizontalVelocity = Direction.movementDirection.X * ChasingSpeed;
 
@@ -77,17 +95,21 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
             HorizontalVelocity = 0f;
         }
 
+        #endregion
+
+
+        #region Methods
 
         protected void ShootProjectile(List<Sprite> sprites)
         {
 
-            var arrowProjectile = projectile.Clone() as Arrow;
+            var arrowProjectile = Projectile.Clone() as Arrow;
             arrowProjectile.LifeSpan = 2f;
 
-            if (playerDirection is LeftDirection && CharacterState is AttackState)
+            if (PlayerDirection is LeftDirection && CharacterState is AttackState)
             {
                 shootingCounter++;
-                arrowProjectile.movementDirection = playerDirection.movementDirection.X;
+                arrowProjectile.MovementDirection = PlayerDirection.movementDirection.X;
                 arrowProjectile.Position = new Vector2(Position.X + 35, Position.Y + 50);
 
                 if (shootingCounter == 50)
@@ -98,10 +120,10 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
 
                 Debug.WriteLine("Shooting Left");
             }
-            else if (playerDirection is RightDirection && CharacterState is AttackState)
+            else if (PlayerDirection is RightDirection && CharacterState is AttackState)
             {
                 shootingCounter++;
-                arrowProjectile.movementDirection = playerDirection.movementDirection.X;
+                arrowProjectile.MovementDirection = PlayerDirection.movementDirection.X;
                 arrowProjectile.Position = new Vector2(Position.X + 50, Position.Y + 50);
                 if (shootingCounter == 50)
                 {
@@ -113,5 +135,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
             }
 
         }
+
+        #endregion
     }
 }

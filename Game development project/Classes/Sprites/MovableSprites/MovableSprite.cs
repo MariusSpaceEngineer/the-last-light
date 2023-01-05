@@ -13,9 +13,9 @@ namespace Game_development_project.Classes.Sprites.MovableSprites
     internal abstract class MovableSprite : Sprite
     {
 
-        public Direction Direction;
+        public IDirection Direction { get; set; }
 
-        public float HorizontalVelocity;
+        public float HorizontalVelocity { get; set; }
 
         public Animation CreateAnimation(Texture2D sprite, int fps, int numberOfWidthSprites, int numberOfHeightSprites)
         {

@@ -21,7 +21,7 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            if (ProjectileEnemy.playerDirection is LeftDirection)
+            if (ProjectileEnemy.PlayerDirection is LeftDirection)
             {
                 spriteBatch.Draw(texture, Position, null, Color.White, 0, Origin, 1, SpriteEffects.FlipHorizontally, 0);
             }
@@ -30,18 +30,18 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
                 spriteBatch.Draw(texture, Position, null, Color.White, 0, Origin, 1, SpriteEffects.None, 0);
             }
             
-            spriteBatch.Draw(boundingBoxTexture, BoundingBox, Color.Blue);
+            //spriteBatch.Draw(BoundingBoxTexture, BoundingBox, Color.Blue);
         }
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             base.Update(gameTime, sprites);
             MoveBoundingBox(Position);
         }
-
         public override void MoveBoundingBox(Vector2 position)
         {
             boundingBox.X = (int)position.X - 20;
             boundingBox.Y = (int)position.Y - 8;
+
         }
 
 

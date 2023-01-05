@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Characters.CharacterDirections
 {
-    internal interface Direction
+    internal interface IDirection
     {
         public Vector2 movementDirection { get; set; }
     }

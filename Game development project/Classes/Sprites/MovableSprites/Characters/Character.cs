@@ -15,50 +15,42 @@ namespace Game_development_project.Classes.Characters
 {
     internal abstract class Character : MovableSprite
     {
-        protected Texture2D attackSprite;
-        protected Texture2D damageSprite;
-        protected Texture2D deathSprite;
-        protected Texture2D idleSprite;
-        protected Texture2D moveSprite;
+        #region Get/Setters
 
-        public State CharacterState;
-        //public Direction Direction;
+        //The sprites of the characters which will be used to make animations
+        public Texture2D AttackSprite { get; private set; }
+        public Texture2D DamageSprite { get; private set; }
+        public Texture2D DeathSprite { get; private set; }
+        public Texture2D IdleSprite { get; private set; }
+        public Texture2D MoveSprite { get; private set; }
 
-        public bool HasDied = false;
-        public int Health = 100;
-        public bool IsHit = false;
+        //The state characters have different states that are changed when something occurs
+        public State CharacterState { get; set; }
 
-        //protected Rectangle boundingBox;
-        //public Rectangle BoundingBox
-        //{
-        //    get { return boundingBox; }
-        //    set { boundingBox = value; }
-        //}
+        //Characters can be attacked and possibly die if they've taken enough damage
+        public int Health { get; set; } = 100;
+        public bool HasDied { get; set; } = false;
+        public bool IsHit { get; set; } = false;
 
-        //protected static Vector2 position;
-        //public static Vector2 Position
-        //{
-        //    get { return position; }
-        //    set { position = value; }
-
-        //protected Rectangle boundingBox;
-        //protected Texture2D blokTexture;
-        //public Rectangle BoundingBox
-        //{
-        //    get { return boundingBox; }
-        //    set { boundingBox = value; }
-        //}
+        #endregion
 
         public Character(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite)
         {
-            this.attackSprite = attackSprite;
-            this.damageSprite = damageSprite;
-            this.deathSprite = deathSprite;
-            this.idleSprite = idleSprite;
-            this.moveSprite = moveSprite;
+            this.AttackSprite = attackSprite;
+            this.DamageSprite = damageSprite;
+            this.DeathSprite = deathSprite;
+            this.IdleSprite = idleSprite;
+            this.MoveSprite = moveSprite;
         }
 
+        #region Virtual methods
+
         public virtual void MoveAttackBox()
+        {
+
+        }
+
+        public virtual void CheckHitCollision(Sprite enemy)
         {
 
         }
@@ -68,9 +60,10 @@ namespace Game_development_project.Classes.Characters
 
         }
 
+        #endregion
 
 
-       
+
 
 
     }

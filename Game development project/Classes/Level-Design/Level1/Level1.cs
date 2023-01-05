@@ -14,7 +14,6 @@ namespace Game_development_project.Classes.Level_Design.Level1
 {
     public class Level1 : Default_Level.Level
     {
-        //Maybe make a abstract level class and for every level an subclass
         public Level1(BlockFactory blockFactory) : base(blockFactory)
         {
             Map = new int[,]

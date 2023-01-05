@@ -20,6 +20,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
         {
             ChasingSpeed = speed;
         }
+
         public override void Patrol()
         {
             base.Patrol();

@@ -14,22 +14,19 @@ namespace Game_development_project.Classes.GameStates
 {
     internal class LevelCompleteState : MenuState
     {
-        private Texture2D levelCompletedText;
-
-
+        //private Texture2D MainText;
 
         public LevelCompleteState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            Debug.WriteLine(game._currentState);
-
+            Debug.WriteLine(Game._currentState);
         }
 
         public override void InitializeContent()
         {
-            buttonList = new List<MenuComponent>();
-            if (game._currentState is Level1GameState)
+            ButtonList = new List<MenuComponent>();
+            if (Game._currentState is Level1GameState)
             {
-                var nextLevelButton = new Button(buttonTexture, buttonFont)
+                var nextLevelButton = new Button(ButtonTexture, ButtonFont)
                 {
                     Position = new Vector2(500, 200),
                     Text = "Next Level",
@@ -37,20 +34,20 @@ namespace Game_development_project.Classes.GameStates
 
                 nextLevelButton.Click += NextLevelButton_Click;
                 
-                buttonList.Add(nextLevelButton);
+                ButtonList.Add(nextLevelButton);
             }
 
-            var mainMenuButton = new Button(buttonTexture, buttonFont)
+            var mainMenuButton = new Button(ButtonTexture, ButtonFont)
             {
                 Position = new Vector2(500, 250),
                 Text = "Back to main menu",
             };
 
-            buttonList.Add(mainMenuButton);
+            ButtonList.Add(mainMenuButton);
 
             mainMenuButton.Click += MainMenuGameButton_Click;
 
-            var quitGameButton = new Button(buttonTexture, buttonFont)
+            var quitGameButton = new Button(ButtonTexture, ButtonFont)
             {
                 Position = new Vector2(500, 300),
                 Text = "Quit Game",
@@ -58,23 +55,23 @@ namespace Game_development_project.Classes.GameStates
 
             quitGameButton.Click += QuitGameButton_Click;
 
-            buttonList.Add(quitGameButton);
+            ButtonList.Add(quitGameButton);
 
         }
 
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-            if (game._currentState is Level1GameState)
+            if (Game._currentState is Level1GameState)
             {
-                levelCompletedText = content.Load<Texture2D>("Textures/Menu/Level1CompletedText");
-                backgroundImage = content.Load<Texture2D>("Textures/Backgrounds/Level1CompleteBackground");
+                MainText = content.Load<Texture2D>("Textures/Menu/Level1CompletedText");
+                BackgroundImage = content.Load<Texture2D>("Textures/Backgrounds/Level1CompleteBackground");
 
             }
-            else if (game._currentState is Level2GameState)
+            else if (Game._currentState is Level2GameState)
             {
-                levelCompletedText = content.Load<Texture2D>("Textures/Menu/Level2CompletedText");
-                backgroundImage = content.Load<Texture2D>("Textures/Backgrounds/Level2CompleteBackground");
+                MainText = content.Load<Texture2D>("Textures/Menu/Level2CompletedText");
+                BackgroundImage = content.Load<Texture2D>("Textures/Backgrounds/Level2CompleteBackground");
             }
     }
 
@@ -82,16 +79,16 @@ namespace Game_development_project.Classes.GameStates
         {
             base.Draw(gameTime, spriteBatch);
             spriteBatch.Begin();
-            if (game._previousState is Level1GameState)
+            if (Game._previousState is Level1GameState)
             {
                 //Debug.WriteLine("Using level 1 text");
-                spriteBatch.Draw(levelCompletedText, new Vector2(100, 100), Color.White);
+                spriteBatch.Draw(MainText, new Vector2(100, 100), Color.White);
             
             }
-            else if (game._previousState is Level2GameState)
+            else if (Game._previousState is Level2GameState)
             {
                 //Debug.WriteLine("Using level 2 text");
-                spriteBatch.Draw(levelCompletedText, new Vector2(250, 150), Color.White);
+                spriteBatch.Draw(MainText, new Vector2(250, 150), Color.White);
             }
 
             spriteBatch.End();
@@ -101,15 +98,15 @@ namespace Game_development_project.Classes.GameStates
         {
                 Debug.WriteLine("Change to level 2");
                 
-                game.ChangeState(new Level2GameState(game, graphicsDevice, content));
-                Hero.GetHero().CurrentLevel = Level2GameState.level;
+                Game.ChangeState(new Level2GameState(Game, GraphicsDevice, Content));
+                Hero.GetHero().CurrentLevel = Level2GameState.Level;
 
         }
 
         private void MainMenuGameButton_Click(object sender, EventArgs e)
         {
             Debug.WriteLine("Load Main Menu");
-            game.ChangeState(new MainMenuState(game, graphicsDevice, content));
+            Game.ChangeState(new MainMenuState(Game, GraphicsDevice, Content));
 
         }
     }

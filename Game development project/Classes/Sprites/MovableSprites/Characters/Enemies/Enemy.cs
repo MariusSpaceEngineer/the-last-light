@@ -25,13 +25,13 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
             HorizontalVelocity = speed;
             PatrolDistance = patrolDistance;
 
-            this.boundingBoxTexture = boundingBoxTexture;
+            this.BoundingBoxTexture = boundingBoxTexture;
         }
 
         public virtual void Patrol()
         {
             Position.X += HorizontalVelocity;
-            Origin = new Vector2(attackSprite.Width / 2, attackSprite.Height / 2);
+            Origin = new Vector2(AttackSprite.Width / 2, AttackSprite.Height / 2);
 
             if (CurrentDistance <= 0)
             {
@@ -63,6 +63,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
             {
                 if (Health > 0)
                 {
+                    HorizontalVelocity = 0f;
                     CharacterState = new DamagedState();
                     Health--;
                 }

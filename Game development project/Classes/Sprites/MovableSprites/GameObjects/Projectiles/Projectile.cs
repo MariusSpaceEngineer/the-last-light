@@ -12,41 +12,69 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
 {
     internal abstract class Projectile : GameObject
     {
-        public float _timer;
-        public float LifeSpan = 0f;
+        #region Private variables
 
-        public float movementDirection;
-
+        private float _timer;
         private bool heroTouchedByArrow = false;
+
+        #endregion
+
+        #region Get/Setters
+
+        public float MovementDirection { get; set; }
+        public float LifeSpan { get; set; } = 0f;
+
+        #endregion
+
 
         public Projectile(Texture2D texture, Texture2D boundingBoxTexture)
           : base(texture)
         {
-            this.boundingBoxTexture = boundingBoxTexture;
+            this.BoundingBoxTexture = boundingBoxTexture;
             this.HorizontalVelocity = 2; 
         }
+
+        #region Override methods
 
         public override void Update(GameTime gameTime, List<Sprite> sprites)
         {
             _timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            //Checks to see if the player is touched by the projectile
             CheckCollision(Hero.GetHero().BoundingBox);
 
+            //If the player is touched by the arrow or the timer is up then the projectile will be removed
             if (_timer >= LifeSpan || heroTouchedByArrow)
             {
                 IsRemoved = true;
 
             }
 
+            
             if (heroTouchedByArrow)
             {
+                //Will change the health of the player if he's hit
                 CheckTargetHealth(Hero.GetHero());
                 heroTouchedByArrow = false;
             }
-            Position.X += movementDirection * HorizontalVelocity;
+            Position.X += MovementDirection * HorizontalVelocity;
         }
 
-        public void CheckTargetHealth(Character target)
+     
+
+        public override void CheckCollision(Rectangle newRectangle)
+        {
+            if (BoundingBox.TouchLeftOf(newRectangle) || BoundingBox.TouchRightOf(newRectangle) || BoundingBox.TouchTopOf(newRectangle) || BoundingBox.TouchBottomOf(newRectangle))
+            {
+                heroTouchedByArrow = true;
+            }
+        }
+
+        #endregion
+
+        #region Private methods
+
+        private void CheckTargetHealth(Character target)
         {
             if (target.Health > 0)
             {
@@ -63,13 +91,7 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
 
         }
 
-        public override void CheckCollision(Rectangle newRectangle)
-        {
-            if (BoundingBox.TouchLeftOf(newRectangle) || BoundingBox.TouchRightOf(newRectangle) || BoundingBox.TouchTopOf(newRectangle) || BoundingBox.TouchBottomOf(newRectangle))
-            {
-                heroTouchedByArrow = true;
-            }
-        }
+        #endregion
 
 
     }
