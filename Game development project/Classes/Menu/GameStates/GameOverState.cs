@@ -86,12 +86,12 @@ namespace Game_development_project.Classes.GameStates
             //Debug.WriteLine(Game._previousState);
           
 
-            if (Game._previousState is Level1GameState)
+            if (Game.PreviousState is Level1GameState)
             {
                 //Debug.WriteLine("Change to level 1");  
                 Game.ChangeState(new Level1GameState(Game, GraphicsDevice, Content));
             }
-            else if (Game._previousState is Level2GameState)
+            else if (Game.PreviousState is Level2GameState)
             {
                 //Debug.WriteLine("Change to level 2");
                 Game.ChangeState(new Level2GameState(Game, GraphicsDevice, Content));

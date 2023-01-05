@@ -77,7 +77,7 @@ namespace Game_development_project.Classes.GameStates
      : base(game, graphicsDevice, content)
         {
             LoadContent(content);
-            Camera = game.camera;
+            Camera = game.GameCamera;
 
         }
 

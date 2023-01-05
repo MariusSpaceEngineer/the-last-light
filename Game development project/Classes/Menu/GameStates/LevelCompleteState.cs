@@ -18,13 +18,13 @@ namespace Game_development_project.Classes.GameStates
 
         public LevelCompleteState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            Debug.WriteLine(Game._currentState);
+            Debug.WriteLine(Game.CurrentState);
         }
 
         public override void InitializeContent()
         {
             ButtonList = new List<MenuComponent>();
-            if (Game._currentState is Level1GameState)
+            if (Game.CurrentState is Level1GameState)
             {
                 var nextLevelButton = new Button(ButtonTexture, ButtonFont)
                 {
@@ -62,13 +62,13 @@ namespace Game_development_project.Classes.GameStates
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
-            if (Game._currentState is Level1GameState)
+            if (Game.CurrentState is Level1GameState)
             {
                 MainText = content.Load<Texture2D>("Textures/Menu/Level1CompletedText");
                 BackgroundImage = content.Load<Texture2D>("Textures/Backgrounds/Level1CompleteBackground");
 
             }
-            else if (Game._currentState is Level2GameState)
+            else if (Game.CurrentState is Level2GameState)
             {
                 MainText = content.Load<Texture2D>("Textures/Menu/Level2CompletedText");
                 BackgroundImage = content.Load<Texture2D>("Textures/Backgrounds/Level2CompleteBackground");
@@ -79,13 +79,13 @@ namespace Game_development_project.Classes.GameStates
         {
             base.Draw(gameTime, spriteBatch);
             spriteBatch.Begin();
-            if (Game._previousState is Level1GameState)
+            if (Game.PreviousState is Level1GameState)
             {
                 //Debug.WriteLine("Using level 1 text");
                 spriteBatch.Draw(MainText, new Vector2(100, 100), Color.White);
             
             }
-            else if (Game._previousState is Level2GameState)
+            else if (Game.PreviousState is Level2GameState)
             {
                 //Debug.WriteLine("Using level 2 text");
                 spriteBatch.Draw(MainText, new Vector2(250, 150), Color.White);

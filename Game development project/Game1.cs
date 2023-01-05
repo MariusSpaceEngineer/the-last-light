@@ -1,4 +1,5 @@
 ﻿using Default_Block;
+using Game_development_project.Classes.Animations;
 using Game_development_project.Classes.GameStates;
 using Game_development_project.Classes.Miscellaneous;
 using Microsoft.Xna.Framework;
@@ -9,22 +10,27 @@ namespace Game_development_project
 {
     public class Game1 : Game
     {
+        #region Private variables
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        public Texture2D boundingBoxTexture;
-        public static Texture2D triggerBlokTexture;
+        #endregion
 
-        public Camera camera;
+        #region Get/Setters
+
+        public Texture2D BoundingBoxTexture { get; set; }
+        public static Texture2D TriggerBlokTexture { get; set; }
+
+        public Camera GameCamera { get; set; }
    
-        public GameState _currentState;
-        public GameState _nextState;
-        public GameState _previousState;
+        public GameState CurrentState { get; set; }
+        public GameState NextState { get; set; }
+        public GameState PreviousState { get; set; }
 
-        public void ChangeState(GameState state)
-        {
-            _nextState = state;
-        }
+        #endregion
+
+
 
         public Game1()
         {
@@ -33,8 +39,11 @@ namespace Game_development_project
             IsMouseVisible = true;
         }
 
+        #region Methods
+
         protected override void Initialize()
         {
+            //The window size
             _graphics.PreferredBackBufferWidth = 1200;
             _graphics.PreferredBackBufferHeight = 600;
             _graphics.ApplyChanges();
@@ -44,20 +53,23 @@ namespace Game_development_project
 
         protected override void LoadContent()
         {
-            camera = new Camera(GraphicsDevice.Viewport);
+            GameCamera = new Camera(GraphicsDevice.Viewport);
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+      
+            //Used to show the bounding box around the objects
+            BoundingBoxTexture = new Texture2D(GraphicsDevice, 1, 1);
+            BoundingBoxTexture.SetData(new[] { Color.White });
 
-            //boundingBoxTexture = new Texture2D(GraphicsDevice, 1, 1);
-            //boundingBoxTexture.SetData(new[] { Color.White });
-            triggerBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
-            triggerBlokTexture.SetData(new[] { Color.YellowGreen });
+            //Used by triggerblock
+            TriggerBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
+            TriggerBlokTexture.SetData(new[] { Color.YellowGreen });
 
             Block.Content = Content;
 
-
-            _currentState = new MainMenuState(this, _graphics.GraphicsDevice, Content);
-            _currentState.LoadContent(Content);
+            //Starts in the MainMenuState
+            CurrentState = new MainMenuState(this, _graphics.GraphicsDevice, Content);
+            CurrentState.LoadContent(Content);
 
         }
 
@@ -66,17 +78,17 @@ namespace Game_development_project
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            _currentState.Update(gameTime);
-            _currentState.PostUpdate();
+            //Updates the current gamestate
+            CurrentState.Update(gameTime);
+            CurrentState.PostUpdate();
 
-            if (_nextState != null)
+            //Changes the state
+            if (NextState != null)
             {
-                _previousState = _currentState;
-                _currentState = _nextState;
+                PreviousState = CurrentState;
+                CurrentState = NextState;
 
-                _nextState = null;
-
-              
+                NextState = null;     
             }
             base.Update(gameTime);
         }
@@ -84,9 +96,16 @@ namespace Game_development_project
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _currentState.Draw(gameTime, _spriteBatch);
+            CurrentState.Draw(gameTime, _spriteBatch);
 
             base.Draw(gameTime);
-        }     
+        }
+
+        public void ChangeState(GameState state)
+        {
+            NextState = state;
+        }
+
+        #endregion
     }
 }

@@ -14,7 +14,7 @@ namespace Game_development_project.Classes.Level_Design.TypeBlocks
         public TriggerBlock(Rectangle newrectangle) : base(newrectangle)
         {
             this.isTrigger = true;
-            this.texture = Game1.triggerBlokTexture;
+            this.texture = Game1.TriggerBlokTexture;
             this.Rectangle = newrectangle;
           
             
