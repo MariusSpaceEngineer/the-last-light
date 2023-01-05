@@ -105,8 +105,6 @@ namespace Game_development_project.Classes.GameStates
            
             spriteBatch.End();
         }
-
-     
         public override void Update(GameTime gameTime)
         {
             Hero hero = Hero.GetHero();
