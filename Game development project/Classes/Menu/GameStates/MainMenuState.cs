@@ -21,7 +21,18 @@ namespace Game_development_project.Classes.GameStates
         public override void LoadContent(ContentManager content)
         {
             base.LoadContent(content);
+            MainText = content.Load<Texture2D>("Textures/Menu/MainMenuText");
             BackgroundImage = content.Load<Texture2D>("Textures/Backgrounds/MainMenuBackground");
+        
+        }
+
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            base.Draw(gameTime, spriteBatch);
+            spriteBatch.Begin();
+            spriteBatch.Draw(MainText, new Vector2(325, 100), Color.White);
+            spriteBatch.End();
+
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
