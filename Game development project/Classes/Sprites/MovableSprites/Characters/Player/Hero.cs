@@ -300,7 +300,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
             }
             if (boundingBox.TouchBottomOf(newRectangle))
             {
-                Position.Y = newRectangle.Bottom;
+                Position.Y = newRectangle.Bottom -  28;
             }
             if (boundingBox.TouchLeftOf(newRectangle))
             {
