@@ -48,10 +48,10 @@ namespace Game_development_project
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            boundingBoxTexture = new Texture2D(GraphicsDevice, 1, 1);
-            boundingBoxTexture.SetData(new[] { Color.White });
+            //boundingBoxTexture = new Texture2D(GraphicsDevice, 1, 1);
+            //boundingBoxTexture.SetData(new[] { Color.White });
             triggerBlokTexture = new Texture2D(GraphicsDevice, 1, 1);
-            triggerBlokTexture.SetData(new[] { Color.Red });
+            triggerBlokTexture.SetData(new[] { Color.YellowGreen });
 
             Block.Content = Content;
 
