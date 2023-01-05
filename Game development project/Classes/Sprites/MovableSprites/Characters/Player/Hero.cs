@@ -234,18 +234,18 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
             {
                 if (Health > 0)
                 {
-                    Debug.WriteLine("player hit");
+                    //Debug.WriteLine("player hit");
 
                     IsHit = true;
                     CharacterState = new DamagedState();
                     if (enemy.AttackBox.TouchRightOf(boundingBox))
                     {
-                        Debug.WriteLine("Enemy attacks right");
+                        //Debug.WriteLine("Enemy attacks right");
                         Direction = new RightDirection();
                     }
                     else
                     {
-                        Debug.WriteLine("Enemy attacks left");
+                        //Debug.WriteLine("Enemy attacks left");
                         Direction = new LeftDirection();
                     }
 
@@ -253,7 +253,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
                 }
                 else
                 {
-                    Debug.WriteLine("player dead");
+                    //Debug.WriteLine("player dead");
                     HasDied = true;
                     CharacterState = new DeathState();
 
@@ -289,7 +289,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
                 //The last value depends on the size of the tilemap and sprite
                 //If the last value is bigger than 43 the player will start jumping on the tile for a while
                 Position.Y = newRectangle.Top - boundingBox.Height - 43;
-                Debug.WriteLine("Touching top");
+                //Debug.WriteLine("Touching top");
 
 
 
@@ -305,25 +305,25 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
             if (boundingBox.TouchLeftOf(newRectangle))
             {
                 Position.X = newRectangle.X - boundingBox.Width - 60;
-                Debug.WriteLine("Touching left");
+                //Debug.WriteLine("Touching left");
 
             }
             if (boundingBox.TouchRightOf(newRectangle))
             {
                 Position.X = newRectangle.Right - boundingBox.Width - 20;
-                Debug.WriteLine("Touching right");
+                //Debug.WriteLine("Touching right");
 
             }
             if (Position.X < 0)
             {
                 Position.X = 0;
-                Debug.WriteLine("Touching left border");
+                //Debug.WriteLine("Touching left border");
 
             }
             //If the buttom of the screen is touched by the boudingbox of the hero the GameOverScreen will be triggered
             if (boundingBox.Bottom >= 600)
             {
-                Debug.WriteLine("Player touches the buttom of the screen.");
+                //Debug.WriteLine("Player touches the buttom of the screen.");
                 HasDied = true;
                 CharacterState = new DeathState();
             }
@@ -401,7 +401,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
                 {
                     if (boundingBox.TouchTopOf(block.Rectangle))
                     {
-                        Debug.WriteLine("player touches trigger");
+                        //Debug.WriteLine("player touches trigger");
                         IsOnTrigger = true;
 
                     }

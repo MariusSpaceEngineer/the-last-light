@@ -83,17 +83,17 @@ namespace Game_development_project.Classes.GameStates
 
         private void ReloadLevelButton_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine(Game._previousState);
+            //Debug.WriteLine(Game._previousState);
           
 
             if (Game._previousState is Level1GameState)
             {
-                Debug.WriteLine("Change to level 1");  
+                //Debug.WriteLine("Change to level 1");  
                 Game.ChangeState(new Level1GameState(Game, GraphicsDevice, Content));
             }
             else if (Game._previousState is Level2GameState)
             {
-                Debug.WriteLine("Change to level 2");
+                //Debug.WriteLine("Change to level 2");
                 Game.ChangeState(new Level2GameState(Game, GraphicsDevice, Content));
 
             }
@@ -102,7 +102,6 @@ namespace Game_development_project.Classes.GameStates
         
         private void MainMenuGameButton_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Load Main Menu");
             Game.ChangeState(new MainMenuState(Game,GraphicsDevice,Content));
 
         }

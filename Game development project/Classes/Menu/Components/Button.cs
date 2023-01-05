@@ -97,7 +97,7 @@ namespace Game_development_project.Classes.Menu.Components
             mouseHooveringOverButton = false;
             if (mousePositionRectangle.Intersects(positionRectangle))
             {
-                Debug.WriteLine("Mouse intersects");
+                //Debug.WriteLine("Mouse intersects");
                 mouseHooveringOverButton = true;
 
                 if (currentMouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed)

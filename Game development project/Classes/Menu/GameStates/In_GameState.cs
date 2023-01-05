@@ -108,7 +108,7 @@ namespace Game_development_project.Classes.GameStates
         public override void Update(GameTime gameTime)
         {
             Hero hero = Hero.GetHero();
-            Debug.WriteLine(hero.Position);
+            //Debug.WriteLine(hero.Position);
 
             if (hero.HasDied || hero.IsOnTrigger)
             {
@@ -213,7 +213,7 @@ namespace Game_development_project.Classes.GameStates
             {
                 if (sprite is Hero)
                 {
-                    Debug.WriteLine("Hero found");
+                    //Debug.WriteLine("Hero found");
                     player.ResetHero();
 
                 }

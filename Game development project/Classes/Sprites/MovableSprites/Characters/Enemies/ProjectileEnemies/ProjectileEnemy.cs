@@ -90,7 +90,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
 
         public override void Attack(Sprite target)
         {
-            Debug.WriteLine("Shooting arrow towards player");
+            //Debug.WriteLine("Shooting arrow towards player");
             CharacterState = new AttackState();
             HorizontalVelocity = 0f;
         }
@@ -118,7 +118,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
                     shootingCounter = 0;
                 }
 
-                Debug.WriteLine("Shooting Left");
+                //Debug.WriteLine("Shooting Left");
             }
             else if (PlayerDirection is RightDirection && CharacterState is AttackState)
             {
@@ -131,7 +131,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
                     shootingCounter = 0;
                 }
 
-                Debug.WriteLine("Shooting Right");
+                //Debug.WriteLine("Shooting Right");
             }
 
         }

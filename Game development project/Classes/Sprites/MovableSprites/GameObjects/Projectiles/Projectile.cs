@@ -78,13 +78,13 @@ namespace Game_development_project.Classes.GameObjects.Projectiles
         {
             if (target.Health > 0)
             {
-                Debug.WriteLine("player hit");
+                //Debug.WriteLine("player hit");
                 target.Health -= 25;
 
             }
             else
             {
-                Debug.WriteLine("player dead");
+                //Debug.WriteLine("player dead");
                 target.HasDied = true;
                 target.CharacterState = new DeathState();
             }

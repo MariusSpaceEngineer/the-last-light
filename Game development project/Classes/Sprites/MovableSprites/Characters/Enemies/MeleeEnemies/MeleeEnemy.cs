@@ -69,7 +69,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Ene
         public override void Attack(Sprite target)
         {
 
-            Debug.WriteLine("Enemy attacking hero");
+            //Debug.WriteLine("Enemy attacking hero");
             HorizontalVelocity = 0;
             CharacterState = new AttackState();
 
