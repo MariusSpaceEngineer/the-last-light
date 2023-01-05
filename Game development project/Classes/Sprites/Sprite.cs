@@ -11,7 +11,7 @@ using System.Text.Json.Nodes;
 
 namespace Game_development_project.Classes.Sprites
 {
-    public class Sprite : ICloneable
+    public abstract class Sprite : ICloneable
     {
 
         #region Public variables

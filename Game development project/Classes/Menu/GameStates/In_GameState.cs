@@ -17,7 +17,7 @@ using Game_development_project.Classes.Level_Design.Level2;
 
 namespace Game_development_project.Classes.GameStates
 {
-    internal class In_GameState : GameState
+    internal abstract class In_GameState : GameState
     {
 
         #region Private variables 

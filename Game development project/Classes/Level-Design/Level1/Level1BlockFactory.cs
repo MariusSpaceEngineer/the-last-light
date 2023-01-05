@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Level_Design.Level1
 {
-    internal class Level1BlockFactory : BlockFactory
+    internal class Level1BlockFactory : IBlockFactory
     {
 
         public Block CreateBlock(int number, Rectangle rectangle)

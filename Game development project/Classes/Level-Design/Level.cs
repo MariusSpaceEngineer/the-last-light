@@ -26,7 +26,7 @@ namespace Default_Level
         private int[,] map;
 
         //The factory that will be used to create tiles
-        private BlockFactory blockFactory;
+        private IBlockFactory blockFactory;
 
         #endregion
 
@@ -44,7 +44,7 @@ namespace Default_Level
 
         #endregion
 
-        public Level(BlockFactory blockFactory) {
+        public Level(IBlockFactory blockFactory) {
             this.blockFactory = blockFactory;
         }
 

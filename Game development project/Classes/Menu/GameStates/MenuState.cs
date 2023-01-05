@@ -11,7 +11,7 @@ using Game_development_project.Classes.Menu.Components;
 
 namespace Game_development_project.Classes.GameStates
 {
-    internal class MenuState : GameState
+    internal abstract class MenuState : GameState
     {
         #region Private variables
 

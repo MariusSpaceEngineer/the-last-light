@@ -10,7 +10,7 @@ namespace Game_development_project.Classes.Level_Design.Level2
 {
     public class Level2 : Default_Level.Level
     {
-        public Level2(BlockFactory blockFactory) : base(blockFactory)
+        public Level2(IBlockFactory blockFactory) : base(blockFactory)
         {
             Map = new int[,]
             {

@@ -4,25 +4,25 @@ namespace Game_development_project.Classes.Miscellaneous
 {
     static internal class CollisionHelper
     {
-        public static bool TouchTopOf(this Rectangle r1, Rectangle r2)
+        public static bool TouchTopOf(this Rectangle rectangle1, Rectangle rectangle2)
         {
-            return r1.Bottom >= r2.Top - 1 && r1.Bottom <= r2.Top + r2.Height / 2 && r1.Right >= r2.Left + r2.Width / 5 && r1.Left <= r2.Right - r2.Width / 5;
+            return rectangle1.Bottom >= rectangle2.Top - 1 && rectangle1.Bottom <= rectangle2.Top + rectangle2.Height / 2 && rectangle1.Right >= rectangle2.Left + rectangle2.Width / 5 && rectangle1.Left <= rectangle2.Right - rectangle2.Width / 5;
 
         }
 
-        public static bool TouchBottomOf(this Rectangle r1, Rectangle r2)
+        public static bool TouchBottomOf(this Rectangle rectangle1, Rectangle rectangle12)
         {
-            return r1.Top <= r2.Bottom + r2.Height / 5 && r1.Top >= r2.Bottom - 1 && r1.Right >= r2.Left + r2.Width / 5 && r1.Left <= r2.Right - r2.Width / 5;
+            return rectangle1.Top <= rectangle12.Bottom + rectangle12.Height / 5 && rectangle1.Top >= rectangle12.Bottom - 1 && rectangle1.Right >= rectangle12.Left + rectangle12.Width / 5 && rectangle1.Left <= rectangle12.Right - rectangle12.Width / 5;
         }
 
-        public static bool TouchLeftOf(this Rectangle r1, Rectangle r2)
+        public static bool TouchLeftOf(this Rectangle rectangle1, Rectangle rectangle2)
         {
-            return r1.Right <= r2.Right && r1.Right >= r2.Left - 5 && r1.Top <= r2.Bottom - r2.Width / 4 && r1.Bottom >= r2.Top + r2.Width / 4;
+            return rectangle1.Right <= rectangle2.Right && rectangle1.Right >= rectangle2.Left - 5 && rectangle1.Top <= rectangle2.Bottom - rectangle2.Width / 4 && rectangle1.Bottom >= rectangle2.Top + rectangle2.Width / 4;
         }
 
-        public static bool TouchRightOf(this Rectangle r1, Rectangle r2)
+        public static bool TouchRightOf(this Rectangle rectangle1, Rectangle rectangle2)
         {
-            return r1.Left >= r2.Left && r1.Left <= r2.Right + 5 && r1.Top <= r2.Bottom - r2.Width / 4 && r1.Bottom >= r2.Top + r2.Width / 4;
+            return rectangle1.Left >= rectangle2.Left && rectangle1.Left <= rectangle2.Right + 5 && rectangle1.Top <= rectangle2.Bottom - rectangle2.Width / 4 && rectangle1.Bottom >= rectangle2.Top + rectangle2.Width / 4;
         }
     }
 }
