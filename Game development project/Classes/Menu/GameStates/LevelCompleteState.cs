@@ -15,7 +15,7 @@ namespace Game_development_project.Classes.GameStates
 
         public LevelCompleteState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            Debug.WriteLine(Game.CurrentState);
+            //Debug.WriteLine(Game.CurrentState);
         }
 
         public override void InitializeContent()
@@ -93,7 +93,7 @@ namespace Game_development_project.Classes.GameStates
 
         private void NextLevelButton_Click(object sender, EventArgs e)
         {
-                Debug.WriteLine("Change to level 2");
+                //Debug.WriteLine("Change to level 2");
                 
                 Game.ChangeState(new Level2GameState(Game, GraphicsDevice, Content));
                 Hero.GetHero().CurrentLevel = Level2GameState.Level;
@@ -102,7 +102,7 @@ namespace Game_development_project.Classes.GameStates
 
         private void MainMenuGameButton_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("Load Main Menu");
+            //Debug.WriteLine("Load Main Menu");
             Game.ChangeState(new MainMenuState(Game, GraphicsDevice, Content));
 
         }
