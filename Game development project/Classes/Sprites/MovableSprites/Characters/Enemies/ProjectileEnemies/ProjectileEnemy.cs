@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Enemies.ProjectileEnemies
 {
-    internal class ProjectileEnemy : Enemy
+    internal abstract class ProjectileEnemy : Enemy
     {
         #region Private variables
         //The projectile that will be shot

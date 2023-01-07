@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Enemies.MeleeEnemies
 {
-    internal class MeleeEnemy : Enemy
+    internal abstract class MeleeEnemy : Enemy
     {
 
         public MeleeEnemy(Texture2D attackSprite, Texture2D damageSprite, Texture2D deathSprite, Texture2D idleSprite, Texture2D moveSprite, Vector2 position, float speed, float distance, Texture2D boundingBoxTexture) : base(attackSprite, damageSprite, deathSprite, idleSprite, moveSprite, position, speed, distance, boundingBoxTexture)

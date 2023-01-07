@@ -31,7 +31,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
        
         private Animation attackAnimation;
         private Animation damageAnimation;
-        private Animation deathAnimation;
+        //private Animation deathAnimation;
         private Animation idleAnimation;
         private Animation jumpAnimation;
         private Animation moveAnimation;
@@ -100,7 +100,7 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
             //Creating animations for the sprites
             this.attackAnimation = CreateAnimation(this.AttackSprite, 4, 4, 1);
             this.damageAnimation = CreateAnimation(this.DamageSprite, 1, 1, 1);
-            this.deathAnimation = CreateAnimation(this.DeathSprite, 10, 10, 1);
+            //this.deathAnimation = CreateAnimation(this.DeathSprite, 10, 10, 1);
             this.idleAnimation = CreateAnimation(this.IdleSprite, 10, 10, 1);
             this.jumpAnimation = CreateAnimation(this.jumpSprite, 3, 3, 1);
             this.moveAnimation = CreateAnimation(this.MoveSprite, 10, 10, 1);
@@ -345,8 +345,8 @@ namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Pla
             }
             else if (characterState is DeathState)
             {
-
-                deathAnimation.Update(gameTime);
+                idleAnimation.Update(gameTime);
+               //deathAnimation.Update(gameTime);
             }
             else if (characterState is DamagedState)
             {
