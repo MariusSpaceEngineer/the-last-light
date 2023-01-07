@@ -1,19 +1,13 @@
-﻿using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using Default_Level;
-using System.Reflection.Metadata;
-using Game_development_project.Classes.Sprites;
-using Game_development_project.Classes.Sprites.MovableSprites.Characters.Player;
-using Game_development_project.Classes.Miscellaneous;
+﻿using Default_Level;
 using Game_development_project.Classes.Level_Design.Level1;
 using Game_development_project.Classes.Level_Design.Level2;
+using Game_development_project.Classes.Miscellaneous;
+using Game_development_project.Classes.Sprites;
+using Game_development_project.Classes.Sprites.MovableSprites.Characters.Player;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 
 namespace Game_development_project.Classes.GameStates
 {

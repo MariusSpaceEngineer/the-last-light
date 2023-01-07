@@ -1,6 +1,4 @@
-﻿using Default_Level;
-using Game_development_project.Classes.GameObjects.Projectiles;
-using Game_development_project.Classes.Level_Design.Level1;
+﻿using Game_development_project.Classes.GameObjects.Projectiles;
 using Game_development_project.Classes.Level_Design.Level2;
 using Game_development_project.Classes.Sprites;
 using Game_development_project.Classes.Sprites.MovableSprites.Characters.Enemies.MeleeEnemies;
@@ -9,13 +7,7 @@ using Game_development_project.Classes.Sprites.MovableSprites.Characters.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.GameStates
 {

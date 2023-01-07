@@ -1,13 +1,8 @@
-﻿using Game_development_project.Classes.Level_Design.Level1;
+﻿using Default_Block;
+using Game_development_project.Classes.Level_Design.Level;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Default_Block;
-using Game_development_project.Classes.Level_Design.Level;
 
 namespace Default_Level
 {

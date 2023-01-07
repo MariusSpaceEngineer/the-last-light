@@ -1,10 +1,4 @@
-﻿using Default_Level;
-using Game_development_project.Classes.Level_Design.Level;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Game_development_project.Classes.Level_Design.Level;
 
 namespace Game_development_project.Classes.Level_Design.Level2
 {

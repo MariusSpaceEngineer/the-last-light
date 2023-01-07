@@ -1,13 +1,7 @@
 ﻿using Default_Block;
 using Game_development_project.Classes.Level_Design.Level;
-using Game_development_project.Classes.Level_Design.Level1;
 using Game_development_project.Classes.Level_Design.TypeBlocks;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Level_Design.Level2
 {

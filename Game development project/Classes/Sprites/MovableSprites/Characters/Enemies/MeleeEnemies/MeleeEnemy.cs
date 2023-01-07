@@ -4,12 +4,6 @@ using Game_development_project.Classes.Miscellaneous;
 using Game_development_project.Classes.Sprites.MovableSprites.Characters.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Game_development_project.Classes.Sprites.MovableSprites.Characters.Enemies.MeleeEnemies
 {

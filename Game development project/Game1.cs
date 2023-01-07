@@ -1,5 +1,4 @@
 ﻿using Default_Block;
-using Game_development_project.Classes.Animations;
 using Game_development_project.Classes.GameStates;
 using Game_development_project.Classes.Miscellaneous;
 using Microsoft.Xna.Framework;
