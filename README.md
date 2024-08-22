@@ -16,3 +16,7 @@ The game is written in *C#* and built using the *Monogame framework*.
 
 - *Language:* C#
 - *Framework:* Monogame
+
+Check out this video demo of the project: https://www.youtube.com/watch?v=GjcSP9jFr4w
+
+
